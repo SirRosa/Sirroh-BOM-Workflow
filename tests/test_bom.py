@@ -2,10 +2,11 @@ import sys
 from pathlib import Path
 import unittest
 import numpy as np
+import cv2
 from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from bom_icons import detect_grid, process_tile, process, normalize_icon_to_tile, quantize, TILE_SIZE, LAYOUT_MARGIN
+from bom_icons import detect_grid, process_tile, process, normalize_icon_to_tile, quantize, hue_family, TILE_SIZE, LAYOUT_MARGIN
 
 
 class B0MTests(unittest.TestCase):
@@ -67,13 +68,40 @@ class B0MTests(unittest.TestCase):
         highlights = warm & (before[:, :, 1] >= 125)
         self.assertGreater(int(np.count_nonzero(highlights)), 20)
         self.assertEqual(used, 6)
-        # Every warm berry pixel must remain reddish/orange, not leaf-green.
-        warm_rgb = after[:, :, :3][warm].astype(int)
-        self.assertTrue(np.all(warm_rgb[:, 0] >= 1.5 * warm_rgb[:, 1]))
-        self.assertTrue(np.all(warm_rgb[:, 0] > warm_rgb[:, 2]))
-        # Bright original highlights must retain a visibly lighter shade.
-        highlight_rgb = after[:, :, :3][highlights].astype(int)
-        self.assertGreater(float(np.mean(highlight_rgb[:, 1])), 100.0)
+        # Test ALL saturated warm pixels, not just warm highlights. BOM-E
+        # previously passed the highlight-only check while leaving 28 warm
+        # input pixels mapped to green leaf colors (and the user could see it).
+        source_families = hue_family(before[:, :, :3])
+        output_families = hue_family(after[:, :, :3])
+        occupied = before[:, :, 3] >= 32
+        all_warm = (source_families == 1) & occupied
+        all_green = (source_families == 2) & occupied
+        self.assertGreater(int(np.count_nonzero(all_warm)), 2500)
+        self.assertGreater(int(np.count_nonzero(all_green)), 1000)
+        self.assertEqual(int(np.count_nonzero(all_warm & (output_families == 2))), 0,
+                         'Source warm fruit pixels were recolored green')
+        self.assertEqual(int(np.count_nonzero(all_green & (output_families == 1))), 0,
+                         'Source leaf-green pixels were recolored orange')
+
+        # Form the fruit body from source orange. Its bright berry region may
+        # NEVER have green pixels, including any dark areas between highlights.
+        berry_seed = (before[:, :, 0].astype(int) > 145) & (
+            before[:, :, 0].astype(int) > before[:, :, 1].astype(int) * 1.45
+        ) & occupied
+        berry_closed = cv2.morphologyEx(berry_seed.astype(np.uint8),
+                                        cv2.MORPH_CLOSE, np.ones((7, 7), np.uint8))
+        num, labels, stats, _ = cv2.connectedComponentsWithStats(berry_closed, 8)
+        main = max(range(1, num), key=lambda i: int(stats[i, cv2.CC_STAT_AREA]))
+        body = labels == main
+        self.assertGreater(int(np.count_nonzero(body)), 2500)
+        self.assertEqual(int(np.count_nonzero(body & occupied & (output_families == 2))), 0,
+                         'Green marks remain inside orange cloudberry body')
+
+        # Highlight must remain visibly lighter than base orange and leaves.
+        brightest = occupied & (before[:, :, 0] >= 240) & (before[:, :, 1] >= 158)
+        self.assertGreater(int(np.count_nonzero(brightest)), 15)
+        self.assertGreater(float(np.mean(after[:, :, 1][brightest])), 135)
+        self.assertEqual(used, 6)
 
     def test_grid_output_alignment_and_color_limit(self):
         source_file = Path(__file__).resolve().parents[1] / 'input' / 'Valheim_Compass_Atlas.png'

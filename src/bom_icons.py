@@ -21,7 +21,7 @@ import cv2
 import numpy as np
 from PIL import Image
 
-BUILD_ID = "BOM-ICONS-2026-10-15-E"
+BUILD_ID = "BOM-ICONS-2026-10-15-F"
 TILE_SIZE = 96
 LAYOUT_MARGIN = 2
 FOREGROUND_ALPHA_THRESHOLD = 32
@@ -146,71 +146,176 @@ def bilateral_denoise(rgb: np.ndarray, fg: np.ndarray) -> np.ndarray:
     return out
 
 
-def extract_palette(rgb: np.ndarray, mask: np.ndarray, k: int, seed: int) -> np.ndarray:
+def hue_family(rgb: np.ndarray) -> np.ndarray:
+    """Classify noticeable chromatic families without assuming which sprite it is.
+
+    0: neutral, 1: reds/oranges/yellows, 2: greens,
+    3: cyan/blues, 4: violet/magenta.
+    Values are derived from original RGB, before smoothing/quantization.
+    """
+    rgb = np.asarray(rgb, dtype=np.uint8)
+    if not rgb.size:
+        return np.zeros(rgb.shape[:-1], dtype=np.uint8)
+    shape = rgb.shape[:-1]
+    flat = rgb.reshape(-1, 1, 3)
+    hsv = cv2.cvtColor(flat, cv2.COLOR_RGB2HSV).reshape(*shape, 3)
+    h, s, v = [hsv[..., i].astype(np.int16) for i in range(3)]
+    visible_chroma = (s >= 58) & (v >= 36)
+    cls = np.zeros(shape, dtype=np.uint8)
+    cls[visible_chroma & ((h <= 35) | (h >= 170))] = 1
+    cls[visible_chroma & (h > 35) & (h < 92)] = 2
+    cls[visible_chroma & (h >= 92) & (h < 145)] = 3
+    cls[visible_chroma & (h >= 145) & (h < 170)] = 4
+    # Yellow highlight/ochre remains warm even if HSV places it on the
+    # near-green boundary. This rule relies on source color, not row/column.
+    red = rgb[..., 0].astype(np.int16)
+    green = rgb[..., 1].astype(np.int16)
+    blue = rgb[..., 2].astype(np.int16)
+    # Amber highlights stay warm, but olive leaf-edge pixels must not be
+    # forced to orange merely because a little red exceeds green.
+    warm_strong = (red >= green * 1.45) & (red >= blue * 1.22)
+    warm_bright_yellow = (red >= 180) & (red >= green * 1.10) & (red >= blue * 1.30)
+    weak_olive = (cls == 1) & ~(warm_strong | warm_bright_yellow)
+    cls[weak_olive] = 0
+    cls[visible_chroma & (warm_strong | warm_bright_yellow)] = 1
+    return cls
+
+
+def _cluster_palette(sample: np.ndarray, k: int, seed: int) -> np.ndarray:
+    """Find actual original colors that best represent one perceptual family."""
+    if len(sample) == 0 or k == 0:
+        return np.zeros((0, 3), dtype=np.uint8)
+    k = min(k, len(np.unique(sample, axis=0)))
+    # Budget memory and runtime while giving all distinct material accents a vote.
+    if len(sample) > 15000:
+        rng = np.random.default_rng(seed)
+        sample = sample[rng.choice(len(sample), 15000, replace=False)]
+    lab = cv2.cvtColor(sample.reshape(-1, 1, 3), cv2.COLOR_RGB2LAB).reshape(-1, 3).astype(np.float32)
+    criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 60, 0.15)
+    cv2.setRNGSeed(seed)
+    _, _, centers = cv2.kmeans(lab, k, None, criteria, 6, cv2.KMEANS_PP_CENTERS)
+    result = np.asarray([sample[int(np.sum((lab - center) ** 2, axis=1).argmin())] for center in centers], dtype=np.uint8)
+    return result
+
+
+def extract_palette(rgb: np.ndarray, mask: np.ndarray, k: int, seed: int, source_rgb: np.ndarray | None = None) -> np.ndarray:
+    """Allocate the tile's limited colors among genuine source color families.
+
+    A global k-means may overlook a minority hue (e.g. small red highlights or
+    leaves). Fitting each chromatic family separately ensures that warm fruit
+    and green leaves have distinct colors in a 6-entry palette.
+    """
     pixels = rgb[mask]
     if len(pixels) == 0:
         return np.zeros((0, 3), dtype=np.uint8)
-    unique = np.unique(pixels, axis=0)
-    k = min(k, len(unique))
-    if k <= 0:
+    k = min(k, len(np.unique(pixels, axis=0)))
+    if k == 0:
         return np.zeros((0, 3), dtype=np.uint8)
-    sample = pixels
-    if len(sample) > 20000:
-        rng = np.random.default_rng(seed)
-        sample = sample[rng.choice(len(sample), 20000, replace=False)]
-    # Stratified sampling in LAB preserves minority highlights, flowers and glows
-    # that would be swallowed by large areas of a dominant material.
-    if len(sample) >= 150 and k >= 3:
-        hsv = cv2.cvtColor(sample.reshape(-1,1,3), cv2.COLOR_RGB2HSV).reshape(-1,3)
-        # Saturated hues occupy adjacent 10-degree buckets; neutral/gray
-        # pixels form their own bucket, preventing accidental oversampling.
-        buckets = (hsv[:, 0].astype(np.int32) // 5).clip(0, 35)
-        buckets[hsv[:, 1] < 45] = 36
-        counts = np.bincount(buckets, minlength=37).astype(np.float64)
-        balanced = 1.0 / np.sqrt(counts[buckets].clip(1))
-        balanced /= balanced.sum()
-        # Retain natural importance of the dominant material while giving
-        # enough votes to smaller genuine accents (fire, highlights, leaves).
-        weights = 0.40 / len(sample) + 0.60 * balanced
-        rng = np.random.default_rng(seed)
-        nchoice = min(12000, max(2500, len(sample) * 2))
-        inds = rng.choice(len(sample), nchoice, replace=True, p=weights)
-        fitting = sample[inds]
-    else:
-        fitting = sample
-    data = cv2.cvtColor(fitting.reshape(-1, 1, 3), cv2.COLOR_RGB2LAB).reshape(-1, 3).astype(np.float32)
-    criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 60, 0.15)
-    cv2.setRNGSeed(seed)
-    _, _, centers = cv2.kmeans(data, k, None, criteria, 6, cv2.KMEANS_PP_CENTERS)
-    palette = np.asarray([fitting[int(np.sum((data - center) ** 2, axis=1).argmin())] for center in centers], dtype=np.uint8)
+    original = rgb if source_rgb is None else source_rgb
+    source_families = hue_family(original[mask])
+    counts = np.bincount(source_families, minlength=5)
+    # Reserve representatives for materially present colors; do not allocate
+    # an entire palette slot to a single anti-aliased edge pixel.
+    threshold = max(5, int(np.ceil(len(pixels) * 0.03)))
+    present = [i for i in range(5) if counts[i] >= threshold]
+    if not present:
+        present = [int(np.argmax(counts))]
+    if len(present) > k:
+        present = sorted(present, key=lambda i: -counts[i])[:k]
+    allocations = {g: 1 for g in present}
+    # Largest-remainder apportionment by pixel population with moderate bias
+    # toward minor accent families: fewer greens than orange berries, but not 0.
+    weight = {g: float(counts[g]) for g in present}
+    for _ in range(k - len(present)):
+        g = max(present, key=lambda x: (weight[x] / (allocations[x] + 1.0), -x))
+        allocations[g] += 1
+    result = []
+    for g in present:
+        group_pixels = original[mask][source_families == g]
+        if len(group_pixels) < allocations[g]:
+            continue
+        group_k = allocations[g]
+        chosen = []
+        fitting_pixels = group_pixels
+        if group_k >= 3 and len(group_pixels) >= 80:
+            group_lab = cv2.cvtColor(group_pixels.reshape(-1, 1, 3), cv2.COLOR_RGB2LAB).reshape(-1, 3)
+            brightness = group_lab[:, 0].astype(np.int32)
+            p50 = float(np.percentile(brightness, 50))
+            p95 = float(np.percentile(brightness, 95))
+            # Reserve one true bright source color if small bright highlights
+            # would otherwise be lost inside a dominant middle-tone cluster.
+            if p95 - p50 >= 15:
+                bright = group_pixels[brightness >= np.percentile(brightness, 95)]
+                bright_lab = cv2.cvtColor(bright.reshape(-1, 1, 3), cv2.COLOR_RGB2LAB).reshape(-1, 3).astype(np.float32)
+                mean = np.mean(bright_lab, axis=0)
+                chosen.append(bright[int(np.sum((bright_lab - mean) ** 2, axis=1).argmin())])
+                fitting_pixels = group_pixels[brightness < np.percentile(brightness, 95)]
+                group_k -= 1
+        for entry in _cluster_palette(fitting_pixels, group_k, seed + 97 * g):
+            result.append(entry)
+        result.extend(chosen)
+    palette = np.asarray(result, dtype=np.uint8).reshape(-1, 3)
     lum = palette @ np.array([0.2126, 0.7152, 0.0722])
     return palette[np.argsort(lum)]
 
 
-def quantize(rgb: np.ndarray, mask: np.ndarray, palette: np.ndarray) -> np.ndarray:
+def quantize(rgb: np.ndarray, mask: np.ndarray, palette: np.ndarray, source_rgb: np.ndarray | None = None) -> np.ndarray:
+    """LAB-nearest color, constrained to matching chromatic families.
+
+    Distances use int32 so squared differences cannot overflow int16. Unlike
+    unconstrained k-means, a warm original pixel may never choose a green
+    palette entry when warm colors are available in the current tile.
+    """
     idx = np.full(mask.shape, -1, dtype=np.int16)
     if not len(palette) or not np.any(mask):
         return idx
-    # int32 is essential: squaring int16 channel deltas may overflow and
-    # incorrectly map warm yellow/orange highlights to dark green.
     pts = cv2.cvtColor(rgb[mask].reshape(-1, 1, 3), cv2.COLOR_RGB2LAB).reshape(-1, 3).astype(np.int32)
     pal = cv2.cvtColor(palette.reshape(-1, 1, 3), cv2.COLOR_RGB2LAB).reshape(-1, 3).astype(np.int32)
-    idx[mask] = np.argmin(((pts[:, None, :] - pal[None, :, :]) ** 2).sum(axis=2), axis=1).astype(np.int16)
+    d = ((pts[:, None, :] - pal[None, :, :]) ** 2).sum(axis=2)
+    src_classes = hue_family((rgb if source_rgb is None else source_rgb)[mask])
+    pal_classes = hue_family(palette)
+    for cls in range(1, 5):
+        matching = pal_classes == cls
+        if not np.any(matching):
+            continue
+        # Color family is an invariant for genuinely saturated original pixels.
+        # Avoid false yellow-green, red-blue and green-orange mappings.
+        members = src_classes == cls
+        if np.any(members):
+            d[np.ix_(members, ~matching)] = np.iinfo(np.int32).max // 8
+    idx[mask] = np.argmin(d, axis=1).astype(np.int16)
     return idx
 
 
-def mode_cleanup(idx: np.ndarray, mask: np.ndarray, colors: int) -> np.ndarray:
+def mode_cleanup(idx: np.ndarray, mask: np.ndarray, colors: int,
+                 source_rgb: np.ndarray | None = None, palette: np.ndarray | None = None) -> np.ndarray:
     if not np.any(mask) or colors <= 0:
         return idx
     out = idx.copy()
     density = cv2.blur(mask.astype(np.float32), (CLEANUP_KERNEL, CLEANUP_KERNEL))
     interior = cv2.erode(mask.astype(np.uint8), np.ones((3, 3), np.uint8), iterations=1).astype(bool)
+    if source_rgb is not None and palette is not None:
+        original_families = hue_family(source_rgb)
+        palette_families = hue_family(palette)
+    else:
+        original_families = None
+        palette_families = None
     for _ in range(CLEANUP_PASSES):
         scores = []
         for ci in range(colors):
             amount = cv2.blur(((out == ci) & mask).astype(np.float32), (CLEANUP_KERNEL, CLEANUP_KERNEL))
             scores.append(np.divide(amount, density, out=np.zeros_like(amount), where=density > 1e-6))
         scores = np.stack(scores)
+        if original_families is not None:
+            for cls in range(1, 5):
+                if not np.any(palette_families == cls):
+                    continue
+                incompatible = palette_families != cls
+                scores[incompatible, :, :] = np.where(
+                    original_families[None, :, :] == cls,
+                    -1.0,
+                    scores[incompatible, :, :]
+                )
         best = scores.argmax(axis=0).astype(np.int16)
         confidence = scores.max(axis=0)
         change = interior & (confidence >= CLEANUP_THRESHOLD) & (best != out)
@@ -223,8 +328,9 @@ def process_tile(tile: np.ndarray, colors: int, seed: int) -> tuple[np.ndarray, 
     tile[tile[:, :, 3] < FOREGROUND_ALPHA_THRESHOLD] = 0
     fg = clean_foreground_mask(tile)
     smoothed = bilateral_denoise(tile[:, :, :3].copy(), fg)
-    palette = extract_palette(smoothed, fg, colors, seed)
-    idx = mode_cleanup(quantize(smoothed, fg, palette), fg, len(palette))
+    palette = extract_palette(smoothed, fg, colors, seed, source_rgb=tile[:, :, :3])
+    idx = mode_cleanup(quantize(smoothed, fg, palette, source_rgb=tile[:, :, :3]), fg,
+                       len(palette), source_rgb=tile[:, :, :3], palette=palette)
     out = np.zeros((TILE_SIZE, TILE_SIZE, 4), dtype=np.uint8)
     out[fg, 3] = 255
     for pi, color in enumerate(palette):
