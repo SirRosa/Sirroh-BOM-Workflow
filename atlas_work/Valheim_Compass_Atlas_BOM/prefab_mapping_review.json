@@ -1,0 +1,603 @@
+{
+  "purpose": "Manual prefab mapping verification of 8x9 BOM 1.0/G icon atlas; names in atlas_manifest.json are editable without changing the image",
+  "reviewed_date": "2026-10-16",
+  "sources": [
+    {
+      "title": "Jotunn generated prefab list",
+      "url": "https://valheim-modding.github.io/Jotunn/data/prefabs/prefab-list.html",
+      "note": "Exact IDs for vanilla object and item prefabs"
+    },
+    {
+      "title": "Valheim 1.0.7 location IDs",
+      "url": "https://github-wiki-see.page/m/ASharpPen/Valheim.CustomRaids/wiki/Data-Locations"
+    },
+    {
+      "title": "Valheim 1.0 dungeon locations",
+      "url": "https://valheimhub.wiki/db/locations/"
+    }
+  ],
+  "notes": "Confidence high = strong visual and prefab class match; medium = real prefab but the icon is a stylized representative, variant not proven; custom = no exact assignment, do not treat custom_* as an actual prefab.",
+  "counts": {
+    "real_prefabs": 54,
+    "custom_icons": 17,
+    "empty_slots": 1
+  },
+  "items": [
+    {
+      "id": "r01_c01",
+      "name": "Runestone_Meadows",
+      "prefab": "Runestone_Meadows",
+      "confidence": "medium",
+      "looks_like": "Kamień runiczny z czerwonym zygzakiem",
+      "caveat": "Runa nie wskazuje konkretnego biomu; przypisany reprezentatywny istniejący kamień runiczny"
+    },
+    {
+      "id": "r01_c02",
+      "name": "custom_stone_diamond",
+      "prefab": "",
+      "confidence": "custom",
+      "looks_like": "Kamienny romb",
+      "caveat": "Brak dokładnego odpowiednika"
+    },
+    {
+      "id": "r01_c03",
+      "name": "custom_diamond_rune",
+      "prefab": "",
+      "confidence": "custom",
+      "looks_like": "Romb z wyciętym geometrycznym symbolem",
+      "caveat": "Symbol orientacyjny"
+    },
+    {
+      "id": "r01_c04",
+      "name": "wood_door",
+      "prefab": "wood_door",
+      "confidence": "high",
+      "looks_like": "Drewniane drzwi",
+      "caveat": ""
+    },
+    {
+      "id": "r01_c05",
+      "name": "stake_wall",
+      "prefab": "stake_wall",
+      "confidence": "high",
+      "looks_like": "Palisada z ostrokołów",
+      "caveat": ""
+    },
+    {
+      "id": "r01_c06",
+      "name": "custom_tent",
+      "prefab": "",
+      "confidence": "custom",
+      "looks_like": "Namiot lub schronienie",
+      "caveat": "Brak jednoznacznego pojedynczego prefabu"
+    },
+    {
+      "id": "r01_c07",
+      "name": "stone_arch",
+      "prefab": "stone_arch",
+      "confidence": "high",
+      "looks_like": "Kamienny łuk",
+      "caveat": ""
+    },
+    {
+      "id": "r01_c08",
+      "name": "StoneTower1",
+      "prefab": "StoneTower1",
+      "confidence": "medium",
+      "looks_like": "Kamienna wieża",
+      "caveat": "Wiele wariantów wież w Valheim; wybrano istniejący reprezentatywny wariant"
+    },
+    {
+      "id": "r02_c01",
+      "name": "WoodHouse1",
+      "prefab": "WoodHouse1",
+      "confidence": "medium",
+      "looks_like": "Drewniana chata",
+      "caveat": "Uproszczona ikona budynku; wybrano reprezentatywny prefab chaty"
+    },
+    {
+      "id": "r02_c02",
+      "name": "piece_chest_wood",
+      "prefab": "piece_chest_wood",
+      "confidence": "high",
+      "looks_like": "Drewniana skrzynia",
+      "caveat": ""
+    },
+    {
+      "id": "r02_c03",
+      "name": "custom_wagon_wheel",
+      "prefab": "",
+      "confidence": "custom",
+      "looks_like": "Drewniane koło wozu",
+      "caveat": "Brak osobnego pasującego prefabu"
+    },
+    {
+      "id": "r02_c04",
+      "name": "custom_anchor",
+      "prefab": "",
+      "confidence": "custom",
+      "looks_like": "Kotwica statku",
+      "caveat": "Symbol, nie odnaleziono jednoznacznego prefabu"
+    },
+    {
+      "id": "r02_c05",
+      "name": "custom_spiral_rune",
+      "prefab": "",
+      "confidence": "custom",
+      "looks_like": "Kamienna spirala",
+      "caveat": "Symbol umowny"
+    },
+    {
+      "id": "r02_c06",
+      "name": "TrophySkeleton",
+      "prefab": "TrophySkeleton",
+      "confidence": "medium",
+      "looks_like": "Ludzka czaszka",
+      "caveat": "Prefab trofeum szkieletu, graficzna stylizacja czaszki"
+    },
+    {
+      "id": "r02_c07",
+      "name": "custom_stone_cross",
+      "prefab": "",
+      "confidence": "custom",
+      "looks_like": "Kamienny krzyż",
+      "caveat": "Nie mylić z nagrobkiem w rzędzie 7"
+    },
+    {
+      "id": "r02_c08",
+      "name": "custom_horned_helmet",
+      "prefab": "",
+      "confidence": "custom",
+      "looks_like": "Hełm z rogami",
+      "caveat": "Nie przypisywać niepowiązanego hełmu bez rogów"
+    },
+    {
+      "id": "r03_c01",
+      "name": "Stone",
+      "prefab": "Stone",
+      "confidence": "medium",
+      "looks_like": "Kamienie",
+      "caveat": "Ikona przedstawia skupisko głazów, nazwa rzeczywistego materiału"
+    },
+    {
+      "id": "r03_c02",
+      "name": "rock4_copper",
+      "prefab": "rock4_copper",
+      "confidence": "high",
+      "looks_like": "Złoże miedzi w skale",
+      "caveat": ""
+    },
+    {
+      "id": "r03_c03",
+      "name": "Crystal",
+      "prefab": "Crystal",
+      "confidence": "high",
+      "looks_like": "Niebieskie kryształy",
+      "caveat": ""
+    },
+    {
+      "id": "r03_c04",
+      "name": "custom_stone_pedestal",
+      "prefab": "",
+      "confidence": "custom",
+      "looks_like": "Okrągły głaz na postumencie",
+      "caveat": "Nie pasuje jednoznacznie do ołtarza"
+    },
+    {
+      "id": "r03_c05",
+      "name": "ChickenEgg",
+      "prefab": "ChickenEgg",
+      "confidence": "high",
+      "looks_like": "Kropkowane jajo",
+      "caveat": ""
+    },
+    {
+      "id": "r03_c06",
+      "name": "Beech_Stub",
+      "prefab": "Beech_Stub",
+      "confidence": "high",
+      "looks_like": "Pień po ścięciu drzewa",
+      "caveat": ""
+    },
+    {
+      "id": "r03_c07",
+      "name": "custom_loot_sack",
+      "prefab": "",
+      "confidence": "custom",
+      "looks_like": "Worek na łup",
+      "caveat": "Ikona sakwy, nie identyfikowalny przedmiot gry"
+    },
+    {
+      "id": "r03_c08",
+      "name": "custom_checkmark",
+      "prefab": "",
+      "confidence": "custom",
+      "looks_like": "Znak zatwierdzenia",
+      "caveat": "Symbol interfejsu"
+    },
+    {
+      "id": "r04_c01",
+      "name": "custom_red_cross",
+      "prefab": "",
+      "confidence": "custom",
+      "looks_like": "Czerwony znak X",
+      "caveat": "Symbol interfejsu"
+    },
+    {
+      "id": "r04_c02",
+      "name": "custom_exclamation_mark",
+      "prefab": "",
+      "confidence": "custom",
+      "looks_like": "Czerwony wykrzyknik",
+      "caveat": "Symbol interfejsu"
+    },
+    {
+      "id": "r04_c03",
+      "name": "fire_pit",
+      "prefab": "fire_pit",
+      "confidence": "high",
+      "looks_like": "Ognisko",
+      "caveat": ""
+    },
+    {
+      "id": "r04_c04",
+      "name": "Torch",
+      "prefab": "Torch",
+      "confidence": "high",
+      "looks_like": "Pochodnia",
+      "caveat": ""
+    },
+    {
+      "id": "r04_c05",
+      "name": "Honey",
+      "prefab": "Honey",
+      "confidence": "high",
+      "looks_like": "Plaster miodu",
+      "caveat": ""
+    },
+    {
+      "id": "r04_c06",
+      "name": "Raspberry",
+      "prefab": "Raspberry",
+      "confidence": "high",
+      "looks_like": "Malina",
+      "caveat": ""
+    },
+    {
+      "id": "r04_c07",
+      "name": "Blueberries",
+      "prefab": "Blueberries",
+      "confidence": "high",
+      "looks_like": "Borówki",
+      "caveat": ""
+    },
+    {
+      "id": "r04_c08",
+      "name": "Cloudberry",
+      "prefab": "Cloudberry",
+      "confidence": "high",
+      "looks_like": "Nordycka malina (malina moroszka)",
+      "caveat": ""
+    },
+    {
+      "id": "r05_c01",
+      "name": "Mushroom",
+      "prefab": "Mushroom",
+      "confidence": "high",
+      "looks_like": "Czerwony grzyb",
+      "caveat": ""
+    },
+    {
+      "id": "r05_c02",
+      "name": "MushroomYellow",
+      "prefab": "MushroomYellow",
+      "confidence": "high",
+      "looks_like": "Żółty grzyb",
+      "caveat": ""
+    },
+    {
+      "id": "r05_c03",
+      "name": "custom_white_radish",
+      "prefab": "",
+      "confidence": "custom",
+      "looks_like": "Biała rzodkiew z zielonymi liśćmi",
+      "caveat": "Nie mylić z rzepą pokazana dalej"
+    },
+    {
+      "id": "r05_c04",
+      "name": "Carrot",
+      "prefab": "Carrot",
+      "confidence": "high",
+      "looks_like": "Marchew",
+      "caveat": ""
+    },
+    {
+      "id": "r05_c05",
+      "name": "Turnip",
+      "prefab": "Turnip",
+      "confidence": "high",
+      "looks_like": "Rzepa o purpurowej górze",
+      "caveat": ""
+    },
+    {
+      "id": "r05_c06",
+      "name": "Onion",
+      "prefab": "Onion",
+      "confidence": "high",
+      "looks_like": "Cebula",
+      "caveat": ""
+    },
+    {
+      "id": "r05_c07",
+      "name": "Barley",
+      "prefab": "Barley",
+      "confidence": "high",
+      "looks_like": "Kłosy jęczmienia",
+      "caveat": ""
+    },
+    {
+      "id": "r05_c08",
+      "name": "custom_white_flowers",
+      "prefab": "",
+      "confidence": "custom",
+      "looks_like": "Białe kwiaty na zielonej łodydze",
+      "caveat": "Nieidentyfikowalne jako konkretny surowiec Valheim"
+    },
+    {
+      "id": "r06_c01",
+      "name": "Beech_Sapling",
+      "prefab": "Beech_Sapling",
+      "confidence": "medium",
+      "looks_like": "Młoda sadzonka drzewa",
+      "caveat": "Reprezentatywna sadzonka buka"
+    },
+    {
+      "id": "r06_c02",
+      "name": "FirTree",
+      "prefab": "FirTree",
+      "confidence": "high",
+      "looks_like": "Jodła",
+      "caveat": ""
+    },
+    {
+      "id": "r06_c03",
+      "name": "Beech1",
+      "prefab": "Beech1",
+      "confidence": "medium",
+      "looks_like": "Zielone drzewo liściaste",
+      "caveat": "Reprezentatywny buk; możliwe inne drzewa liściaste"
+    },
+    {
+      "id": "r06_c04",
+      "name": "PickaxeIron",
+      "prefab": "PickaxeIron",
+      "confidence": "medium",
+      "looks_like": "Kilof",
+      "caveat": "Uproszczona ikona, wybrano żelazny typ"
+    },
+    {
+      "id": "r06_c05",
+      "name": "SwordIron",
+      "prefab": "SwordIron",
+      "confidence": "medium",
+      "looks_like": "Miecz",
+      "caveat": "Uproszczona ikona, wybrano żelazny typ"
+    },
+    {
+      "id": "r06_c06",
+      "name": "ShieldWood",
+      "prefab": "ShieldWood",
+      "confidence": "medium",
+      "looks_like": "Okrągła tarcza malowana",
+      "caveat": "Drewniana tarcza pozwala na malowane wzory"
+    },
+    {
+      "id": "r06_c07",
+      "name": "VikingShip",
+      "prefab": "VikingShip",
+      "confidence": "high",
+      "looks_like": "Drakkar / długi statek",
+      "caveat": ""
+    },
+    {
+      "id": "r06_c08",
+      "name": "Runestone_Ashlands",
+      "prefab": "Runestone_Ashlands",
+      "confidence": "medium",
+      "looks_like": "Kamień z ognistą runą",
+      "caveat": "Runiczna ikona jest symboliczna; wybrano istniejący prefab rune z Popiołów"
+    },
+    {
+      "id": "r07_c01",
+      "name": "Eikthyrnir",
+      "prefab": "Eikthyrnir",
+      "confidence": "medium",
+      "looks_like": "Rytualny kamień z rogami",
+      "caveat": "Przypisanie do lokalizacji ołtarza Eikthyra, nie do samej konstrukcji kamienia"
+    },
+    {
+      "id": "r07_c02",
+      "name": "TrophyDeer",
+      "prefab": "TrophyDeer",
+      "confidence": "medium",
+      "looks_like": "Czaszka jelenia z porożem",
+      "caveat": "Trofeum jelenia w grze nie musi być dokładnie kościane"
+    },
+    {
+      "id": "r07_c03",
+      "name": "Player_tombstone",
+      "prefab": "Player_tombstone",
+      "confidence": "medium",
+      "looks_like": "Kamienny nagrobek z krzyżem",
+      "caveat": "Uproszczona wersja wizualna nagrobka gracza"
+    },
+    {
+      "id": "r07_c04",
+      "name": "stone_pile",
+      "prefab": "stone_pile",
+      "confidence": "high",
+      "looks_like": "Kamienny kopiec",
+      "caveat": ""
+    },
+    {
+      "id": "r07_c05",
+      "name": "piece_cookingstation",
+      "prefab": "piece_cookingstation",
+      "confidence": "medium",
+      "looks_like": "Trójnóg nad ogniskiem",
+      "caveat": "Stacja gotowania nad ogniem, uproszczona forma"
+    },
+    {
+      "id": "r07_c06",
+      "name": "piece_beehive",
+      "prefab": "piece_beehive",
+      "confidence": "high",
+      "looks_like": "Ul",
+      "caveat": ""
+    },
+    {
+      "id": "r07_c07",
+      "name": "Fish1",
+      "prefab": "Fish1",
+      "confidence": "medium",
+      "looks_like": "Ryba",
+      "caveat": "Reprezentatywny gatunek: okoń; rysunek nie rozróżnia gatunku"
+    },
+    {
+      "id": "r07_c08",
+      "name": "custom_paw_print",
+      "prefab": "",
+      "confidence": "custom",
+      "looks_like": "Odcisk zwierzęcej łapy",
+      "caveat": "Symbol, nie prefab"
+    },
+    {
+      "id": "r08_c01",
+      "name": "Deer",
+      "prefab": "Deer",
+      "confidence": "high",
+      "looks_like": "Jeleń",
+      "caveat": ""
+    },
+    {
+      "id": "r08_c02",
+      "name": "Boar",
+      "prefab": "Boar",
+      "confidence": "high",
+      "looks_like": "Dzik",
+      "caveat": ""
+    },
+    {
+      "id": "r08_c03",
+      "name": "Wolf",
+      "prefab": "Wolf",
+      "confidence": "high",
+      "looks_like": "Wilk",
+      "caveat": ""
+    },
+    {
+      "id": "r08_c04",
+      "name": "Troll",
+      "prefab": "Troll",
+      "confidence": "medium",
+      "looks_like": "Duży humanoid / troll",
+      "caveat": "Uproszczona sylwetka, najbardziej odpowiada trollowi"
+    },
+    {
+      "id": "r08_c05",
+      "name": "Serpent",
+      "prefab": "Serpent",
+      "confidence": "high",
+      "looks_like": "Wąż morski",
+      "caveat": ""
+    },
+    {
+      "id": "r08_c06",
+      "name": "YggaShoot1",
+      "prefab": "YggaShoot1",
+      "confidence": "medium",
+      "looks_like": "Drzewo świata z korzeniami",
+      "caveat": "Reprezentatywna realna roślina Yggdrasil; rysunek jest symboliczny"
+    },
+    {
+      "id": "r08_c07",
+      "name": "custom_rune_k",
+      "prefab": "",
+      "confidence": "custom",
+      "looks_like": "Kamień z czerwonym znakiem przypominającym runę K",
+      "caveat": "Nie da się rozpoznać biomu runestone po tym znaku"
+    },
+    {
+      "id": "r08_c08",
+      "name": "forge_ext4",
+      "prefab": "forge_ext4",
+      "confidence": "high",
+      "looks_like": "Kowadło",
+      "caveat": ""
+    },
+    {
+      "id": "r09_c01",
+      "name": "Crypt2",
+      "prefab": "Crypt2",
+      "confidence": "medium",
+      "looks_like": "Kamienna komora grobowa / dolmen",
+      "caveat": "Jeden z wariantów wejść do Burial Chamber; wygląd może przypominać Dolmen01"
+    },
+    {
+      "id": "r09_c02",
+      "name": "SunkenCrypt4",
+      "prefab": "SunkenCrypt4",
+      "confidence": "high",
+      "looks_like": "Zatopiona krypta z kratami",
+      "caveat": ""
+    },
+    {
+      "id": "r09_c03",
+      "name": "TrollCave02",
+      "prefab": "TrollCave02",
+      "confidence": "high",
+      "looks_like": "Jaskinia trolla",
+      "caveat": ""
+    },
+    {
+      "id": "r09_c04",
+      "name": "MountainCave02",
+      "prefab": "MountainCave02",
+      "confidence": "high",
+      "looks_like": "Lodowa jaskinia",
+      "caveat": ""
+    },
+    {
+      "id": "r09_c05",
+      "name": "Hildir_cave",
+      "prefab": "Hildir_cave",
+      "confidence": "high",
+      "looks_like": "Wyjąca jaskinia z niebieskimi światłami",
+      "caveat": ""
+    },
+    {
+      "id": "r09_c06",
+      "name": "Mistlands_DvergrTownEntrance1",
+      "prefab": "Mistlands_DvergrTownEntrance1",
+      "confidence": "medium",
+      "looks_like": "Zainfekowana kopalnia",
+      "caveat": "Dwa możliwe prefaby wejścia; reprezentatywny wariant 1"
+    },
+    {
+      "id": "r09_c07",
+      "name": "MorgenHole1",
+      "prefab": "MorgenHole1",
+      "confidence": "medium",
+      "looks_like": "Jaskinia Morgena w Popiołach",
+      "caveat": "Trzy podobne warianty, wybrano pierwszy"
+    },
+    {
+      "id": "r09_c08",
+      "name": "custom_empty_slot",
+      "prefab": "",
+      "confidence": "empty",
+      "looks_like": "Pusty kafelek na końcu atlasu",
+      "caveat": "Puste miejsce w siatce, nie ikona"
+    }
+  ]
+}
