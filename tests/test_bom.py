@@ -103,6 +103,37 @@ class B0MTests(unittest.TestCase):
         self.assertGreater(float(np.mean(after[:, :, 1][brightest])), 135)
         self.assertEqual(used, 6)
 
+    def test_dark_wood_cannot_turn_into_bright_bone(self):
+        # Regression: a low-light warm-brown antler pixel must choose an actual
+        # brown palette entry, not the pale bone entry forced by hue-family labels.
+        source = np.array([[[64, 44, 31], [75, 52, 35], [201, 164, 124]]], dtype=np.uint8)
+        palette = np.array([[70, 52, 34], [92, 67, 45], [188, 155, 121]], dtype=np.uint8)
+        result = quantize(source, np.ones((1, 3), dtype=bool), palette, source_rgb=source)
+        self.assertEqual(result[0].tolist(), [0, 0, 2])
+
+    def test_deer_antlers_no_bone_speckles(self):
+        # The deer skull is column 2, row 7 (1-indexed).
+        atlas = Path(__file__).resolve().parents[1] / 'input' / 'Valheim_Compass_Atlas.png'
+        if not atlas.exists():
+            self.skipTest('source atlas fixture is not available')
+        from bom_icons import extract_objects_by_slot
+        original = np.asarray(Image.open(atlas).convert('RGBA'))
+        cols, rows, xb, yb, _ = detect_grid(original)
+        slots, _ = extract_objects_by_slot(original, xb, yb, cols, rows)
+        source = normalize_icon_to_tile(slots[6][1])
+        after, used = process_tile(source, colors=6, seed=100+6*8+1)
+        antler = (np.indices(source.shape[:2])[0] < 42) & (source[..., 3] > 0)
+        # Dark wood: source luminance never warrants bright-beige output.
+        dark = antler & (source[..., 0] < 115)
+        bright_mismatch = dark & (after[..., 0] > 145) & (after[..., 1] > 95)
+        self.assertGreater(int(dark.sum()), 400)
+        self.assertEqual(int(bright_mismatch.sum()), 0, 'Pale bone speckles on dark antlers')
+        # Real pale skull must still exist and retain bright pixels.
+        bone = (source[..., 3] > 0) & (source[..., 0] > 180) & (np.indices(source.shape[:2])[0] >= 42)
+        self.assertGreater(int(bone.sum()), 250)
+        self.assertGreater(float(after[..., 0][bone].mean()), 155.0)
+        self.assertLessEqual(used, 6)
+
     def test_grid_output_alignment_and_color_limit(self):
         source_file = Path(__file__).resolve().parents[1] / 'input' / 'Valheim_Compass_Atlas.png'
         if not source_file.exists():

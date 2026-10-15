@@ -46,3 +46,14 @@ python src/bom_icons.py --input input/atlas.png --output output/test_BOM.png --c
 ## Weryfikacja kolorów (BOM F)
 
 Test regresyjny obejmuje **wszystkie nasycone ciepłe piksele**, a nie tylko jasne plamki. W ikonie w kolumnie 8, rzędzie 4 żaden piksel oryginalnie ciepły nie może stać się zielony, a żadna zielona część liścia — pomarańczowa. Osobna kontrola sprawdza kompletną pomarańczową bryłę owocu, kolory refleksów i marginesy siatki. Po zmianie kodu workflow musi przejść te testy przed publikacją.
+
+## Weryfikacja jasności (BOM G)
+
+Wersja G usuwa przekłamanie brązowego poroża jelenia (rząd 7, kolumna 2):
+wcześniejsze sztywne wymuszanie *rodziny koloru* potrafiło zastąpić ciemnobrązowe
+piksele jasnym beżem. Teraz ograniczenie barwy obowiązuje tylko, gdy w tej
+rodzinie jest kolor rzeczywiście podobny do oryginału; przy dużej rozbieżności
+w LAB dopuszczalny jest bliższy neutralny odcień. Taką samą kontrolę zgodności
+kolorystycznej stosuje etap `cleanup`. Skrypt nadal nie pozwala przestawić
+nasyconych pomarańczowych jagód na zielone liście. Dodatkowe testy sprawdzają
+ciemne poroże i zachowanie jasnej czaszki.

@@ -21,7 +21,7 @@ import cv2
 import numpy as np
 from PIL import Image
 
-BUILD_ID = "BOM-ICONS-2026-10-15-F"
+BUILD_ID = "BOM-ICONS-2026-10-15-G"
 TILE_SIZE = 96
 LAYOUT_MARGIN = 2
 FOREGROUND_ALPHA_THRESHOLD = 32
@@ -259,31 +259,59 @@ def extract_palette(rgb: np.ndarray, mask: np.ndarray, k: int, seed: int, source
     return palette[np.argsort(lum)]
 
 
-def quantize(rgb: np.ndarray, mask: np.ndarray, palette: np.ndarray, source_rgb: np.ndarray | None = None) -> np.ndarray:
-    """LAB-nearest color, constrained to matching chromatic families.
+def _lab_distance_to_palette(rgb: np.ndarray, palette: np.ndarray) -> np.ndarray:
+    """Squared perceptual distances (int32; no overflow or modulo errors)."""
+    shape = rgb.shape[:-1]
+    pts = cv2.cvtColor(rgb.reshape(-1, 1, 3), cv2.COLOR_RGB2LAB).reshape(-1, 3).astype(np.int32)
+    pal = cv2.cvtColor(palette.reshape(-1, 1, 3), cv2.COLOR_RGB2LAB).reshape(-1, 3).astype(np.int32)
+    return ((pts[:, None, :] - pal[None, :, :]) ** 2).sum(axis=2).reshape(*shape, len(palette))
 
-    Distances use int32 so squared differences cannot overflow int16. Unlike
-    unconstrained k-means, a warm original pixel may never choose a green
-    palette entry when warm colors are available in the current tile.
+
+def allowed_palette_colors(source_rgb: np.ndarray, palette: np.ndarray) -> np.ndarray:
+    """Prevent cross-hue substitutions *without* forced extreme lightness shifts.
+
+    Dark brown and ochre can be classified as warm despite being substantially
+    closer to a neutral/dark wood color than to a bright orange/beige accent.
+    Only force a hue family if it contains a reasonably faithful source color.
+    A close neutral alternative is permitted when the only same-family color
+    would introduce an obvious glowing or white speckle on dark material.
     """
+    distances = _lab_distance_to_palette(source_rgb, palette)
+    src_classes = hue_family(source_rgb)
+    pal_classes = hue_family(palette)
+    allowed = np.ones(distances.shape, dtype=bool)
+    neutral = pal_classes == 0
+    if np.any(neutral):
+        nearest_neutral = np.min(distances[..., neutral], axis=-1)
+    else:
+        nearest_neutral = np.full(src_classes.shape, np.iinfo(np.int32).max // 8)
+    for cls in range(1, 5):
+        matching = pal_classes == cls
+        members = src_classes == cls
+        if not np.any(matching) or not np.any(members):
+            continue
+        nearest_same = np.min(distances[..., matching], axis=-1)
+        # Only prefer a neutral color when it is dramatically more faithful.
+        # For vividly colored fruit or foliage, retain strict hue separation.
+        neutral_escape = (nearest_neutral * 3 + 700 < nearest_same) & (nearest_neutral < 2800)
+        restricted = members & ~neutral_escape
+        allowed[restricted, :] &= matching
+        escape = members & neutral_escape
+        if np.any(escape):
+            allowed[escape, :] &= (matching | neutral)
+    return allowed
+
+
+def quantize(rgb: np.ndarray, mask: np.ndarray, palette: np.ndarray, source_rgb: np.ndarray | None = None) -> np.ndarray:
+    """Perceptual nearest-neighbor assignment with source-faithful hue guards."""
     idx = np.full(mask.shape, -1, dtype=np.int16)
     if not len(palette) or not np.any(mask):
         return idx
-    pts = cv2.cvtColor(rgb[mask].reshape(-1, 1, 3), cv2.COLOR_RGB2LAB).reshape(-1, 3).astype(np.int32)
-    pal = cv2.cvtColor(palette.reshape(-1, 1, 3), cv2.COLOR_RGB2LAB).reshape(-1, 3).astype(np.int32)
-    d = ((pts[:, None, :] - pal[None, :, :]) ** 2).sum(axis=2)
-    src_classes = hue_family((rgb if source_rgb is None else source_rgb)[mask])
-    pal_classes = hue_family(palette)
-    for cls in range(1, 5):
-        matching = pal_classes == cls
-        if not np.any(matching):
-            continue
-        # Color family is an invariant for genuinely saturated original pixels.
-        # Avoid false yellow-green, red-blue and green-orange mappings.
-        members = src_classes == cls
-        if np.any(members):
-            d[np.ix_(members, ~matching)] = np.iinfo(np.int32).max // 8
-    idx[mask] = np.argmin(d, axis=1).astype(np.int16)
+    source = rgb if source_rgb is None else source_rgb
+    distances = _lab_distance_to_palette(rgb, palette)
+    compatible = allowed_palette_colors(source, palette)
+    distances[~compatible] = np.iinfo(np.int32).max // 8
+    idx[mask] = np.argmin(distances[mask], axis=1).astype(np.int16)
     return idx
 
 
@@ -295,30 +323,27 @@ def mode_cleanup(idx: np.ndarray, mask: np.ndarray, colors: int,
     density = cv2.blur(mask.astype(np.float32), (CLEANUP_KERNEL, CLEANUP_KERNEL))
     interior = cv2.erode(mask.astype(np.uint8), np.ones((3, 3), np.uint8), iterations=1).astype(bool)
     if source_rgb is not None and palette is not None:
-        original_families = hue_family(source_rgb)
-        palette_families = hue_family(palette)
+        permitted = allowed_palette_colors(source_rgb, palette)
+        distances = _lab_distance_to_palette(source_rgb, palette)
     else:
-        original_families = None
-        palette_families = None
+        permitted = None
+        distances = None
     for _ in range(CLEANUP_PASSES):
         scores = []
         for ci in range(colors):
             amount = cv2.blur(((out == ci) & mask).astype(np.float32), (CLEANUP_KERNEL, CLEANUP_KERNEL))
             scores.append(np.divide(amount, density, out=np.zeros_like(amount), where=density > 1e-6))
-        scores = np.stack(scores)
-        if original_families is not None:
-            for cls in range(1, 5):
-                if not np.any(palette_families == cls):
-                    continue
-                incompatible = palette_families != cls
-                scores[incompatible, :, :] = np.where(
-                    original_families[None, :, :] == cls,
-                    -1.0,
-                    scores[incompatible, :, :]
-                )
-        best = scores.argmax(axis=0).astype(np.int16)
-        confidence = scores.max(axis=0)
+        scores = np.stack(scores, axis=-1)
+        if permitted is not None:
+            scores[~permitted] = -1.0
+        best = scores.argmax(axis=2).astype(np.int16)
+        confidence = scores.max(axis=2)
         change = interior & (confidence >= CLEANUP_THRESHOLD) & (best != out)
+        if distances is not None:
+            proposed = np.take_along_axis(distances, best[..., None], axis=2)[..., 0]
+            current = np.take_along_axis(distances, np.maximum(out, 0)[..., None], axis=2)[..., 0]
+            # A smoothing pass cannot invent a bright speck on a dark material.
+            change &= proposed <= (current * 1.5 + 550)
         out[change] = best[change]
     return out
 
