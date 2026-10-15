@@ -21,7 +21,7 @@ import cv2
 import numpy as np
 from PIL import Image
 
-BUILD_ID = "BOM-ICONS-2026-10-15-D"
+BUILD_ID = "BOM-ICONS-2026-10-15-E"
 TILE_SIZE = 96
 LAYOUT_MARGIN = 2
 FOREGROUND_ALPHA_THRESHOLD = 32
@@ -158,12 +158,31 @@ def extract_palette(rgb: np.ndarray, mask: np.ndarray, k: int, seed: int) -> np.
     if len(sample) > 20000:
         rng = np.random.default_rng(seed)
         sample = sample[rng.choice(len(sample), 20000, replace=False)]
-    data = sample.reshape(-1, 3).astype(np.float32)
-    criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 50, 0.2)
+    # Stratified sampling in LAB preserves minority highlights, flowers and glows
+    # that would be swallowed by large areas of a dominant material.
+    if len(sample) >= 150 and k >= 3:
+        hsv = cv2.cvtColor(sample.reshape(-1,1,3), cv2.COLOR_RGB2HSV).reshape(-1,3)
+        # Saturated hues occupy adjacent 10-degree buckets; neutral/gray
+        # pixels form their own bucket, preventing accidental oversampling.
+        buckets = (hsv[:, 0].astype(np.int32) // 5).clip(0, 35)
+        buckets[hsv[:, 1] < 45] = 36
+        counts = np.bincount(buckets, minlength=37).astype(np.float64)
+        balanced = 1.0 / np.sqrt(counts[buckets].clip(1))
+        balanced /= balanced.sum()
+        # Retain natural importance of the dominant material while giving
+        # enough votes to smaller genuine accents (fire, highlights, leaves).
+        weights = 0.40 / len(sample) + 0.60 * balanced
+        rng = np.random.default_rng(seed)
+        nchoice = min(12000, max(2500, len(sample) * 2))
+        inds = rng.choice(len(sample), nchoice, replace=True, p=weights)
+        fitting = sample[inds]
+    else:
+        fitting = sample
+    data = cv2.cvtColor(fitting.reshape(-1, 1, 3), cv2.COLOR_RGB2LAB).reshape(-1, 3).astype(np.float32)
+    criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 60, 0.15)
     cv2.setRNGSeed(seed)
-    _, _, centers = cv2.kmeans(data, k, None, criteria, 5, cv2.KMEANS_PP_CENTERS)
-    sample_f = sample.astype(np.float32)
-    palette = np.asarray([sample[int(np.sum((sample_f - center) ** 2, axis=1).argmin())] for center in centers], dtype=np.uint8)
+    _, _, centers = cv2.kmeans(data, k, None, criteria, 6, cv2.KMEANS_PP_CENTERS)
+    palette = np.asarray([fitting[int(np.sum((data - center) ** 2, axis=1).argmin())] for center in centers], dtype=np.uint8)
     lum = palette @ np.array([0.2126, 0.7152, 0.0722])
     return palette[np.argsort(lum)]
 
@@ -172,8 +191,10 @@ def quantize(rgb: np.ndarray, mask: np.ndarray, palette: np.ndarray) -> np.ndarr
     idx = np.full(mask.shape, -1, dtype=np.int16)
     if not len(palette) or not np.any(mask):
         return idx
-    pts = rgb[mask].astype(np.int16)
-    pal = palette.astype(np.int16)
+    # int32 is essential: squaring int16 channel deltas may overflow and
+    # incorrectly map warm yellow/orange highlights to dark green.
+    pts = cv2.cvtColor(rgb[mask].reshape(-1, 1, 3), cv2.COLOR_RGB2LAB).reshape(-1, 3).astype(np.int32)
+    pal = cv2.cvtColor(palette.reshape(-1, 1, 3), cv2.COLOR_RGB2LAB).reshape(-1, 3).astype(np.int32)
     idx[mask] = np.argmin(((pts[:, None, :] - pal[None, :, :]) ** 2).sum(axis=2), axis=1).astype(np.int16)
     return idx
 

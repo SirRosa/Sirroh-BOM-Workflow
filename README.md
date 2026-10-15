@@ -17,7 +17,7 @@ requirements.txt           Wymagane biblioteki Python
 
 1. Analiza przezroczystych przerw w obrazie wykrywa **liczbę rzędów i kolumn** bez sztywnego schematu 8×9; w razie niejednoznaczności program zgłasza błąd zamiast ciąć atlas przypadkowo.
 2. Ikony są wyodrębniane jako osobne obiekty (również gdy wykraczają poza źródłowe granice kafelka), skalowane **proporcjonalnie** do kafelków 96×96 px i pozycjonowane: **poziomo na środku, pionowo przy dolnej krawędzi z marginesem 2 px**. Ostatni pusty kafelek pozostaje pusty.
-3. Zachowano BOM: usuwanie ukrytego RGB, oczyszczanie maski, 3× bilateral denoise (d=7, sigmaColor=28, sigmaSpace=5), redukcję palety rzeczywistych kolorów przez k-means bez ditheringu, cleanup 5×5 / 1 pass / próg 0.46 oraz hard alpha 0/255.
+3. Zachowano BOM: usuwanie ukrytego RGB, oczyszczanie maski, 3× bilateral denoise (d=7, sigmaColor=28, sigmaSpace=5), redukcję palety rzeczywistych kolorów przez k-means w przestrzeni LAB bez ditheringu (z próbkowaniem uwzględniającym rzadkie akcenty kolorystyczne i bez przepełnienia arytmetyki 16-bitowej), cleanup 5×5 / 1 pass / próg 0.46 oraz hard alpha 0/255.
 4. **Każdy kafelek posiada własną paletę** maks. 6 kolorów (domyślny limit B&om dla większości kategorii). Można porównawczo ustawić `--colors 4`.
 5. Raport JSON zawiera liczbę kafelków, rozmiary, granice wykrytej siatki i statystyki palet.
 
