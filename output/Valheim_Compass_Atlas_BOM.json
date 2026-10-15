@@ -1,7 +1,7 @@
 {
   "build": "BOM-ICONS-2026-10-15-A",
-  "input": "/mnt/data/bom_repo/input/Valheim_Compass_Atlas.png",
-  "output": "/mnt/data/bom_repo/output/Valheim_Compass_Atlas_BOM.png",
+  "input": "input/Valheim_Compass_Atlas.png",
+  "output": "output/Valheim_Compass_Atlas_BOM.png",
   "source_size": [
     1254,
     1411
