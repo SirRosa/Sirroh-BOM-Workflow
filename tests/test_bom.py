@@ -23,9 +23,9 @@ class B0MTests(unittest.TestCase):
     def test_tile_alpha_colors(self):
         t = np.zeros((110, 110, 4), dtype=np.uint8)
         t[14:90, 12:94] = [142, 58, 31, 255]
-        out, n = process_tile(t, colors=4, seed=7)
-        self.assertEqual(out.shape, (64, 64, 4))
-        self.assertLessEqual(n, 4)
+        out, n = process_tile(t, colors=6, seed=7)
+        self.assertEqual(out.shape, (96, 96, 4))
+        self.assertLessEqual(n, 6)
         self.assertTrue(set(np.unique(out[:,:,3])).issubset({0,255}))
 
 

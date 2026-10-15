@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""B&om Icons: atlas -> automatically detected NxM grid -> 64px tiles.
+"""B&om Icons: atlas -> automatically detected NxM grid -> 96px tiles.
 
 Preserves the essential BOM biome engine: premultiplied-alpha resampling,
 black/transparent cleanup, 3x bilateralFilter(7,28,5), fixed-seed OpenCV
@@ -17,8 +17,8 @@ import cv2
 import numpy as np
 from PIL import Image
 
-BUILD_ID = "BOM-ICONS-2026-10-15-A"
-TILE_SIZE = 64
+BUILD_ID = "BOM-ICONS-2026-10-15-B"
+TILE_SIZE = 96
 FOREGROUND_ALPHA_THRESHOLD = 32
 FOREGROUND_RGB_THRESHOLD = 18
 MIN_COMPONENT_AREA = 3
@@ -29,7 +29,7 @@ BILATERAL_PASSES = 3
 BILATERAL_D = 7
 BILATERAL_SIGMA_COLOR = 28
 BILATERAL_SIGMA_SPACE = 5
-BASE_COLORS = 4
+BASE_COLORS = 6
 CLEANUP_KERNEL = 5
 CLEANUP_PASSES = 1
 CLEANUP_THRESHOLD = 0.46
@@ -126,7 +126,7 @@ def foreground_mask(rgba: np.ndarray) -> np.ndarray:
     fg = (rgba[:, :, 3] >= FOREGROUND_ALPHA_THRESHOLD) & (rgba[:, :, :3].max(axis=2) > FOREGROUND_RGB_THRESHOLD)
     n, labels, stats, _ = cv2.connectedComponentsWithStats(fg.astype(np.uint8), 8)
     cleaned = np.zeros_like(fg)
-    # Original BOM limits were intended for 128px sprites, so rescale areas to 64px.
+    # Original BOM limits were intended for 128px sprites, so rescale areas to the output tile size.
     scale = TILE_SIZE / 128.0
     max_area = max(1, int(round(FLOATING_ARTIFACT_MAX_AREA * scale * scale)))
     max_side = max(1, int(round(FLOATING_ARTIFACT_MAX_WIDTH * scale)))
@@ -248,14 +248,14 @@ def process(input_file: Path, output_file: Path, colors: int = BASE_COLORS, cols
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="B&om: automatically find icon grid and convert to 64×64 tiles")
+    parser = argparse.ArgumentParser(description="B&om: automatically find icon grid and convert to 96×96 tiles")
     parser.add_argument("--input-dir", type=Path, default=Path("input"))
     parser.add_argument("--output-dir", type=Path, default=Path("output"))
     parser.add_argument("--input", type=Path, help="Process one image instead of all input PNGs")
     parser.add_argument("--output", type=Path, help="Custom output PNG path (requires --input)")
     parser.add_argument("--cols", type=int, help="Manual column count for unusual atlases")
     parser.add_argument("--rows", type=int, help="Manual row count for unusual atlases")
-    parser.add_argument("--colors", type=int, default=BASE_COLORS, help="Colors PER tile (default: 4, similar to BOM)")
+    parser.add_argument("--colors", type=int, default=BASE_COLORS, help="Colors PER tile (default: 6)")
     args = parser.parse_args()
     if args.colors < 1 or args.colors > 16:
         parser.error("--colors must be between 1 and 16")
