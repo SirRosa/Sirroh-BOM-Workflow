@@ -1,0 +1,15 @@
+{
+  "schema": "sirroh.atlas.tiles.v1",
+  "tiles": 72,
+  "size": [
+    768,
+    864
+  ],
+  "pixel_identical": true,
+  "png_binary_identical": true,
+  "source_sha256_rgba": "6e21bfae401ada438cb8a2651ac8a08ea0cf0d009d5b857ce96c89262e0d4089",
+  "reassembled_sha256_rgba": "6e21bfae401ada438cb8a2651ac8a08ea0cf0d009d5b857ce96c89262e0d4089",
+  "source_sha256_png": "cd58639cd50b84c939d29dfb61172f27f9a0cbf8424d8837d47bf644330fedab",
+  "reassembled_sha256_png": "cd58639cd50b84c939d29dfb61172f27f9a0cbf8424d8837d47bf644330fedab",
+  "modified_tiles_detected": false
+}
