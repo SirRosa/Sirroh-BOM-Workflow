@@ -1,0 +1,33 @@
+import sys
+from pathlib import Path
+import unittest
+import numpy as np
+from PIL import Image
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+from bom_icons import detect_grid, process_tile, process
+
+
+class B0MTests(unittest.TestCase):
+    def test_detect_grid_uneven_padding(self):
+        arr = np.zeros((360, 320, 4), dtype=np.uint8)
+        for row in range(9):
+            for col in range(8):
+                y = row * 40 + 6
+                x = col * 40 + 7
+                arr[y:y+26, x:x+24] = [120, 60, 50, 255]
+        c, r, xs, ys, _ = detect_grid(arr)
+        self.assertEqual((c, r), (8, 9))
+        self.assertEqual((len(xs), len(ys)), (9, 10))
+
+    def test_tile_alpha_colors(self):
+        t = np.zeros((110, 110, 4), dtype=np.uint8)
+        t[14:90, 12:94] = [142, 58, 31, 255]
+        out, n = process_tile(t, colors=4, seed=7)
+        self.assertEqual(out.shape, (64, 64, 4))
+        self.assertLessEqual(n, 4)
+        self.assertTrue(set(np.unique(out[:,:,3])).issubset({0,255}))
+
+
+if __name__ == '__main__':
+    unittest.main()
