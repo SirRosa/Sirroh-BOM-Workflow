@@ -1,6 +1,6 @@
 {
   "schema": "sirroh.atlas.tiles.v1",
-  "description": "Names are exact ID where verified, otherwise custom_*. Dungeon generator IDs and external location variants are distinct; see prefab_mapping_review.json. Only edit name/prefab, not IDs, positions, files or SHA.",
+  "description": "Edit tiles[].name and/or tiles[].prefab. Keep id, file and positions unchanged.",
   "atlas": {
     "source": "Valheim_Compass_Atlas_BOM.png",
     "size": [
