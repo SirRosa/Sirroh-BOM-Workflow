@@ -1,0 +1,71 @@
+name: Atlas - Bezstratny podzial i skladanie
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/**'
+      - '.github/workflows/atlas-roundtrip.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: atlas-roundtrip-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  roundtrip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Pillow
+        run: python -m pip install 'Pillow>=10,<13' numpy
+      - name: Run splitter / assembler regression tests
+        run: python -m unittest discover -s tools -p 'test_*.py' -v
+      - name: Split BOM 1.0 atlas and write editable names manifest
+        run: |
+          python tools/split_atlas.py \
+            --input output/Valheim_Compass_Atlas_BOM.png \
+            --dest atlas_work/Valheim_Compass_Atlas_BOM
+      - name: Reassemble and compare pixel-for-pixel with original PNG
+        run: |
+          python tools/assemble_atlas.py \
+            --manifest atlas_work/Valheim_Compass_Atlas_BOM/atlas_manifest.json \
+            --output atlas_work/Valheim_Compass_Atlas_BOM/reassembled.png \
+            --verify-original output/Valheim_Compass_Atlas_BOM.png
+      - name: Verify manifest RGBA checksums
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path('atlas_work/Valheim_Compass_Atlas_BOM')
+          check = json.loads((root / 'reassembled.verification.json').read_text())
+          assert check['pixel_identical'] is True, check
+          assert check['modified_tiles_detected'] is False, check
+          print('VERIFIED: RGBA SHA-256 matches; 72 cells, editable names.')
+          print('PNG byte equality:', check['png_binary_identical'])
+          PY
+      - name: Upload split tiles, JSON manifest, reassembled PNG and verification
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-roundtrip-${{ github.run_number }}
+          path: atlas_work/Valheim_Compass_Atlas_BOM/
+          if-no-files-found: error
+      - name: Save verified tiles and manifest to repository
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add atlas_work/Valheim_Compass_Atlas_BOM/
+          if git diff --cached --quiet; then
+            echo 'Atlas round-trip unchanged.'
+          else
+            git commit -m 'Atlas: verified lossless split/round-trip [skip ci]'
+            git push
+          fi
