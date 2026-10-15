@@ -1,6 +1,6 @@
 {
   "schema": "sirroh.atlas.tiles.v1",
-  "description": "Nazwy zgodne z Valheim przypisano jako tiles[].name oraz prefab; inne jako custom_*. Zmieniaj tylko name/prefab; nie zmieniaj id, file, wspolrzednych ani SHA.",
+  "description": "Names are exact ID where verified, otherwise custom_*. Dungeon generator IDs and external location variants are distinct; see prefab_mapping_review.json. Only edit name/prefab, not IDs, positions, files or SHA.",
   "atlas": {
     "source": "Valheim_Compass_Atlas_BOM.png",
     "size": [
@@ -22,8 +22,8 @@
   "tiles": [
     {
       "id": "r01_c01",
-      "name": "Runestone_Meadows",
-      "prefab": "Runestone_Meadows",
+      "name": "custom_runestone_zigzag",
+      "prefab": "",
       "row": 1,
       "column": 1,
       "x": 0,
@@ -120,8 +120,8 @@
     },
     {
       "id": "r01_c08",
-      "name": "StoneTower1",
-      "prefab": "StoneTower1",
+      "name": "custom_stone_tower",
+      "prefab": "",
       "row": 1,
       "column": 8,
       "x": 672,
@@ -134,8 +134,8 @@
     },
     {
       "id": "r02_c01",
-      "name": "WoodHouse1",
-      "prefab": "WoodHouse1",
+      "name": "custom_wooden_house",
+      "prefab": "",
       "row": 2,
       "column": 1,
       "x": 0,
@@ -624,8 +624,8 @@
     },
     {
       "id": "r06_c04",
-      "name": "PickaxeIron",
-      "prefab": "PickaxeIron",
+      "name": "custom_pickaxe",
+      "prefab": "",
       "row": 6,
       "column": 4,
       "x": 288,
@@ -638,8 +638,8 @@
     },
     {
       "id": "r06_c05",
-      "name": "SwordIron",
-      "prefab": "SwordIron",
+      "name": "custom_sword",
+      "prefab": "",
       "row": 6,
       "column": 5,
       "x": 384,
@@ -680,8 +680,8 @@
     },
     {
       "id": "r06_c08",
-      "name": "Runestone_Ashlands",
-      "prefab": "Runestone_Ashlands",
+      "name": "custom_fire_runestone",
+      "prefab": "",
       "row": 6,
       "column": 8,
       "x": 672,
@@ -694,8 +694,8 @@
     },
     {
       "id": "r07_c01",
-      "name": "Eikthyrnir",
-      "prefab": "Eikthyrnir",
+      "name": "custom_horned_runestone",
+      "prefab": "",
       "row": 7,
       "column": 1,
       "x": 0,
@@ -750,8 +750,8 @@
     },
     {
       "id": "r07_c05",
-      "name": "piece_cookingstation",
-      "prefab": "piece_cookingstation",
+      "name": "piece_cauldron",
+      "prefab": "piece_cauldron",
       "row": 7,
       "column": 5,
       "x": 384,
@@ -778,8 +778,8 @@
     },
     {
       "id": "r07_c07",
-      "name": "Fish1",
-      "prefab": "Fish1",
+      "name": "custom_fish",
+      "prefab": "",
       "row": 7,
       "column": 7,
       "x": 576,
@@ -876,8 +876,8 @@
     },
     {
       "id": "r08_c06",
-      "name": "YggaShoot1",
-      "prefab": "YggaShoot1",
+      "name": "custom_world_tree",
+      "prefab": "",
       "row": 8,
       "column": 6,
       "x": 480,
@@ -918,8 +918,8 @@
     },
     {
       "id": "r09_c01",
-      "name": "Crypt2",
-      "prefab": "Crypt2",
+      "name": "DG_ForestCrypt",
+      "prefab": "DG_ForestCrypt",
       "row": 9,
       "column": 1,
       "x": 0,
@@ -946,8 +946,8 @@
     },
     {
       "id": "r09_c03",
-      "name": "TrollCave02",
-      "prefab": "TrollCave02",
+      "name": "DG_Cave",
+      "prefab": "DG_Cave",
       "row": 9,
       "column": 3,
       "x": 192,

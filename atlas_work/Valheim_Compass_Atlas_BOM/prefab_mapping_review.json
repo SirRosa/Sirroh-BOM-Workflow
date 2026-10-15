@@ -16,20 +16,21 @@
       "url": "https://valheimhub.wiki/db/locations/"
     }
   ],
-  "notes": "Confidence high = strong visual and prefab class match; medium = real prefab but the icon is a stylized representative, variant not proven; custom = no exact assignment, do not treat custom_* as an actual prefab.",
+  "notes": "Only source-supported prefab IDs. Name must equal wiki Internal ID when explicitly stated. Dungeon generator and world-location prefab are different entities. Generic pictograms use custom_* instead of guessing item materials or specific dungeon entrances.",
   "counts": {
-    "real_prefabs": 54,
-    "custom_icons": 17,
+    "real_prefabs": 45,
+    "custom_icons": 26,
     "empty_slots": 1
   },
   "items": [
     {
       "id": "r01_c01",
-      "name": "Runestone_Meadows",
-      "prefab": "Runestone_Meadows",
-      "confidence": "medium",
+      "name": "custom_runestone_zigzag",
+      "prefab": "",
+      "confidence": "custom",
       "looks_like": "Kamień runiczny z czerwonym zygzakiem",
-      "caveat": "Runa nie wskazuje konkretnego biomu; przypisany reprezentatywny istniejący kamień runiczny"
+      "caveat": "Runa nie określa biomu ani konkretnego wariantu kamienia; dawniej arbitralnie Runestone_Meadows",
+      "source_class": "custom"
     },
     {
       "id": "r01_c02",
@@ -81,19 +82,22 @@
     },
     {
       "id": "r01_c08",
-      "name": "StoneTower1",
-      "prefab": "StoneTower1",
-      "confidence": "medium",
+      "name": "custom_stone_tower",
+      "prefab": "",
+      "confidence": "custom",
       "looks_like": "Kamienna wieża",
-      "caveat": "Wiele wariantów wież w Valheim; wybrano istniejący reprezentatywny wariant"
+      "caveat": "Stylizowana wieża bez cech pozwalających zidentyfikować StoneTower1",
+      "source_class": "custom"
     },
     {
       "id": "r02_c01",
-      "name": "WoodHouse1",
-      "prefab": "WoodHouse1",
-      "confidence": "medium",
+      "name": "custom_wooden_house",
+      "prefab": "",
+      "confidence": "custom",
       "looks_like": "Drewniana chata",
-      "caveat": "Uproszczona ikona budynku; wybrano reprezentatywny prefab chaty"
+      "caveat": "Symbol chaty nie określa żadnego z 13 wariantów WoodHouse1–13",
+      "source_class": "custom",
+      "source_url": "https://valheim.fandom.com/wiki/Abandoned_House"
     },
     {
       "id": "r02_c02",
@@ -157,7 +161,8 @@
       "prefab": "Stone",
       "confidence": "medium",
       "looks_like": "Kamienie",
-      "caveat": "Ikona przedstawia skupisko głazów, nazwa rzeczywistego materiału"
+      "caveat": "Ikona przedstawia skupisko głazów, nazwa rzeczywistego materiału",
+      "source_url": "https://valheim.fandom.com/wiki/Stone"
     },
     {
       "id": "r03_c02",
@@ -293,7 +298,8 @@
       "prefab": "MushroomYellow",
       "confidence": "high",
       "looks_like": "Żółty grzyb",
-      "caveat": ""
+      "caveat": "",
+      "source_url": "https://valheim.fandom.com/wiki/Yellow_mushroom"
     },
     {
       "id": "r05_c03",
@@ -369,19 +375,21 @@
     },
     {
       "id": "r06_c04",
-      "name": "PickaxeIron",
-      "prefab": "PickaxeIron",
-      "confidence": "medium",
+      "name": "custom_pickaxe",
+      "prefab": "",
+      "confidence": "custom",
       "looks_like": "Kilof",
-      "caveat": "Uproszczona ikona, wybrano żelazny typ"
+      "caveat": "Symbol ogólnego kilofa: nie wskazuje materiału, więc PickaxeIron było zgadywaniem",
+      "source_class": "custom"
     },
     {
       "id": "r06_c05",
-      "name": "SwordIron",
-      "prefab": "SwordIron",
-      "confidence": "medium",
+      "name": "custom_sword",
+      "prefab": "",
+      "confidence": "custom",
       "looks_like": "Miecz",
-      "caveat": "Uproszczona ikona, wybrano żelazny typ"
+      "caveat": "Symbol ogólnego miecza: nie wskazuje materiału, więc SwordIron było zgadywaniem",
+      "source_class": "custom"
     },
     {
       "id": "r06_c06",
@@ -389,7 +397,8 @@
       "prefab": "ShieldWood",
       "confidence": "medium",
       "looks_like": "Okrągła tarcza malowana",
-      "caveat": "Drewniana tarcza pozwala na malowane wzory"
+      "caveat": "Drewniana tarcza pozwala na malowane wzory",
+      "source_url": "https://valheim.fandom.com/wiki/Wood_shield"
     },
     {
       "id": "r06_c07",
@@ -397,23 +406,26 @@
       "prefab": "VikingShip",
       "confidence": "high",
       "looks_like": "Drakkar / długi statek",
-      "caveat": ""
+      "caveat": "",
+      "source_url": "https://valheim.fandom.com/wiki/Longship"
     },
     {
       "id": "r06_c08",
-      "name": "Runestone_Ashlands",
-      "prefab": "Runestone_Ashlands",
-      "confidence": "medium",
+      "name": "custom_fire_runestone",
+      "prefab": "",
+      "confidence": "custom",
       "looks_like": "Kamień z ognistą runą",
-      "caveat": "Runiczna ikona jest symboliczna; wybrano istniejący prefab rune z Popiołów"
+      "caveat": "Stylizowana runa ognia nie identyfikuje runestone konkretnego biomu",
+      "source_class": "custom"
     },
     {
       "id": "r07_c01",
-      "name": "Eikthyrnir",
-      "prefab": "Eikthyrnir",
-      "confidence": "medium",
+      "name": "custom_horned_runestone",
+      "prefab": "",
+      "confidence": "custom",
       "looks_like": "Rytualny kamień z rogami",
-      "caveat": "Przypisanie do lokalizacji ołtarza Eikthyra, nie do samej konstrukcji kamienia"
+      "caveat": "Rogaty kamień rytualny nie jest jednoznacznie ołtarzem Eikthyra",
+      "source_class": "custom"
     },
     {
       "id": "r07_c02",
@@ -421,7 +433,8 @@
       "prefab": "TrophyDeer",
       "confidence": "medium",
       "looks_like": "Czaszka jelenia z porożem",
-      "caveat": "Trofeum jelenia w grze nie musi być dokładnie kościane"
+      "caveat": "Trofeum jelenia w grze nie musi być dokładnie kościane",
+      "source_url": "https://valheim.fandom.com/wiki/Deer_trophy"
     },
     {
       "id": "r07_c03",
@@ -437,15 +450,18 @@
       "prefab": "stone_pile",
       "confidence": "high",
       "looks_like": "Kamienny kopiec",
-      "caveat": ""
+      "caveat": "",
+      "source_url": "https://valheim.fandom.com/wiki/Stone_pile"
     },
     {
       "id": "r07_c05",
-      "name": "piece_cookingstation",
-      "prefab": "piece_cookingstation",
-      "confidence": "medium",
+      "name": "piece_cauldron",
+      "prefab": "piece_cauldron",
+      "confidence": "high",
       "looks_like": "Trójnóg nad ogniskiem",
-      "caveat": "Stacja gotowania nad ogniem, uproszczona forma"
+      "caveat": "Ikona przedstawia wiszący kociołek nad ogniem, nie ruszt stacji pieczenia",
+      "source_class": "wiki_internal_id",
+      "source_url": "https://valheim.fandom.com/wiki/Cauldron"
     },
     {
       "id": "r07_c06",
@@ -457,11 +473,13 @@
     },
     {
       "id": "r07_c07",
-      "name": "Fish1",
-      "prefab": "Fish1",
-      "confidence": "medium",
+      "name": "custom_fish",
+      "prefab": "",
+      "confidence": "custom",
       "looks_like": "Ryba",
-      "caveat": "Reprezentatywny gatunek: okoń; rysunek nie rozróżnia gatunku"
+      "caveat": "Sylwetka nie identyfikuje gatunku Fish1 (okoń)",
+      "source_class": "custom",
+      "source_url": "https://valheim.fandom.com/wiki/Fish"
     },
     {
       "id": "r07_c08",
@@ -513,11 +531,12 @@
     },
     {
       "id": "r08_c06",
-      "name": "YggaShoot1",
-      "prefab": "YggaShoot1",
-      "confidence": "medium",
+      "name": "custom_world_tree",
+      "prefab": "",
+      "confidence": "custom",
       "looks_like": "Drzewo świata z korzeniami",
-      "caveat": "Reprezentatywna realna roślina Yggdrasil; rysunek jest symboliczny"
+      "caveat": "Symbol drzewa świata nie przedstawia konkretnego odrostu YggaShoot1",
+      "source_class": "custom"
     },
     {
       "id": "r08_c07",
@@ -533,15 +552,29 @@
       "prefab": "forge_ext4",
       "confidence": "high",
       "looks_like": "Kowadło",
-      "caveat": ""
+      "caveat": "",
+      "source_url": "https://valheim.fandom.com/wiki/Smith%27s_anvil"
     },
     {
       "id": "r09_c01",
-      "name": "Crypt2",
-      "prefab": "Crypt2",
-      "confidence": "medium",
+      "name": "DG_ForestCrypt",
+      "prefab": "DG_ForestCrypt",
+      "confidence": "high",
       "looks_like": "Kamienna komora grobowa / dolmen",
-      "caveat": "Jeden z wariantów wejść do Burial Chamber; wygląd może przypominać Dolmen01"
+      "caveat": "Burial Chambers: wiki podaje DG_ForestCrypt jako Internal ID; Crypt2 było tylko wariantem wejścia",
+      "source_class": "wiki_internal_id",
+      "source_url": "https://valheim.fandom.com/wiki/Burial_Chambers",
+      "id_details": {
+        "wiki_internal_id": "DG_ForestCrypt",
+        "dungeon_generator": "DG_ForestCrypt",
+        "location_variants": [
+          "Crypt2",
+          "Crypt3",
+          "Crypt4"
+        ],
+        "id_kind": "dungeon_generator",
+        "source_url": "https://valheim.fandom.com/wiki/Burial_Chambers"
+      }
     },
     {
       "id": "r09_c02",
@@ -549,15 +582,37 @@
       "prefab": "SunkenCrypt4",
       "confidence": "high",
       "looks_like": "Zatopiona krypta z kratami",
-      "caveat": ""
+      "caveat": "",
+      "id_details": {
+        "wiki_internal_id": "SunkenCrypt4",
+        "dungeon_generator": "DG_SunkenCrypt",
+        "location_variants": [
+          "SunkenCrypt4"
+        ],
+        "id_kind": "world_location",
+        "source_url": "https://valheim.fandom.com/wiki/Sunken_Crypt"
+      },
+      "source_class": "world_location",
+      "source_url": "https://valheim.fandom.com/wiki/Sunken_Crypt"
     },
     {
       "id": "r09_c03",
-      "name": "TrollCave02",
-      "prefab": "TrollCave02",
+      "name": "DG_Cave",
+      "prefab": "DG_Cave",
       "confidence": "high",
       "looks_like": "Jaskinia trolla",
-      "caveat": ""
+      "caveat": "Generator jaskini trolla: DG_Cave; wariant wejścia w świecie to TrollCave02",
+      "source_class": "dungeon_generator",
+      "source_url": "https://valheim.fandom.com/wiki/Item_IDs",
+      "id_details": {
+        "wiki_internal_id": "DG_Cave",
+        "dungeon_generator": "DG_Cave",
+        "location_variants": [
+          "TrollCave02"
+        ],
+        "id_kind": "dungeon_generator",
+        "source_url": "https://valheim.fandom.com/wiki/Item_IDs"
+      }
     },
     {
       "id": "r09_c04",
@@ -565,7 +620,19 @@
       "prefab": "MountainCave02",
       "confidence": "high",
       "looks_like": "Lodowa jaskinia",
-      "caveat": ""
+      "caveat": "",
+      "id_details": {
+        "wiki_internal_id": null,
+        "dungeon_generator": null,
+        "location_variants": [
+          "MountainCave02"
+        ],
+        "id_kind": "verified_world_location",
+        "source_url": "https://valheimhub.wiki/db/locations/frost-cave/",
+        "caveat": "Frost Cave wiki entry does not expose a separate Internal ID. Keep verified location ID; avoid claiming FrostCave without primary confirmation."
+      },
+      "source_class": "verified_world_location",
+      "source_url": "https://valheimhub.wiki/db/locations/frost-cave/"
     },
     {
       "id": "r09_c05",
@@ -573,7 +640,18 @@
       "prefab": "Hildir_cave",
       "confidence": "high",
       "looks_like": "Wyjąca jaskinia z niebieskimi światłami",
-      "caveat": ""
+      "caveat": "",
+      "id_details": {
+        "wiki_internal_id": null,
+        "dungeon_generator": "DG_Hildir_Cave",
+        "location_variants": [
+          "Hildir_cave"
+        ],
+        "id_kind": "verified_world_location",
+        "source_url": "https://valheimhub.wiki/db/locations/howling-caverns/"
+      },
+      "source_class": "verified_world_location",
+      "source_url": "https://valheimhub.wiki/db/locations/howling-caverns/"
     },
     {
       "id": "r09_c06",
@@ -581,7 +659,22 @@
       "prefab": "Mistlands_DvergrTownEntrance1",
       "confidence": "medium",
       "looks_like": "Zainfekowana kopalnia",
-      "caveat": "Dwa możliwe prefaby wejścia; reprezentatywny wariant 1"
+      "caveat": "Dwa możliwe prefaby wejścia; reprezentatywny wariant 1",
+      "id_details": {
+        "wiki_internal_id": [
+          "Mistlands_DvergrTownEntrance1",
+          "Mistlands_DvergrTownEntrance2"
+        ],
+        "dungeon_generator": "DG_DvergrTown",
+        "location_variants": [
+          "Mistlands_DvergrTownEntrance1",
+          "Mistlands_DvergrTownEntrance2"
+        ],
+        "id_kind": "wiki_internal_id_variant_1",
+        "source_url": "https://valheim.fandom.com/wiki/Infested_Mine"
+      },
+      "source_class": "wiki_internal_id_variant_1",
+      "source_url": "https://valheim.fandom.com/wiki/Infested_Mine"
     },
     {
       "id": "r09_c07",
@@ -589,7 +682,24 @@
       "prefab": "MorgenHole1",
       "confidence": "medium",
       "looks_like": "Jaskinia Morgena w Popiołach",
-      "caveat": "Trzy podobne warianty, wybrano pierwszy"
+      "caveat": "Trzy podobne warianty, wybrano pierwszy",
+      "id_details": {
+        "wiki_internal_id": [
+          "MorgenHole1",
+          "MorgenHole2",
+          "MorgenHole3"
+        ],
+        "dungeon_generator": "DG_Hole",
+        "location_variants": [
+          "MorgenHole1",
+          "MorgenHole2",
+          "MorgenHole3"
+        ],
+        "id_kind": "wiki_internal_id_variant_1",
+        "source_url": "https://valheim.fandom.com/wiki/Putrid_Hole"
+      },
+      "source_class": "wiki_internal_id_variant_1",
+      "source_url": "https://valheim.fandom.com/wiki/Putrid_Hole"
     },
     {
       "id": "r09_c08",

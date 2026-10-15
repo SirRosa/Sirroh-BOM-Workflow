@@ -6,6 +6,8 @@ on:
     branches: [main]
     paths:
       - 'tools/**'
+      - 'atlas_work/Valheim_Compass_Atlas_BOM/atlas_manifest.json'
+      - 'atlas_work/Valheim_Compass_Atlas_BOM/prefab_mapping_review.json'
       - '.github/workflows/atlas-roundtrip.yml'
 
 permissions:
@@ -52,6 +54,11 @@ jobs:
           print('VERIFIED: RGBA SHA-256 matches; 72 cells, editable names.')
           print('PNG byte equality:', check['png_binary_identical'])
           PY
+      - name: Generate labeled review-only atlas
+        run: |
+          python tools/preview_atlas_labels.py \
+            --manifest atlas_work/Valheim_Compass_Atlas_BOM/atlas_manifest.json \
+            --output atlas_work/Valheim_Compass_Atlas_BOM/preview_named_atlas.png
       - name: Upload split tiles, JSON manifest, reassembled PNG and verification
         uses: actions/upload-artifact@v4
         with:

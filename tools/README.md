@@ -36,3 +36,38 @@ python tools/assemble_atlas.py --manifest atlas_work/Valheim_Compass_Atlas_BOM/a
 Składacz porównuje **każdy piksel RGBA** i SHA-256. Raport `reassembled.verification.json` podaje również, czy identyczne są **bajty PNG** (może się różnić przy innych wersjach kompresji). Domyślnie sprawdza integralność wszystkich sprite'ów. Przy świadomych zmianach grafiki dostępna jest opcja `--allow-modified`, ale wtedy wynik oczywiście przestaje być identyczny z pierwowzorem.
 
 Workflow `.github/workflows/atlas-roundtrip.yml` uruchamia testy, podział, składanie, weryfikację oraz publikuje wynik w `atlas_work/Valheim_Compass_Atlas_BOM/`. Nie zmienia `backups/1.0/` ani istniejącego skryptu BOM.
+
+
+## Podgląd nazw
+
+`tools/preview_atlas_labels.py` generuje **atlas testowy tylko do podglądu**.
+Nie zmienia kafelków ani manifestu – odczytuje `atlas_manifest.json`, ładuje istniejące pliki `tiles/*.png` i rysuje siatkę z podpisami.
+
+Przykład:
+
+```bash
+python tools/preview_atlas_labels.py \
+  --manifest atlas_work/Valheim_Compass_Atlas_BOM/atlas_manifest.json \
+  --output atlas_work/Valheim_Compass_Atlas_BOM/preview_named_atlas.png \
+  --label-mode name
+```
+
+Dostępne tryby podpisów:
+- `name` – pokazuje `tiles[].name`
+- `prefab` – pokazuje `tiles[].prefab` (lub `name`, gdy prefab pusty)
+- `both` – pokazuje `name`, a pod nim `[prefab]`, jeśli różnią się od siebie
+
+
+## Nazwy prefabów na podstawie Internal ID
+
+Nazwy w `atlas_manifest.json` pochodzą z wiki Valheim: należy wybierać **Internal ID** danego obiektu, a nie wariant wejścia, o ile jest to inny identyfikator niż podany w Wiki.
+
+W przypadku lochów rozróżniamy generator instancji i prefab wejścia, np. `DG_ForestCrypt` (Burial Chambers) versus `Crypt2`, `Crypt3`, `Crypt4` (warianty lokacji). To **nie są synonimy**. Szczegóły i linki źródłowe są w `prefab_mapping_review.json`. Niepewne graficznie symbole to `custom_*`, a nie zgadnięte identyfikatory.
+
+Przy zmianie nazw odpal test podziału i składania oraz odśwież podgląd: 
+
+```bash
+python tools/preview_atlas_labels.py --manifest atlas_work/Valheim_Compass_Atlas_BOM/atlas_manifest.json --output atlas_work/Valheim_Compass_Atlas_BOM/preview_named_atlas.png
+```
+
+Podgląd z podpisami jest **wyłącznie do oceny**, nie może zastępować atlasu gry.
