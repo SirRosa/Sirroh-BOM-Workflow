@@ -1,5 +1,5 @@
 {
-  "build": "BOM-ICONS-2026-10-15-B",
+  "build": "BOM-ICONS-2026-10-15-D",
   "input": "input/Valheim_Compass_Atlas.png",
   "output": "output/Valheim_Compass_Atlas_BOM.png",
   "source_size": [
@@ -89,7 +89,7 @@
     6,
     6,
     6,
-    6
+    0
   ],
   "cuts_x": [
     0,
@@ -118,6 +118,12 @@
     "score": 0.0258,
     "x_gutter": 0.0376,
     "y_gutter": 0.0138
+  },
+  "slot_extraction": {
+    "semantic_components_assigned": 77,
+    "semantic_components_ignored": 0,
+    "nonempty_slots": 71,
+    "empty_slots": 1
   },
   "alpha": [
     0,
