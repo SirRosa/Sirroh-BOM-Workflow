@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
-"""B&om Icons: atlas -> automatically detected NxM grid -> 96px tiles.
+"""B&om Icons: detect source grid, normalize icons per slot, then apply BOM cleanup.
 
-Preserves the essential BOM biome engine: premultiplied-alpha resampling,
-black/transparent cleanup, 3x bilateralFilter(7,28,5), fixed-seed OpenCV
-k-means palette of *actual* source colors, no dithering, mode cleanup,
-and strict alpha 0/255. The palette is fitted independently for EACH tile.
+Key difference vs the earlier draft:
+- grid is still detected automatically,
+- BUT icons are extracted as semantic objects and assigned to source slots,
+- then each icon is fit proportionally inside a clean output tile,
+- then BOM palette reduction is applied per output tile.
+
+This preserves objects that spill outside their nominal source cells (for example caves)
+while still producing a strict aligned output atlas.
 """
 from __future__ import annotations
 
@@ -17,11 +21,13 @@ import cv2
 import numpy as np
 from PIL import Image
 
-BUILD_ID = "BOM-ICONS-2026-10-15-B"
+BUILD_ID = "BOM-ICONS-2026-10-15-D"
 TILE_SIZE = 96
+LAYOUT_MARGIN = 2
 FOREGROUND_ALPHA_THRESHOLD = 32
 FOREGROUND_RGB_THRESHOLD = 18
 MIN_COMPONENT_AREA = 3
+SEMANTIC_COMPONENT_MIN_AREA = 40
 FLOATING_ARTIFACT_MAX_AREA = 32
 FLOATING_ARTIFACT_MAX_WIDTH = 16
 FLOATING_ARTIFACT_MAX_HEIGHT = 16
@@ -36,7 +42,6 @@ CLEANUP_THRESHOLD = 0.46
 
 
 def resize_rgba_premultiplied(src: np.ndarray, new_w: int, new_h: int) -> np.ndarray:
-    """BOM resize: never mix invisible RGB into the visible edges."""
     if src.shape[1] == new_w and src.shape[0] == new_h:
         return src.copy()
     rgb = src[:, :, :3].astype(np.float32)
@@ -46,14 +51,15 @@ def resize_rgba_premultiplied(src: np.ndarray, new_w: int, new_h: int) -> np.nda
     p = cv2.resize(premul, (new_w, new_h), interpolation=interp)
     a = np.clip(cv2.resize(alpha, (new_w, new_h), interpolation=interp), 0, 1)
     out = np.zeros((new_h, new_w, 4), dtype=np.uint8)
-    valid = a >= FOREGROUND_ALPHA_THRESHOLD / 255.0
+    valid = a > 1e-6
     out[valid, :3] = np.clip(np.rint(p[valid] / a[valid, None]), 0, 255).astype(np.uint8)
-    out[valid, 3] = np.clip(np.rint(a[valid] * 255), 0, 255).astype(np.uint8)
+    out[:, :, 3] = np.clip(np.rint(a * 255.0), 0, 255).astype(np.uint8)
+    out[~valid, :3] = 0
+    out[out[:, :, 3] < FOREGROUND_ALPHA_THRESHOLD] = 0
     return out
 
 
 def _line_cost(proj: np.ndarray, nominal: float, cell: float) -> tuple[float, int]:
-    """Find the transparent gutter near a predicted row/column division."""
     n = len(proj)
     half_window = max(2, int(round(cell * 0.19)))
     p = int(round(nominal))
@@ -61,11 +67,9 @@ def _line_cost(proj: np.ndarray, nominal: float, cell: float) -> tuple[float, in
     mean = max(1.0, float(np.mean(proj)))
     best_val, best_index = float("inf"), p
     for ix in candidates:
-        # Surrounding 5 pixels discourage cutting through anti-aliased objects.
         a, b = max(0, ix - 2), min(n, ix + 3)
         opacity = float(np.mean(proj[a:b])) / mean
         displacement = abs(ix - nominal) / cell
-        # Displacement penalty prevents chasing unrelated empty strips.
         value = opacity + 0.20 * displacement
         if value < best_val:
             best_val, best_index = value, ix
@@ -85,11 +89,6 @@ def _cuts(proj: np.ndarray, count: int) -> tuple[float, list[int]]:
 
 
 def detect_grid(src: np.ndarray, cols: int | None = None, rows: int | None = None) -> tuple[int, int, list[int], list[int], dict]:
-    """Detect a square-cell grid from repeated gutters, never hard-code 8x9.
-
-    Fails explicitly if gutters are ambiguous. Optional manual row/col override
-    for irregular atlases, with gutters still detected around those positions.
-    """
     h, w = src.shape[:2]
     occupied = src[:, :, 3] >= FOREGROUND_ALPHA_THRESHOLD
     proj_x = np.count_nonzero(occupied, axis=0).astype(np.float32)
@@ -122,21 +121,17 @@ def detect_grid(src: np.ndarray, cols: int | None = None, rows: int | None = Non
     return c, r, [0, *xc, w], [0, *yc, h], {"score": round(score, 4), "x_gutter": round(sx, 4), "y_gutter": round(sy, 4)}
 
 
-def foreground_mask(rgba: np.ndarray) -> np.ndarray:
+def clean_foreground_mask(rgba: np.ndarray) -> np.ndarray:
     fg = (rgba[:, :, 3] >= FOREGROUND_ALPHA_THRESHOLD) & (rgba[:, :, :3].max(axis=2) > FOREGROUND_RGB_THRESHOLD)
     n, labels, stats, _ = cv2.connectedComponentsWithStats(fg.astype(np.uint8), 8)
     cleaned = np.zeros_like(fg)
-    # Original BOM limits were intended for 128px sprites, so rescale areas to the output tile size.
-    scale = TILE_SIZE / 128.0
-    max_area = max(1, int(round(FLOATING_ARTIFACT_MAX_AREA * scale * scale)))
-    max_side = max(1, int(round(FLOATING_ARTIFACT_MAX_WIDTH * scale)))
     for i in range(1, n):
         area = int(stats[i, cv2.CC_STAT_AREA])
-        cw = int(stats[i, cv2.CC_STAT_WIDTH])
-        ch = int(stats[i, cv2.CC_STAT_HEIGHT])
-        if area < max(1, round(MIN_COMPONENT_AREA * scale * scale)):
+        w = int(stats[i, cv2.CC_STAT_WIDTH])
+        h = int(stats[i, cv2.CC_STAT_HEIGHT])
+        if area < MIN_COMPONENT_AREA:
             continue
-        if area <= max_area and cw <= max_side and ch <= max_side:
+        if area <= FLOATING_ARTIFACT_MAX_AREA and w <= FLOATING_ARTIFACT_MAX_WIDTH and h <= FLOATING_ARTIFACT_MAX_HEIGHT:
             continue
         cleaned[labels == i] = True
     return cleaned
@@ -155,7 +150,10 @@ def extract_palette(rgb: np.ndarray, mask: np.ndarray, k: int, seed: int) -> np.
     pixels = rgb[mask]
     if len(pixels) == 0:
         return np.zeros((0, 3), dtype=np.uint8)
-    k = min(k, len(np.unique(pixels, axis=0)))
+    unique = np.unique(pixels, axis=0)
+    k = min(k, len(unique))
+    if k <= 0:
+        return np.zeros((0, 3), dtype=np.uint8)
     sample = pixels
     if len(sample) > 20000:
         rng = np.random.default_rng(seed)
@@ -171,12 +169,12 @@ def extract_palette(rgb: np.ndarray, mask: np.ndarray, k: int, seed: int) -> np.
 
 
 def quantize(rgb: np.ndarray, mask: np.ndarray, palette: np.ndarray) -> np.ndarray:
-    idx = np.full(mask.shape, -1, dtype=np.int8)
+    idx = np.full(mask.shape, -1, dtype=np.int16)
     if not len(palette) or not np.any(mask):
         return idx
     pts = rgb[mask].astype(np.int16)
     pal = palette.astype(np.int16)
-    idx[mask] = np.argmin(((pts[:, None, :] - pal[None, :, :]) ** 2).sum(axis=2), axis=1).astype(np.int8)
+    idx[mask] = np.argmin(((pts[:, None, :] - pal[None, :, :]) ** 2).sum(axis=2), axis=1).astype(np.int16)
     return idx
 
 
@@ -192,7 +190,7 @@ def mode_cleanup(idx: np.ndarray, mask: np.ndarray, colors: int) -> np.ndarray:
             amount = cv2.blur(((out == ci) & mask).astype(np.float32), (CLEANUP_KERNEL, CLEANUP_KERNEL))
             scores.append(np.divide(amount, density, out=np.zeros_like(amount), where=density > 1e-6))
         scores = np.stack(scores)
-        best = scores.argmax(axis=0).astype(np.int8)
+        best = scores.argmax(axis=0).astype(np.int16)
         confidence = scores.max(axis=0)
         change = interior & (confidence >= CLEANUP_THRESHOLD) & (best != out)
         out[change] = best[change]
@@ -201,11 +199,9 @@ def mode_cleanup(idx: np.ndarray, mask: np.ndarray, colors: int) -> np.ndarray:
 
 def process_tile(tile: np.ndarray, colors: int, seed: int) -> tuple[np.ndarray, int]:
     tile = tile.copy()
-    near_invisible = tile[:, :, 3] < FOREGROUND_ALPHA_THRESHOLD
-    tile[near_invisible] = 0
-    rgba = resize_rgba_premultiplied(tile, TILE_SIZE, TILE_SIZE)
-    fg = foreground_mask(rgba)
-    smoothed = bilateral_denoise(rgba[:, :, :3].copy(), fg)
+    tile[tile[:, :, 3] < FOREGROUND_ALPHA_THRESHOLD] = 0
+    fg = clean_foreground_mask(tile)
+    smoothed = bilateral_denoise(tile[:, :, :3].copy(), fg)
     palette = extract_palette(smoothed, fg, colors, seed)
     idx = mode_cleanup(quantize(smoothed, fg, palette), fg, len(palette))
     out = np.zeros((TILE_SIZE, TILE_SIZE, 4), dtype=np.uint8)
@@ -215,56 +211,169 @@ def process_tile(tile: np.ndarray, colors: int, seed: int) -> tuple[np.ndarray, 
     return out, int(len(palette))
 
 
+def locate_slot(value: float, bounds: list[int]) -> int:
+    i = int(np.searchsorted(np.asarray(bounds, dtype=np.int32), value, side="right") - 1)
+    return max(0, min(i, len(bounds) - 2))
+
+
+def extract_objects_by_slot(original: np.ndarray, xbounds: list[int], ybounds: list[int], cols: int, rows: int):
+    base = original.copy()
+    base[base[:, :, 3] < FOREGROUND_ALPHA_THRESHOLD] = 0
+    original_fg = clean_foreground_mask(base)
+    semantic = cv2.morphologyEx(original_fg.astype(np.uint8), cv2.MORPH_CLOSE, np.ones((3, 3), np.uint8))
+    n, labels, stats, centroids = cv2.connectedComponentsWithStats(semantic, 8)
+
+    slot_parts: dict[tuple[int, int], list[tuple[int, int, np.ndarray]]] = {(r, c): [] for r in range(rows) for c in range(cols)}
+    assigned = 0
+    ignored = 0
+    for i in range(1, n):
+        area = int(stats[i, cv2.CC_STAT_AREA])
+        if area < SEMANTIC_COMPONENT_MIN_AREA:
+            ignored += 1
+            continue
+        x = int(stats[i, cv2.CC_STAT_LEFT])
+        y = int(stats[i, cv2.CC_STAT_TOP])
+        w = int(stats[i, cv2.CC_STAT_WIDTH])
+        h = int(stats[i, cv2.CC_STAT_HEIGHT])
+        comp_sem = (labels[y:y+h, x:x+w] == i)
+        expanded = cv2.dilate(comp_sem.astype(np.uint8), np.ones((3, 3), np.uint8), iterations=1).astype(bool)
+        local_mask = original_fg[y:y+h, x:x+w] & expanded
+        if not np.any(local_mask):
+            local_mask = original_fg[y:y+h, x:x+w] & comp_sem
+        if not np.any(local_mask):
+            ignored += 1
+            continue
+        cx, cy = centroids[i]
+        col = locate_slot(float(cx), xbounds)
+        row = locate_slot(float(cy), ybounds)
+        slot_parts[(row, col)].append((x, y, local_mask))
+        assigned += 1
+
+    # Merge all assigned parts per slot into one cropped RGBA icon.
+    slots: list[list[np.ndarray | None]] = [[None for _ in range(cols)] for _ in range(rows)]
+    nonempty = 0
+    for row in range(rows):
+        for col in range(cols):
+            parts = slot_parts[(row, col)]
+            if not parts:
+                continue
+            min_x = min(x for x, _, mask in parts for _ in [mask])
+            min_y = min(y for _, y, mask in parts for _ in [mask])
+            max_x = max(x + mask.shape[1] for x, _, mask in parts)
+            max_y = max(y + mask.shape[0] for _, y, mask in parts)
+            union = np.zeros((max_y - min_y, max_x - min_x), dtype=bool)
+            for x, y, local_mask in parts:
+                oy = y - min_y
+                ox = x - min_x
+                union[oy:oy + local_mask.shape[0], ox:ox + local_mask.shape[1]] |= local_mask
+            crop = base[min_y:max_y, min_x:max_x].copy()
+            crop[~union] = 0
+            slots[row][col] = crop
+            nonempty += 1
+
+    stats_out = {
+        "semantic_components_assigned": assigned,
+        "semantic_components_ignored": ignored,
+        "nonempty_slots": nonempty,
+        "empty_slots": rows * cols - nonempty,
+    }
+    return slots, stats_out
+
+
+def normalize_icon_to_tile(icon: np.ndarray | None) -> np.ndarray:
+    tile = np.zeros((TILE_SIZE, TILE_SIZE, 4), dtype=np.uint8)
+    if icon is None or icon.size == 0:
+        return tile
+    mask = icon[:, :, 3] >= FOREGROUND_ALPHA_THRESHOLD
+    if not np.any(mask):
+        return tile
+    ys, xs = np.where(mask)
+    x0, x1 = int(xs.min()), int(xs.max()) + 1
+    y0, y1 = int(ys.min()), int(ys.max()) + 1
+    sprite = icon[y0:y1, x0:x1].copy()
+    local_mask = mask[y0:y1, x0:x1]
+    sprite[~local_mask] = 0
+
+    obj_h, obj_w = sprite.shape[:2]
+    fit_w = TILE_SIZE - 2 * LAYOUT_MARGIN
+    fit_h = TILE_SIZE - 2 * LAYOUT_MARGIN
+    scale = min(1.0, fit_w / max(1, obj_w), fit_h / max(1, obj_h))
+    new_w = max(1, min(fit_w, int(round(obj_w * scale))))
+    new_h = max(1, min(fit_h, int(round(obj_h * scale))))
+
+    sprite_r = resize_rgba_premultiplied(sprite, new_w, new_h)
+    dx = (TILE_SIZE - new_w) // 2
+    dy = TILE_SIZE - LAYOUT_MARGIN - new_h  # bottom anchored, exactly 2 px padding
+    tile[dy:dy + new_h, dx:dx + new_w] = sprite_r
+    return tile
+
+
 def process(input_file: Path, output_file: Path, colors: int = BASE_COLORS, cols: int | None = None, rows: int | None = None) -> dict:
     original = np.asarray(Image.open(input_file).convert("RGBA"))
     col_count, row_count, xbounds, ybounds, detection = detect_grid(original, cols, rows)
+    slots, slot_stats = extract_objects_by_slot(original, xbounds, ybounds, col_count, row_count)
     result = np.zeros((row_count * TILE_SIZE, col_count * TILE_SIZE, 4), dtype=np.uint8)
     counts = []
+
     for row in range(row_count):
         for col in range(col_count):
-            x0, x1 = xbounds[col], xbounds[col + 1]
-            y0, y1 = ybounds[row], ybounds[row + 1]
-            tile, count = process_tile(original[y0:y1, x0:x1], colors, 100 + row * col_count + col)
+            normalized = normalize_icon_to_tile(slots[row][col])
+            tile, count = process_tile(normalized, colors, 100 + row * col_count + col)
             result[row * TILE_SIZE:(row + 1) * TILE_SIZE, col * TILE_SIZE:(col + 1) * TILE_SIZE] = tile
             counts.append(count)
+
     output_file.parent.mkdir(parents=True, exist_ok=True)
     Image.fromarray(result, "RGBA").save(output_file, "PNG", optimize=True)
     if not set(np.unique(result[:, :, 3]).tolist()).issubset({0, 255}):
         raise RuntimeError("Unexpected non-binary alpha")
+
     report = {
         "build": BUILD_ID,
-        "input": str(input_file), "output": str(output_file),
+        "input": str(input_file),
+        "output": str(output_file),
         "source_size": [int(original.shape[1]), int(original.shape[0])],
-        "grid": [col_count, row_count], "tiles": row_count * col_count,
-        "tile_size": TILE_SIZE, "output_size": [int(result.shape[1]), int(result.shape[0])],
-        "max_colors_per_tile": colors, "tile_color_counts": counts,
-        "cuts_x": xbounds, "cuts_y": ybounds, "detection": detection,
+        "grid": [col_count, row_count],
+        "tiles": row_count * col_count,
+        "tile_size": TILE_SIZE,
+        "output_size": [int(result.shape[1]), int(result.shape[0])],
+        "max_colors_per_tile": colors,
+        "tile_color_counts": counts,
+        "cuts_x": xbounds,
+        "cuts_y": ybounds,
+        "detection": detection,
+        "slot_extraction": slot_stats,
         "alpha": [0, 255],
     }
     report_file = output_file.parent / (output_file.stem + ".json")
     report_file.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"B&om OK: {input_file.name} | {col_count}×{row_count} = {col_count*row_count} tiles | {result.shape[1]}×{result.shape[0]} px | {colors} colors/tile")
+    print(
+        f"B&om OK: {input_file.name} | {col_count}×{row_count} = {col_count * row_count} tiles | "
+        f"{result.shape[1]}×{result.shape[0]} px | {colors} colors/tile | nonempty {slot_stats['nonempty_slots']}"
+    )
     return report
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="B&om: automatically find icon grid and convert to 96×96 tiles")
+    parser = argparse.ArgumentParser(description="B&om: detect icon grid, normalize icons into aligned tiles, and reduce colors per tile")
     parser.add_argument("--input-dir", type=Path, default=Path("input"))
     parser.add_argument("--output-dir", type=Path, default=Path("output"))
     parser.add_argument("--input", type=Path, help="Process one image instead of all input PNGs")
     parser.add_argument("--output", type=Path, help="Custom output PNG path (requires --input)")
     parser.add_argument("--cols", type=int, help="Manual column count for unusual atlases")
     parser.add_argument("--rows", type=int, help="Manual row count for unusual atlases")
-    parser.add_argument("--colors", type=int, default=BASE_COLORS, help="Colors PER tile (default: 6)")
+    parser.add_argument("--colors", type=int, default=BASE_COLORS, help=f"Colors per tile (default: {BASE_COLORS})")
     args = parser.parse_args()
+
     if args.colors < 1 or args.colors > 16:
         parser.error("--colors must be between 1 and 16")
     if args.output and not args.input:
         parser.error("--output requires --input")
+
     sources = [args.input] if args.input else sorted(args.input_dir.glob("*.png"))
     if not sources:
         print(f"No input PNGs in {args.input_dir}", file=sys.stderr)
         return 1
+
     failed = 0
     for src in sources:
         dest = args.output or args.output_dir / (src.stem + "_BOM.png")
