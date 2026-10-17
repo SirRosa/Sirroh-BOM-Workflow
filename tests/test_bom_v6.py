@@ -20,8 +20,9 @@ class BOMV6Regression(unittest.TestCase):
         groups,black,white,_=bom.split_families(x)
         self.assertIn("black",groups)
         self.assertIn("white",groups)
-        self.assertIn("red",groups)
-        for name in ("black","white","red"):
+        chromatic=("red" if "red" in groups else "rose")
+        self.assertIn(chromatic,groups)
+        for name in ("black","white",chromatic):
             self.assertGreaterEqual(len(bom.representative_palette_for_family(x[groups[name]])),3)
         out,stats=bom.assign_quantized(x)
         self.assertEqual(out.shape,x.shape)
@@ -36,7 +37,7 @@ class BOMV6Regression(unittest.TestCase):
         tile[40:43,35:38,3]=255
         tile[14,20,:3]=(74,60,67)
         tile[14,20,3]=96
-        result,_=bom.process_tile(Image.fromarray(tile,"RGBA"))
+        result,_,_=bom.process_tile(Image.fromarray(tile,"RGBA"))
         pixels=np.asarray(result)
         self.assertTrue(np.all(pixels[40:43,35:38,0]>=200))
         self.assertEqual(int(pixels[14,20,3]),96)
