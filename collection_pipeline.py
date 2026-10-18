@@ -16,6 +16,7 @@ import sys
 from pathlib import Path
 
 from PIL import Image
+from collection_categories import classify, order_key, organize_collection
 
 ROOT = Path(__file__).resolve().parent
 TILES = ROOT / "atlas_work/Valheim_Compass_Atlas_BOM/tiles"
@@ -69,7 +70,7 @@ def source_selection() -> tuple[list[tuple[str, Path]], list[str]]:
             continue
         found[name.casefold()] = (name, src)
 
-    values = sorted(found.values(), key=lambda value: (value[0].casefold(), str(value[1])))
+    values = sorted(found.values(), key=lambda value: (order_key(value[0]), str(value[1])))
     if not values:
         raise RuntimeError("No non-creature icon files found")
     if len({x[0].casefold() for x in values}) != len(values):
@@ -108,6 +109,7 @@ def prepare_source(selected: list[tuple[str, Path]]) -> None:
                 "path": str(path.relative_to(ROOT)),
                 "source_size": list(original.size),
                 "source_sha256": digest(path.read_bytes()),
+                "category": classify(name),
             })
         ident = f"r{r+1:02d}_c{c+1:02d}"
         file = f"tiles/{ident}.png"
@@ -116,6 +118,7 @@ def prepare_source(selected: list[tuple[str, Path]]) -> None:
         records.append({
             "id": ident, "name": name+".png" if path else ident+".png",
             "prefab": name if path else "",
+            "category": classify(name) if path else None,
             "row": r+1, "column": c+1, "x": c*TILE, "y": r*TILE,
             "width": TILE, "height": TILE, "file": file,
             "empty": path is None, "sha256_rgba": digest(sprite.tobytes()),
@@ -201,6 +204,8 @@ def main() -> None:
         "file_names": [name + ".png" for name, _ in selected],
     }
     (RESULT / "summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False)+"\n", encoding="utf-8")
+    # Sort finished PNGs into stable category folders and render grouped reviews.
+    organize_collection(RESULT)
     print("SUCCESS", json.dumps({k: v for k, v in summary.items() if k != "file_names"}, ensure_ascii=False), flush=True)
 
 
