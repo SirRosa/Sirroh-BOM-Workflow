@@ -1,0 +1,141 @@
+{
+  "source": "IconsForCompass",
+  "total_icons": 111,
+  "packs": {
+    "01_Food_Fruits_Vegetables": [
+      "Plants/Blueberries.png",
+      "Plants/Cloudberry.png",
+      "Plants/Lingonberry.png",
+      "Plants/Raspberry.png",
+      "Plants/Vineberry.png",
+      "Plants/Pukeberries.png",
+      "Plants/Carrot.png",
+      "Plants/Onion.png",
+      "Plants/Turnip.png",
+      "Plants/Kale.png"
+    ],
+    "02_Food_Mushrooms_Crops": [
+      "Plants/Barley.png",
+      "Plants/Flax.png",
+      "Plants/Oat.png",
+      "Plants/Poteitr.png",
+      "Plants/Mushroom.png",
+      "Plants/MushroomJotunPuffs.png",
+      "Plants/MushroomMagecap.png",
+      "Plants/MushroomSmokePuff.png",
+      "Plants/MushroomYellow.png",
+      "Custom/custom_white_radish.png"
+    ],
+    "03_Nature_Trees_Herbs": [
+      "Plants/Beech1.png",
+      "Plants/Beech_Sapling.png",
+      "Plants/Beech_Stub.png",
+      "Plants/Dandelion.png",
+      "Plants/Fiddleheadfern.png",
+      "Plants/FirTree.png",
+      "Plants/Thistle.png",
+      "Custom/custom_white_flowers.png",
+      "Custom/custom_world_tree.png",
+      "Items/Honey.png"
+    ],
+    "04_Fish_Main": [
+      "Fish/Fish1.png",
+      "Fish/Fish2.png",
+      "Fish/Fish3.png",
+      "Fish/Fish4_cave.png",
+      "Fish/Fish5.png",
+      "Fish/Fish6.png",
+      "Fish/Fish7.png",
+      "Fish/Fish8.png",
+      "Fish/Fish9.png",
+      "Fish/Fish10.png"
+    ],
+    "05_Fish_Travel_Exploration": [
+      "Fish/Fish11.png",
+      "Fish/Fish12.png",
+      "Custom/custom_anchor.png",
+      "Custom/custom_fish.png",
+      "Custom/custom_wagon_wheel.png",
+      "Custom/custom_tent.png",
+      "Custom/custom_sword.png",
+      "Custom/custom_horned_helmet.png",
+      "Custom/custom_paw_print.png",
+      "Custom/custom_pickaxe.png"
+    ],
+    "06_POI_Caves_Dungeons": [
+      "Locations/BearCave.png",
+      "Locations/DG_Cave.png",
+      "Locations/DG_ForestCrypt.png",
+      "Locations/Hildir_cave.png",
+      "Locations/Hildir_crypt.png",
+      "Locations/MountainCave02.png",
+      "Locations/SunkenCrypt4.png",
+      "Locations/TrollCave.png",
+      "Locations/TheHole01.png",
+      "Locations/MorgenHole1.png"
+    ],
+    "07_POI_Settlements": [
+      "Locations/CharredFortress.png",
+      "Locations/DraugrVillage.png",
+      "Locations/FulingVillage.png",
+      "Locations/Hildir_plainsfortress.png",
+      "Locations/MistlandsExcavation.png",
+      "Locations/MistlandsGuardTower.png",
+      "Locations/MistlandsHarbour.png",
+      "Locations/MistlandsLighthouse.png",
+      "Locations/Mistlands_DvergrTownEntrance1.png",
+      "Locations/Mistlands_DvergrBossEntrance1.png"
+    ],
+    "08_POI_Special": [
+      "Locations/ForgeOfPotential.png",
+      "Locations/MorkBorg.png",
+      "Locations/PlaceofMystery1.png",
+      "Locations/PlaceofMystery2.png",
+      "Locations/PlaceofMystery3.png",
+      "Locations/SacrificialStones.png",
+      "Objects_POI/Player_tombstone.png",
+      "Objects_POI/VikingShip.png",
+      "Objects_POI/dvergrprops_crate_long.png",
+      "Objects_POI/stone_arch.png"
+    ],
+    "09_POI_WorldObjects": [
+      "Objects_POI/fire_pit.png",
+      "Objects_POI/forge_ext4.png",
+      "Objects_POI/piece_beehive.png",
+      "Objects_POI/piece_cauldron.png",
+      "Objects_POI/piece_chest_wood.png",
+      "Objects_POI/rock4_copper.png",
+      "Objects_POI/stake_wall.png",
+      "Objects_POI/stone_pile.png",
+      "Objects_POI/wood_door.png",
+      "Custom/custom_wooden_house.png"
+    ],
+    "10_Items_Loot": [
+      "Items/ChickenEgg.png",
+      "Items/Crystal.png",
+      "Items/ShieldWood.png",
+      "Items/Stone.png",
+      "Items/Torch.png",
+      "Items/TrophyDeer.png",
+      "Items/TrophySkeleton.png",
+      "Custom/custom_loot_sack.png",
+      "Custom/custom_stone_diamond.png",
+      "Custom/custom_stone_pedestal.png"
+    ],
+    "11_Custom_Signs_Runes": [
+      "Custom/custom_checkmark.png",
+      "Custom/custom_diamond_rune.png",
+      "Custom/custom_exclamation_mark.png",
+      "Custom/custom_fire_runestone.png",
+      "Custom/custom_horned_runestone.png",
+      "Custom/custom_red_cross.png",
+      "Custom/custom_rune_k.png",
+      "Custom/custom_runestone_zigzag.png",
+      "Custom/custom_spiral_rune.png",
+      "Custom/custom_stone_cross.png"
+    ],
+    "12_Custom_Remaining": [
+      "Custom/custom_stone_tower.png"
+    ]
+  }
+}
