@@ -7,9 +7,9 @@
   ],
   "pixel_identical": true,
   "png_binary_identical": true,
-  "source_sha256_rgba": "8f7e758aa801fd8245da0d1669279d755641c71e736cb92ddbab095e2178bc7b",
-  "reassembled_sha256_rgba": "8f7e758aa801fd8245da0d1669279d755641c71e736cb92ddbab095e2178bc7b",
-  "source_sha256_png": "8c01be5e6bf9c9c8e7dd04c60c5edd34acdb2e56593dbc2f2bc4b76ed135a7a4",
-  "reassembled_sha256_png": "8c01be5e6bf9c9c8e7dd04c60c5edd34acdb2e56593dbc2f2bc4b76ed135a7a4",
+  "source_sha256_rgba": "9782cdad5fc49735110b63847c5ff5158cb65e69fccb3ec7dcc7886a6a1998fe",
+  "reassembled_sha256_rgba": "9782cdad5fc49735110b63847c5ff5158cb65e69fccb3ec7dcc7886a6a1998fe",
+  "source_sha256_png": "23f2d2ea89dde7ff6ca313379f9163ea36b1830ec7fa36025be703e69c7569bf",
+  "reassembled_sha256_png": "23f2d2ea89dde7ff6ca313379f9163ea36b1830ec7fa36025be703e69c7569bf",
   "modified_tiles_detected": false
 }

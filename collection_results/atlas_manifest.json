@@ -8,8 +8,8 @@
       1152
     ],
     "mode": "RGBA",
-    "sha256_rgba": "8f7e758aa801fd8245da0d1669279d755641c71e736cb92ddbab095e2178bc7b",
-    "sha256_png": "8c01be5e6bf9c9c8e7dd04c60c5edd34acdb2e56593dbc2f2bc4b76ed135a7a4"
+    "sha256_rgba": "9782cdad5fc49735110b63847c5ff5158cb65e69fccb3ec7dcc7886a6a1998fe",
+    "sha256_png": "23f2d2ea89dde7ff6ca313379f9163ea36b1830ec7fa36025be703e69c7569bf"
   },
   "grid": {
     "columns": 10,
@@ -22,8 +22,8 @@
   "tiles": [
     {
       "id": "r01_c01",
-      "name": "Barley",
-      "prefab": "Barley",
+      "name": "BearCave",
+      "prefab": "BearCave",
       "row": 1,
       "column": 1,
       "x": 0,
@@ -32,12 +32,13 @@
       "height": 96,
       "file": "tiles/r01_c01.png",
       "empty": false,
-      "sha256_rgba": "28ea58594641d200d11cfae1d270cd14c4e877a95ae2d4a936f91f17b15328b1"
+      "sha256_rgba": "afc123a1f53b2fad1d5a810adb003d4f09575f754d132fdda7ccdb7617be695b",
+      "category": "Locations"
     },
     {
       "id": "r01_c02",
-      "name": "BearCave",
-      "prefab": "BearCave",
+      "name": "CharredFortress",
+      "prefab": "CharredFortress",
       "row": 1,
       "column": 2,
       "x": 96,
@@ -46,12 +47,13 @@
       "height": 96,
       "file": "tiles/r01_c02.png",
       "empty": false,
-      "sha256_rgba": "afc123a1f53b2fad1d5a810adb003d4f09575f754d132fdda7ccdb7617be695b"
+      "sha256_rgba": "75376a11a545d080400a426474580a701fbe9675ad003cb512fb85cb8c5a83a3",
+      "category": "Locations"
     },
     {
       "id": "r01_c03",
-      "name": "Beech1",
-      "prefab": "Beech1",
+      "name": "DG_Cave",
+      "prefab": "DG_Cave",
       "row": 1,
       "column": 3,
       "x": 192,
@@ -60,12 +62,13 @@
       "height": 96,
       "file": "tiles/r01_c03.png",
       "empty": false,
-      "sha256_rgba": "6f683b4ddf74668d5a9ae2fed86210ff898a7fa0a56dc38bb160ef44fa437090"
+      "sha256_rgba": "00da5fae446005e1a15685dcafa14474a5564ed62ed25b7a3aba8e2915527432",
+      "category": "Locations"
     },
     {
       "id": "r01_c04",
-      "name": "Beech_Sapling",
-      "prefab": "Beech_Sapling",
+      "name": "DG_ForestCrypt",
+      "prefab": "DG_ForestCrypt",
       "row": 1,
       "column": 4,
       "x": 288,
@@ -74,12 +77,13 @@
       "height": 96,
       "file": "tiles/r01_c04.png",
       "empty": false,
-      "sha256_rgba": "f43d2c590bcf13198f8d9199b73f3f946eaf4a153a63dc74ab87de4b4a4c10d3"
+      "sha256_rgba": "49880e5dc9e83be928da03999fe17583b18b6206c43131aa3f1c617f5c749ee4",
+      "category": "Locations"
     },
     {
       "id": "r01_c05",
-      "name": "Beech_Stub",
-      "prefab": "Beech_Stub",
+      "name": "DraugrVillage",
+      "prefab": "DraugrVillage",
       "row": 1,
       "column": 5,
       "x": 384,
@@ -88,12 +92,13 @@
       "height": 96,
       "file": "tiles/r01_c05.png",
       "empty": false,
-      "sha256_rgba": "29977c0df4e7c583f2a5106539beec898e68db28ccfa4a8c57782547f72b2b54"
+      "sha256_rgba": "5577439e1f9f4ac0c801eb95d8c74be6f55b4598a2fe7ff2f26f0aaac79ec903",
+      "category": "Locations"
     },
     {
       "id": "r01_c06",
-      "name": "Blueberries",
-      "prefab": "Blueberries",
+      "name": "ForgeOfPotential",
+      "prefab": "ForgeOfPotential",
       "row": 1,
       "column": 6,
       "x": 480,
@@ -102,12 +107,13 @@
       "height": 96,
       "file": "tiles/r01_c06.png",
       "empty": false,
-      "sha256_rgba": "e5bda3c83596b132a2c048d6b95cee1b0fdd668bacd7559c1e46d6fb6e406ce1"
+      "sha256_rgba": "737a116f364a3841a768a2470f9ef0b33d6e0ef9f3ab25b5fdd8fff057b7a11f",
+      "category": "Locations"
     },
     {
       "id": "r01_c07",
-      "name": "Carrot",
-      "prefab": "Carrot",
+      "name": "FulingVillage",
+      "prefab": "FulingVillage",
       "row": 1,
       "column": 7,
       "x": 576,
@@ -116,12 +122,13 @@
       "height": 96,
       "file": "tiles/r01_c07.png",
       "empty": false,
-      "sha256_rgba": "0f14abf142b275159c93f20ddab19d6f175c95ed6d4067435238a49eaee08be3"
+      "sha256_rgba": "3484a1779e7d044f3fa6bc3a1b8f0ee795ac4f63746ee5750bfaaad3da193e99",
+      "category": "Locations"
     },
     {
       "id": "r01_c08",
-      "name": "CharredFortress",
-      "prefab": "CharredFortress",
+      "name": "Hildir_cave",
+      "prefab": "Hildir_cave",
       "row": 1,
       "column": 8,
       "x": 672,
@@ -130,12 +137,13 @@
       "height": 96,
       "file": "tiles/r01_c08.png",
       "empty": false,
-      "sha256_rgba": "75376a11a545d080400a426474580a701fbe9675ad003cb512fb85cb8c5a83a3"
+      "sha256_rgba": "4b5227bd51bb04357d1790da8e5748a7dcca5c28c3cbeb15b1e53efefce1e44c",
+      "category": "Locations"
     },
     {
       "id": "r01_c09",
-      "name": "ChickenEgg",
-      "prefab": "ChickenEgg",
+      "name": "Hildir_crypt",
+      "prefab": "Hildir_crypt",
       "row": 1,
       "column": 9,
       "x": 768,
@@ -144,12 +152,13 @@
       "height": 96,
       "file": "tiles/r01_c09.png",
       "empty": false,
-      "sha256_rgba": "e16b58e998a5e42e5cbc256eafd8aa7f3ca55fc0c067a8dfcf287a1a41c84e5d"
+      "sha256_rgba": "1448cadb3a2e0170a4ec932e9e686adf74d1a294113e26f92e4326b46362bd75",
+      "category": "Locations"
     },
     {
       "id": "r01_c10",
-      "name": "Cloudberry",
-      "prefab": "Cloudberry",
+      "name": "Hildir_plainsfortress",
+      "prefab": "Hildir_plainsfortress",
       "row": 1,
       "column": 10,
       "x": 864,
@@ -158,12 +167,13 @@
       "height": 96,
       "file": "tiles/r01_c10.png",
       "empty": false,
-      "sha256_rgba": "3549ef2ae5799d5c0b4c60962579ad410be665b03c2c052656e644bb03e064a0"
+      "sha256_rgba": "56f8a2a376a54c7c9b62eacb24f6d6676b7ceff88a07e2514e7e1e7c8aca558f",
+      "category": "Locations"
     },
     {
       "id": "r02_c01",
-      "name": "Crystal",
-      "prefab": "Crystal",
+      "name": "Mistlands_DvergrBossEntrance1",
+      "prefab": "Mistlands_DvergrBossEntrance1",
       "row": 2,
       "column": 1,
       "x": 0,
@@ -172,12 +182,13 @@
       "height": 96,
       "file": "tiles/r02_c01.png",
       "empty": false,
-      "sha256_rgba": "5ce9d10404318a24f8abcbf289cec889d2d751187ff5aad9566d06eb553a8780"
+      "sha256_rgba": "ecc3b55aba8d8878510f19477d6a5664032596de281aafc4797773ea9d7abd33",
+      "category": "Locations"
     },
     {
       "id": "r02_c02",
-      "name": "custom_anchor",
-      "prefab": "custom_anchor",
+      "name": "Mistlands_DvergrTownEntrance1",
+      "prefab": "Mistlands_DvergrTownEntrance1",
       "row": 2,
       "column": 2,
       "x": 96,
@@ -186,12 +197,13 @@
       "height": 96,
       "file": "tiles/r02_c02.png",
       "empty": false,
-      "sha256_rgba": "9422e5a36d15c8ff0ea831d94aa81d2bc09d636dc7001d4ad707cb29f63f5f8b"
+      "sha256_rgba": "3010ff77bda4b48c758a2da3faac7ed790d60b1ad1e7fec5116d963557d17a3d",
+      "category": "Locations"
     },
     {
       "id": "r02_c03",
-      "name": "custom_checkmark",
-      "prefab": "custom_checkmark",
+      "name": "MistlandsExcavation",
+      "prefab": "MistlandsExcavation",
       "row": 2,
       "column": 3,
       "x": 192,
@@ -200,12 +212,13 @@
       "height": 96,
       "file": "tiles/r02_c03.png",
       "empty": false,
-      "sha256_rgba": "30460bc7f40b7ec03d85fc675cdd3542b3c855a98dc0599b544c09be4eff8d63"
+      "sha256_rgba": "1e234c40b0bd99becc01f19433d19daaca32c8fc58dc8b686e3914e3ee4dc5e0",
+      "category": "Locations"
     },
     {
       "id": "r02_c04",
-      "name": "custom_diamond_rune",
-      "prefab": "custom_diamond_rune",
+      "name": "MistlandsGuardTower",
+      "prefab": "MistlandsGuardTower",
       "row": 2,
       "column": 4,
       "x": 288,
@@ -214,12 +227,13 @@
       "height": 96,
       "file": "tiles/r02_c04.png",
       "empty": false,
-      "sha256_rgba": "f7105402c5acdd5962217cd7605108746fe7de14d1af2a32b3ecf74281a4ea46"
+      "sha256_rgba": "760b38863a0bf0c0ce862a558a674fa6a8eeb7fccdf4fda3f646de2ad49412d7",
+      "category": "Locations"
     },
     {
       "id": "r02_c05",
-      "name": "custom_exclamation_mark",
-      "prefab": "custom_exclamation_mark",
+      "name": "MistlandsHarbour",
+      "prefab": "MistlandsHarbour",
       "row": 2,
       "column": 5,
       "x": 384,
@@ -228,12 +242,13 @@
       "height": 96,
       "file": "tiles/r02_c05.png",
       "empty": false,
-      "sha256_rgba": "39f3a4915b5802a57ffca0199510234e657d8327990730c064cf2b5a6465a4e7"
+      "sha256_rgba": "34d97bb57e582ba347cb93adede3a1eab7bb17e0bd25c9bb271ad627e6d7fb6b",
+      "category": "Locations"
     },
     {
       "id": "r02_c06",
-      "name": "custom_fire_runestone",
-      "prefab": "custom_fire_runestone",
+      "name": "MistlandsLighthouse",
+      "prefab": "MistlandsLighthouse",
       "row": 2,
       "column": 6,
       "x": 480,
@@ -242,12 +257,13 @@
       "height": 96,
       "file": "tiles/r02_c06.png",
       "empty": false,
-      "sha256_rgba": "d4249708d4fe7a36121546eef2e0b5e87c99c52cc08a87f85fa1dfb8788d850b"
+      "sha256_rgba": "c50f8c4941dce46d56b478493054f63ea22fa83e7db6d8612cccc368434387ff",
+      "category": "Locations"
     },
     {
       "id": "r02_c07",
-      "name": "custom_fish",
-      "prefab": "custom_fish",
+      "name": "MorgenHole1",
+      "prefab": "MorgenHole1",
       "row": 2,
       "column": 7,
       "x": 576,
@@ -256,12 +272,13 @@
       "height": 96,
       "file": "tiles/r02_c07.png",
       "empty": false,
-      "sha256_rgba": "732c4c6c7432f678e2bf7fc0beb0ae69a3953e611c4464f0b5785b161e1d7898"
+      "sha256_rgba": "ad8cf825d77c66a6715eceec26e9a5c14bcad2dc8890308f9988852160090780",
+      "category": "Locations"
     },
     {
       "id": "r02_c08",
-      "name": "custom_horned_helmet",
-      "prefab": "custom_horned_helmet",
+      "name": "MorkBorg",
+      "prefab": "MorkBorg",
       "row": 2,
       "column": 8,
       "x": 672,
@@ -270,12 +287,13 @@
       "height": 96,
       "file": "tiles/r02_c08.png",
       "empty": false,
-      "sha256_rgba": "f91c15466ec29aeacdf9a865ecc6221458fb77c32a52c319147367c8e087aedd"
+      "sha256_rgba": "cdb18d6d4b46f7dd8407bd9ac439f6554c14904c29cee63cbb68e9849b75d8d6",
+      "category": "Locations"
     },
     {
       "id": "r02_c09",
-      "name": "custom_horned_runestone",
-      "prefab": "custom_horned_runestone",
+      "name": "MountainCave02",
+      "prefab": "MountainCave02",
       "row": 2,
       "column": 9,
       "x": 768,
@@ -284,12 +302,13 @@
       "height": 96,
       "file": "tiles/r02_c09.png",
       "empty": false,
-      "sha256_rgba": "e59f09deccf7126fa082e75c69c4438e34e8c9e8198facdf2cb6af486ef84305"
+      "sha256_rgba": "9f5ec9296db0b7aa7ac014cd630dab76025f98ae1c96fbd48d457bbed6fd00fd",
+      "category": "Locations"
     },
     {
       "id": "r02_c10",
-      "name": "custom_loot_sack",
-      "prefab": "custom_loot_sack",
+      "name": "PlaceofMystery1",
+      "prefab": "PlaceofMystery1",
       "row": 2,
       "column": 10,
       "x": 864,
@@ -298,12 +317,13 @@
       "height": 96,
       "file": "tiles/r02_c10.png",
       "empty": false,
-      "sha256_rgba": "4bf39df4b9cd3825a02878408be01581d0a3eeb1b75aa7e425beba51d04a2381"
+      "sha256_rgba": "e3abf676bc66b80f06aabcb5d53cb028ea85dce1719b9658ff4d3e183a73d848",
+      "category": "Locations"
     },
     {
       "id": "r03_c01",
-      "name": "custom_paw_print",
-      "prefab": "custom_paw_print",
+      "name": "PlaceofMystery2",
+      "prefab": "PlaceofMystery2",
       "row": 3,
       "column": 1,
       "x": 0,
@@ -312,12 +332,13 @@
       "height": 96,
       "file": "tiles/r03_c01.png",
       "empty": false,
-      "sha256_rgba": "b1c286512ef76be6347b49968f90c9a9275784b1916a9f4a885f439bfd73e44c"
+      "sha256_rgba": "d2487b4f2a1bbd1397972047a487c10a637d1438d6065dd096e4f4ba646e9644",
+      "category": "Locations"
     },
     {
       "id": "r03_c02",
-      "name": "custom_pickaxe",
-      "prefab": "custom_pickaxe",
+      "name": "PlaceofMystery3",
+      "prefab": "PlaceofMystery3",
       "row": 3,
       "column": 2,
       "x": 96,
@@ -326,12 +347,13 @@
       "height": 96,
       "file": "tiles/r03_c02.png",
       "empty": false,
-      "sha256_rgba": "63f09c3be00995e176e0407a3459faec15aa8a9822629fe11f0477ff316c3c12"
+      "sha256_rgba": "52ac435599fbf1bf5efe6b7838decba8b2dbe6a618416bcc6987716c224f5823",
+      "category": "Locations"
     },
     {
       "id": "r03_c03",
-      "name": "custom_red_cross",
-      "prefab": "custom_red_cross",
+      "name": "SacrificialStones",
+      "prefab": "SacrificialStones",
       "row": 3,
       "column": 3,
       "x": 192,
@@ -340,12 +362,13 @@
       "height": 96,
       "file": "tiles/r03_c03.png",
       "empty": false,
-      "sha256_rgba": "a34743354a25ae7c45bebcfa306bfa7c7c33df126f3a07a1772c098d47a7b8b2"
+      "sha256_rgba": "94570d52525b53d090cd33bb91b76da6d242d923a5bdf27264712e6810233d9e",
+      "category": "Locations"
     },
     {
       "id": "r03_c04",
-      "name": "custom_rune_k",
-      "prefab": "custom_rune_k",
+      "name": "SunkenCrypt4",
+      "prefab": "SunkenCrypt4",
       "row": 3,
       "column": 4,
       "x": 288,
@@ -354,12 +377,13 @@
       "height": 96,
       "file": "tiles/r03_c04.png",
       "empty": false,
-      "sha256_rgba": "d8ab05e30fe6f749b8eefc5d0c327754e660cf6666c13e661320b48a08d4ad9e"
+      "sha256_rgba": "f57c3d59c2e3ab5e08ca09009667c3e832d121bf23db00df6ac80f2d41ed4a0d",
+      "category": "Locations"
     },
     {
       "id": "r03_c05",
-      "name": "custom_runestone_zigzag",
-      "prefab": "custom_runestone_zigzag",
+      "name": "TheHole01",
+      "prefab": "TheHole01",
       "row": 3,
       "column": 5,
       "x": 384,
@@ -368,12 +392,13 @@
       "height": 96,
       "file": "tiles/r03_c05.png",
       "empty": false,
-      "sha256_rgba": "52c8700f2ffb04a94bef35c78b3877e5775952d07b4bb8507b4817dc81761979"
+      "sha256_rgba": "a5c295286a4a7590cd4db6c83faec35667bc23f269167ed2541225929966dec1",
+      "category": "Locations"
     },
     {
       "id": "r03_c06",
-      "name": "custom_spiral_rune",
-      "prefab": "custom_spiral_rune",
+      "name": "TrollCave",
+      "prefab": "TrollCave",
       "row": 3,
       "column": 6,
       "x": 480,
@@ -382,12 +407,13 @@
       "height": 96,
       "file": "tiles/r03_c06.png",
       "empty": false,
-      "sha256_rgba": "da5f2bd1f23cb0a4b4414c19bb2c0c105e3eac4ef247b6f1eea8695480d9e671"
+      "sha256_rgba": "0891e13e575d92174d3af6da597493b55997287363429a122037044ed8b2d493",
+      "category": "Locations"
     },
     {
       "id": "r03_c07",
-      "name": "custom_stone_cross",
-      "prefab": "custom_stone_cross",
+      "name": "Fish1",
+      "prefab": "Fish1",
       "row": 3,
       "column": 7,
       "x": 576,
@@ -396,12 +422,13 @@
       "height": 96,
       "file": "tiles/r03_c07.png",
       "empty": false,
-      "sha256_rgba": "a623bfafd712c96f828fe5d03b09f598d6d5d5b37e0aeefead45152db3f04299"
+      "sha256_rgba": "afa9ba287aa4a64a61b75f3b134f708c07d61a28961a7702236c8cf2c5d13c01",
+      "category": "Fish"
     },
     {
       "id": "r03_c08",
-      "name": "custom_stone_diamond",
-      "prefab": "custom_stone_diamond",
+      "name": "Fish10",
+      "prefab": "Fish10",
       "row": 3,
       "column": 8,
       "x": 672,
@@ -410,12 +437,13 @@
       "height": 96,
       "file": "tiles/r03_c08.png",
       "empty": false,
-      "sha256_rgba": "9d976f3714b3e750e3a23da685bc93826b8d6951d33470e8b1e88515f920649e"
+      "sha256_rgba": "d0ad9be68507e7283da42c98174576ebda831cf5a54170c17857a47c36a35c09",
+      "category": "Fish"
     },
     {
       "id": "r03_c09",
-      "name": "custom_stone_pedestal",
-      "prefab": "custom_stone_pedestal",
+      "name": "Fish11",
+      "prefab": "Fish11",
       "row": 3,
       "column": 9,
       "x": 768,
@@ -424,12 +452,13 @@
       "height": 96,
       "file": "tiles/r03_c09.png",
       "empty": false,
-      "sha256_rgba": "cdcd5ab842ede0066ec2a550136549cad1f0f6e0b8c28596aa9269fe12a6d6c7"
+      "sha256_rgba": "5bb18820d78aa3a729e5dcdd923e311eb2aca04cceccca5f665bfbc0b7980fcd",
+      "category": "Fish"
     },
     {
       "id": "r03_c10",
-      "name": "custom_stone_tower",
-      "prefab": "custom_stone_tower",
+      "name": "Fish12",
+      "prefab": "Fish12",
       "row": 3,
       "column": 10,
       "x": 864,
@@ -438,12 +467,13 @@
       "height": 96,
       "file": "tiles/r03_c10.png",
       "empty": false,
-      "sha256_rgba": "d124d906de4caa9efb4571611b5407d0a1ad517a93b413e6a9e422c73718c273"
+      "sha256_rgba": "f295e03489b36d23af80aaa1795c4c923a80d6d0a7bb234fcab121e998d1b559",
+      "category": "Fish"
     },
     {
       "id": "r04_c01",
-      "name": "custom_sword",
-      "prefab": "custom_sword",
+      "name": "Fish2",
+      "prefab": "Fish2",
       "row": 4,
       "column": 1,
       "x": 0,
@@ -452,12 +482,13 @@
       "height": 96,
       "file": "tiles/r04_c01.png",
       "empty": false,
-      "sha256_rgba": "0b57c316201161c607a9603ee05d842bbb0eedc143930e42376676738b7b6a0f"
+      "sha256_rgba": "b34578add39095e4175d8dace3f8a1aa0e7eb8f800d2511fd2d9931610c686b5",
+      "category": "Fish"
     },
     {
       "id": "r04_c02",
-      "name": "custom_tent",
-      "prefab": "custom_tent",
+      "name": "Fish3",
+      "prefab": "Fish3",
       "row": 4,
       "column": 2,
       "x": 96,
@@ -466,12 +497,13 @@
       "height": 96,
       "file": "tiles/r04_c02.png",
       "empty": false,
-      "sha256_rgba": "94c933c02b90669151865abd98a2bde23454041b698bff89ed236538579fc8bf"
+      "sha256_rgba": "0eeb2dca4ee8c2f1b0628ef01d79ca8e4a33ee224fe55a3d2e86452abb94f6d3",
+      "category": "Fish"
     },
     {
       "id": "r04_c03",
-      "name": "custom_wagon_wheel",
-      "prefab": "custom_wagon_wheel",
+      "name": "Fish4_cave",
+      "prefab": "Fish4_cave",
       "row": 4,
       "column": 3,
       "x": 192,
@@ -480,12 +512,13 @@
       "height": 96,
       "file": "tiles/r04_c03.png",
       "empty": false,
-      "sha256_rgba": "6f68de44d2fa53aabc3f0e329fb33455293bbc1a93219fde2cef6f932470819a"
+      "sha256_rgba": "e872c331851ffb3d0d73fa10a521702e3e0f6361fd883c3151653c7d6b1e988c",
+      "category": "Fish"
     },
     {
       "id": "r04_c04",
-      "name": "custom_white_flowers",
-      "prefab": "custom_white_flowers",
+      "name": "Fish5",
+      "prefab": "Fish5",
       "row": 4,
       "column": 4,
       "x": 288,
@@ -494,12 +527,13 @@
       "height": 96,
       "file": "tiles/r04_c04.png",
       "empty": false,
-      "sha256_rgba": "309a44cc909fa424e7d1be13504b8e3d231416a6de045894e79347b184b8e604"
+      "sha256_rgba": "0349fe510bb2b6a150ad0e5a96303a10db7559ec29184549169f8c4dc58fc6ad",
+      "category": "Fish"
     },
     {
       "id": "r04_c05",
-      "name": "custom_white_radish",
-      "prefab": "custom_white_radish",
+      "name": "Fish6",
+      "prefab": "Fish6",
       "row": 4,
       "column": 5,
       "x": 384,
@@ -508,12 +542,13 @@
       "height": 96,
       "file": "tiles/r04_c05.png",
       "empty": false,
-      "sha256_rgba": "fb3b0efd2578ed8522bb57479307c7db3b2b5243a03b1ba23a3bfcc78c9022f7"
+      "sha256_rgba": "56f8964bd9436b6b23b146362135d5dd67fa994796df306df93e81d2b9fb99b5",
+      "category": "Fish"
     },
     {
       "id": "r04_c06",
-      "name": "custom_wooden_house",
-      "prefab": "custom_wooden_house",
+      "name": "Fish7",
+      "prefab": "Fish7",
       "row": 4,
       "column": 6,
       "x": 480,
@@ -522,12 +557,13 @@
       "height": 96,
       "file": "tiles/r04_c06.png",
       "empty": false,
-      "sha256_rgba": "de32ee2792665851bbd8c64d976aaa5b0f7a19f3b6ca671c0c0cb917bc87fa61"
+      "sha256_rgba": "8ee2bb87a0280fd91f878a323b1c873c31b28b85e4527ccd11f46e65039f81b6",
+      "category": "Fish"
     },
     {
       "id": "r04_c07",
-      "name": "custom_world_tree",
-      "prefab": "custom_world_tree",
+      "name": "Fish8",
+      "prefab": "Fish8",
       "row": 4,
       "column": 7,
       "x": 576,
@@ -536,12 +572,13 @@
       "height": 96,
       "file": "tiles/r04_c07.png",
       "empty": false,
-      "sha256_rgba": "471af12ee73e74f2cea887ca105ac641669b8ec075bb067821fef40e4b15b302"
+      "sha256_rgba": "9d643ff4cf5808a350133ca2e1997954e42e7be61bb6526825e392a8b4962c2d",
+      "category": "Fish"
     },
     {
       "id": "r04_c08",
-      "name": "Dandelion",
-      "prefab": "Dandelion",
+      "name": "Fish9",
+      "prefab": "Fish9",
       "row": 4,
       "column": 8,
       "x": 672,
@@ -550,12 +587,13 @@
       "height": 96,
       "file": "tiles/r04_c08.png",
       "empty": false,
-      "sha256_rgba": "da9b88f5adaa878cbf3a260170520820e065da9061617bce49885e0fd239d439"
+      "sha256_rgba": "c774df792b516cc7a381acae5c85013c42399887dd1487e3f3ca9c50bb91da4b",
+      "category": "Fish"
     },
     {
       "id": "r04_c09",
-      "name": "DG_Cave",
-      "prefab": "DG_Cave",
+      "name": "Barley",
+      "prefab": "Barley",
       "row": 4,
       "column": 9,
       "x": 768,
@@ -564,12 +602,13 @@
       "height": 96,
       "file": "tiles/r04_c09.png",
       "empty": false,
-      "sha256_rgba": "00da5fae446005e1a15685dcafa14474a5564ed62ed25b7a3aba8e2915527432"
+      "sha256_rgba": "28ea58594641d200d11cfae1d270cd14c4e877a95ae2d4a936f91f17b15328b1",
+      "category": "Plants"
     },
     {
       "id": "r04_c10",
-      "name": "DG_ForestCrypt",
-      "prefab": "DG_ForestCrypt",
+      "name": "Beech1",
+      "prefab": "Beech1",
       "row": 4,
       "column": 10,
       "x": 864,
@@ -578,12 +617,13 @@
       "height": 96,
       "file": "tiles/r04_c10.png",
       "empty": false,
-      "sha256_rgba": "49880e5dc9e83be928da03999fe17583b18b6206c43131aa3f1c617f5c749ee4"
+      "sha256_rgba": "6f683b4ddf74668d5a9ae2fed86210ff898a7fa0a56dc38bb160ef44fa437090",
+      "category": "Plants"
     },
     {
       "id": "r05_c01",
-      "name": "DraugrVillage",
-      "prefab": "DraugrVillage",
+      "name": "Beech_Sapling",
+      "prefab": "Beech_Sapling",
       "row": 5,
       "column": 1,
       "x": 0,
@@ -592,12 +632,13 @@
       "height": 96,
       "file": "tiles/r05_c01.png",
       "empty": false,
-      "sha256_rgba": "5577439e1f9f4ac0c801eb95d8c74be6f55b4598a2fe7ff2f26f0aaac79ec903"
+      "sha256_rgba": "f43d2c590bcf13198f8d9199b73f3f946eaf4a153a63dc74ab87de4b4a4c10d3",
+      "category": "Plants"
     },
     {
       "id": "r05_c02",
-      "name": "dvergrprops_crate_long",
-      "prefab": "dvergrprops_crate_long",
+      "name": "Beech_Stub",
+      "prefab": "Beech_Stub",
       "row": 5,
       "column": 2,
       "x": 96,
@@ -606,12 +647,13 @@
       "height": 96,
       "file": "tiles/r05_c02.png",
       "empty": false,
-      "sha256_rgba": "d915076df73ed1bea7ec88b624fc0109221e3a9c6b8cd3b8777725ec89a06298"
+      "sha256_rgba": "29977c0df4e7c583f2a5106539beec898e68db28ccfa4a8c57782547f72b2b54",
+      "category": "Plants"
     },
     {
       "id": "r05_c03",
-      "name": "Fiddleheadfern",
-      "prefab": "Fiddleheadfern",
+      "name": "Blueberries",
+      "prefab": "Blueberries",
       "row": 5,
       "column": 3,
       "x": 192,
@@ -620,12 +662,13 @@
       "height": 96,
       "file": "tiles/r05_c03.png",
       "empty": false,
-      "sha256_rgba": "dd8fe002f10673905560b25e498bc1b5cad2bd3804e3951052a669831920b2c1"
+      "sha256_rgba": "e5bda3c83596b132a2c048d6b95cee1b0fdd668bacd7559c1e46d6fb6e406ce1",
+      "category": "Plants"
     },
     {
       "id": "r05_c04",
-      "name": "fire_pit",
-      "prefab": "fire_pit",
+      "name": "Carrot",
+      "prefab": "Carrot",
       "row": 5,
       "column": 4,
       "x": 288,
@@ -634,12 +677,13 @@
       "height": 96,
       "file": "tiles/r05_c04.png",
       "empty": false,
-      "sha256_rgba": "5a0ce4670707e845c7c6b7c3875e0056261445478da2695bc80885e6d41662fe"
+      "sha256_rgba": "0f14abf142b275159c93f20ddab19d6f175c95ed6d4067435238a49eaee08be3",
+      "category": "Plants"
     },
     {
       "id": "r05_c05",
-      "name": "FirTree",
-      "prefab": "FirTree",
+      "name": "Cloudberry",
+      "prefab": "Cloudberry",
       "row": 5,
       "column": 5,
       "x": 384,
@@ -648,12 +692,13 @@
       "height": 96,
       "file": "tiles/r05_c05.png",
       "empty": false,
-      "sha256_rgba": "c4939ed08b2aae9ed2e5fcc97c11d9ed38b11ba3a25126d14fcf950672db8a3d"
+      "sha256_rgba": "3549ef2ae5799d5c0b4c60962579ad410be665b03c2c052656e644bb03e064a0",
+      "category": "Plants"
     },
     {
       "id": "r05_c06",
-      "name": "Fish1",
-      "prefab": "Fish1",
+      "name": "Dandelion",
+      "prefab": "Dandelion",
       "row": 5,
       "column": 6,
       "x": 480,
@@ -662,12 +707,13 @@
       "height": 96,
       "file": "tiles/r05_c06.png",
       "empty": false,
-      "sha256_rgba": "afa9ba287aa4a64a61b75f3b134f708c07d61a28961a7702236c8cf2c5d13c01"
+      "sha256_rgba": "da9b88f5adaa878cbf3a260170520820e065da9061617bce49885e0fd239d439",
+      "category": "Plants"
     },
     {
       "id": "r05_c07",
-      "name": "Fish10",
-      "prefab": "Fish10",
+      "name": "Fiddleheadfern",
+      "prefab": "Fiddleheadfern",
       "row": 5,
       "column": 7,
       "x": 576,
@@ -676,12 +722,13 @@
       "height": 96,
       "file": "tiles/r05_c07.png",
       "empty": false,
-      "sha256_rgba": "d0ad9be68507e7283da42c98174576ebda831cf5a54170c17857a47c36a35c09"
+      "sha256_rgba": "dd8fe002f10673905560b25e498bc1b5cad2bd3804e3951052a669831920b2c1",
+      "category": "Plants"
     },
     {
       "id": "r05_c08",
-      "name": "Fish11",
-      "prefab": "Fish11",
+      "name": "FirTree",
+      "prefab": "FirTree",
       "row": 5,
       "column": 8,
       "x": 672,
@@ -690,12 +737,13 @@
       "height": 96,
       "file": "tiles/r05_c08.png",
       "empty": false,
-      "sha256_rgba": "5bb18820d78aa3a729e5dcdd923e311eb2aca04cceccca5f665bfbc0b7980fcd"
+      "sha256_rgba": "c4939ed08b2aae9ed2e5fcc97c11d9ed38b11ba3a25126d14fcf950672db8a3d",
+      "category": "Plants"
     },
     {
       "id": "r05_c09",
-      "name": "Fish12",
-      "prefab": "Fish12",
+      "name": "Flax",
+      "prefab": "Flax",
       "row": 5,
       "column": 9,
       "x": 768,
@@ -704,12 +752,13 @@
       "height": 96,
       "file": "tiles/r05_c09.png",
       "empty": false,
-      "sha256_rgba": "f295e03489b36d23af80aaa1795c4c923a80d6d0a7bb234fcab121e998d1b559"
+      "sha256_rgba": "87a9e4af6b7428500d1dd0679e5593f00ecf47c224342134ee51066040f6fa4b",
+      "category": "Plants"
     },
     {
       "id": "r05_c10",
-      "name": "Fish2",
-      "prefab": "Fish2",
+      "name": "Kale",
+      "prefab": "Kale",
       "row": 5,
       "column": 10,
       "x": 864,
@@ -718,12 +767,13 @@
       "height": 96,
       "file": "tiles/r05_c10.png",
       "empty": false,
-      "sha256_rgba": "b34578add39095e4175d8dace3f8a1aa0e7eb8f800d2511fd2d9931610c686b5"
+      "sha256_rgba": "170e4635097ad6c6efbc020ad164599f1b91ee5a209d210a705c202aee6534a1",
+      "category": "Plants"
     },
     {
       "id": "r06_c01",
-      "name": "Fish3",
-      "prefab": "Fish3",
+      "name": "Lingonberry",
+      "prefab": "Lingonberry",
       "row": 6,
       "column": 1,
       "x": 0,
@@ -732,12 +782,13 @@
       "height": 96,
       "file": "tiles/r06_c01.png",
       "empty": false,
-      "sha256_rgba": "0eeb2dca4ee8c2f1b0628ef01d79ca8e4a33ee224fe55a3d2e86452abb94f6d3"
+      "sha256_rgba": "f3f0717c83cc163b0e7ad55e794787461f22d88d8216f46cfb52bc6bc99e675c",
+      "category": "Plants"
     },
     {
       "id": "r06_c02",
-      "name": "Fish4_cave",
-      "prefab": "Fish4_cave",
+      "name": "Mushroom",
+      "prefab": "Mushroom",
       "row": 6,
       "column": 2,
       "x": 96,
@@ -746,12 +797,13 @@
       "height": 96,
       "file": "tiles/r06_c02.png",
       "empty": false,
-      "sha256_rgba": "e872c331851ffb3d0d73fa10a521702e3e0f6361fd883c3151653c7d6b1e988c"
+      "sha256_rgba": "534b6092b6d5c5d384a60ada34516c354f758ab8de63e3b900ade51e3665c0d0",
+      "category": "Plants"
     },
     {
       "id": "r06_c03",
-      "name": "Fish5",
-      "prefab": "Fish5",
+      "name": "MushroomJotunPuffs",
+      "prefab": "MushroomJotunPuffs",
       "row": 6,
       "column": 3,
       "x": 192,
@@ -760,12 +812,13 @@
       "height": 96,
       "file": "tiles/r06_c03.png",
       "empty": false,
-      "sha256_rgba": "0349fe510bb2b6a150ad0e5a96303a10db7559ec29184549169f8c4dc58fc6ad"
+      "sha256_rgba": "d58eabc91b3d0c784028f2d7813547e756e890b2e670e7bec76b8cee9395b217",
+      "category": "Plants"
     },
     {
       "id": "r06_c04",
-      "name": "Fish6",
-      "prefab": "Fish6",
+      "name": "MushroomMagecap",
+      "prefab": "MushroomMagecap",
       "row": 6,
       "column": 4,
       "x": 288,
@@ -774,12 +827,13 @@
       "height": 96,
       "file": "tiles/r06_c04.png",
       "empty": false,
-      "sha256_rgba": "56f8964bd9436b6b23b146362135d5dd67fa994796df306df93e81d2b9fb99b5"
+      "sha256_rgba": "fc41ae5ebfdf09932c1988bec099e175faaab09f5072ecd57db36654eb01ed6c",
+      "category": "Plants"
     },
     {
       "id": "r06_c05",
-      "name": "Fish7",
-      "prefab": "Fish7",
+      "name": "MushroomSmokePuff",
+      "prefab": "MushroomSmokePuff",
       "row": 6,
       "column": 5,
       "x": 384,
@@ -788,12 +842,13 @@
       "height": 96,
       "file": "tiles/r06_c05.png",
       "empty": false,
-      "sha256_rgba": "8ee2bb87a0280fd91f878a323b1c873c31b28b85e4527ccd11f46e65039f81b6"
+      "sha256_rgba": "86cc080de670d592fd84c19500d1f94d4fcac4e0c5a163b4a3d9eeed90988031",
+      "category": "Plants"
     },
     {
       "id": "r06_c06",
-      "name": "Fish8",
-      "prefab": "Fish8",
+      "name": "MushroomYellow",
+      "prefab": "MushroomYellow",
       "row": 6,
       "column": 6,
       "x": 480,
@@ -802,12 +857,13 @@
       "height": 96,
       "file": "tiles/r06_c06.png",
       "empty": false,
-      "sha256_rgba": "9d643ff4cf5808a350133ca2e1997954e42e7be61bb6526825e392a8b4962c2d"
+      "sha256_rgba": "f60212f28347056d41187c4d79225fc14a74933b341f81ac9880cd7491af3ce8",
+      "category": "Plants"
     },
     {
       "id": "r06_c07",
-      "name": "Fish9",
-      "prefab": "Fish9",
+      "name": "Oat",
+      "prefab": "Oat",
       "row": 6,
       "column": 7,
       "x": 576,
@@ -816,12 +872,13 @@
       "height": 96,
       "file": "tiles/r06_c07.png",
       "empty": false,
-      "sha256_rgba": "c774df792b516cc7a381acae5c85013c42399887dd1487e3f3ca9c50bb91da4b"
+      "sha256_rgba": "804d281a413efdebac5cba04ba012ceb6e6696bdc7f9d63646cecb19a791d41f",
+      "category": "Plants"
     },
     {
       "id": "r06_c08",
-      "name": "Flax",
-      "prefab": "Flax",
+      "name": "Onion",
+      "prefab": "Onion",
       "row": 6,
       "column": 8,
       "x": 672,
@@ -830,12 +887,13 @@
       "height": 96,
       "file": "tiles/r06_c08.png",
       "empty": false,
-      "sha256_rgba": "87a9e4af6b7428500d1dd0679e5593f00ecf47c224342134ee51066040f6fa4b"
+      "sha256_rgba": "ecf271388b657970bf0b3075e6086de501bf2cf61f9122645436c137c75f9ece",
+      "category": "Plants"
     },
     {
       "id": "r06_c09",
-      "name": "forge_ext4",
-      "prefab": "forge_ext4",
+      "name": "Poteitr",
+      "prefab": "Poteitr",
       "row": 6,
       "column": 9,
       "x": 768,
@@ -844,12 +902,13 @@
       "height": 96,
       "file": "tiles/r06_c09.png",
       "empty": false,
-      "sha256_rgba": "690a80ce66fadddd5101e22f0ba02a5885cd4d2fd03d0cdaabca2f6dd727e998"
+      "sha256_rgba": "e694efd944040a5129be78992be600424489dc37e79796739b180187efacb2f1",
+      "category": "Plants"
     },
     {
       "id": "r06_c10",
-      "name": "ForgeOfPotential",
-      "prefab": "ForgeOfPotential",
+      "name": "Pukeberries",
+      "prefab": "Pukeberries",
       "row": 6,
       "column": 10,
       "x": 864,
@@ -858,12 +917,13 @@
       "height": 96,
       "file": "tiles/r06_c10.png",
       "empty": false,
-      "sha256_rgba": "737a116f364a3841a768a2470f9ef0b33d6e0ef9f3ab25b5fdd8fff057b7a11f"
+      "sha256_rgba": "1f0d9fc81a744a6ccf3d72f316d0496e2d069a47d30c02f179d97bba5d6a58db",
+      "category": "Plants"
     },
     {
       "id": "r07_c01",
-      "name": "FulingVillage",
-      "prefab": "FulingVillage",
+      "name": "Raspberry",
+      "prefab": "Raspberry",
       "row": 7,
       "column": 1,
       "x": 0,
@@ -872,12 +932,13 @@
       "height": 96,
       "file": "tiles/r07_c01.png",
       "empty": false,
-      "sha256_rgba": "3484a1779e7d044f3fa6bc3a1b8f0ee795ac4f63746ee5750bfaaad3da193e99"
+      "sha256_rgba": "f163a98f9e174236148ad2ff779f101b06a66610659062aed946ff5d5a3ab867",
+      "category": "Plants"
     },
     {
       "id": "r07_c02",
-      "name": "Hildir_cave",
-      "prefab": "Hildir_cave",
+      "name": "Thistle",
+      "prefab": "Thistle",
       "row": 7,
       "column": 2,
       "x": 96,
@@ -886,12 +947,13 @@
       "height": 96,
       "file": "tiles/r07_c02.png",
       "empty": false,
-      "sha256_rgba": "4b5227bd51bb04357d1790da8e5748a7dcca5c28c3cbeb15b1e53efefce1e44c"
+      "sha256_rgba": "d21f699cc055dfd96753f946cc0941dacd3c1a1b0d3c63cb0b586a72d99b19a3",
+      "category": "Plants"
     },
     {
       "id": "r07_c03",
-      "name": "Hildir_crypt",
-      "prefab": "Hildir_crypt",
+      "name": "Turnip",
+      "prefab": "Turnip",
       "row": 7,
       "column": 3,
       "x": 192,
@@ -900,12 +962,13 @@
       "height": 96,
       "file": "tiles/r07_c03.png",
       "empty": false,
-      "sha256_rgba": "1448cadb3a2e0170a4ec932e9e686adf74d1a294113e26f92e4326b46362bd75"
+      "sha256_rgba": "ff67c358ebf2b1be2f24d5efd6855ef674360a84cbcdc27de460cd98795d53f2",
+      "category": "Plants"
     },
     {
       "id": "r07_c04",
-      "name": "Hildir_plainsfortress",
-      "prefab": "Hildir_plainsfortress",
+      "name": "Vineberry",
+      "prefab": "Vineberry",
       "row": 7,
       "column": 4,
       "x": 288,
@@ -914,12 +977,13 @@
       "height": 96,
       "file": "tiles/r07_c04.png",
       "empty": false,
-      "sha256_rgba": "56f8a2a376a54c7c9b62eacb24f6d6676b7ceff88a07e2514e7e1e7c8aca558f"
+      "sha256_rgba": "c8d4fc5f6b6333c8862fe8f2d5f829bde0d8ae65622cb1aa981f379323fd7b69",
+      "category": "Plants"
     },
     {
       "id": "r07_c05",
-      "name": "Honey",
-      "prefab": "Honey",
+      "name": "dvergrprops_crate_long",
+      "prefab": "dvergrprops_crate_long",
       "row": 7,
       "column": 5,
       "x": 384,
@@ -928,12 +992,13 @@
       "height": 96,
       "file": "tiles/r07_c05.png",
       "empty": false,
-      "sha256_rgba": "770dbb6c634745f586e7ea61644223bc72d3bdd9d876fa0c5c07fe7a1eed456c"
+      "sha256_rgba": "d915076df73ed1bea7ec88b624fc0109221e3a9c6b8cd3b8777725ec89a06298",
+      "category": "Objects_POI"
     },
     {
       "id": "r07_c06",
-      "name": "Kale",
-      "prefab": "Kale",
+      "name": "fire_pit",
+      "prefab": "fire_pit",
       "row": 7,
       "column": 6,
       "x": 480,
@@ -942,12 +1007,13 @@
       "height": 96,
       "file": "tiles/r07_c06.png",
       "empty": false,
-      "sha256_rgba": "170e4635097ad6c6efbc020ad164599f1b91ee5a209d210a705c202aee6534a1"
+      "sha256_rgba": "5a0ce4670707e845c7c6b7c3875e0056261445478da2695bc80885e6d41662fe",
+      "category": "Objects_POI"
     },
     {
       "id": "r07_c07",
-      "name": "Lingonberry",
-      "prefab": "Lingonberry",
+      "name": "forge_ext4",
+      "prefab": "forge_ext4",
       "row": 7,
       "column": 7,
       "x": 576,
@@ -956,12 +1022,13 @@
       "height": 96,
       "file": "tiles/r07_c07.png",
       "empty": false,
-      "sha256_rgba": "f3f0717c83cc163b0e7ad55e794787461f22d88d8216f46cfb52bc6bc99e675c"
+      "sha256_rgba": "690a80ce66fadddd5101e22f0ba02a5885cd4d2fd03d0cdaabca2f6dd727e998",
+      "category": "Objects_POI"
     },
     {
       "id": "r07_c08",
-      "name": "Mistlands_DvergrBossEntrance1",
-      "prefab": "Mistlands_DvergrBossEntrance1",
+      "name": "piece_beehive",
+      "prefab": "piece_beehive",
       "row": 7,
       "column": 8,
       "x": 672,
@@ -970,12 +1037,13 @@
       "height": 96,
       "file": "tiles/r07_c08.png",
       "empty": false,
-      "sha256_rgba": "ecc3b55aba8d8878510f19477d6a5664032596de281aafc4797773ea9d7abd33"
+      "sha256_rgba": "0c44633fb5ef1bd2c16fd496c384d578ab64e0e43712c8820091c23681cb05fa",
+      "category": "Objects_POI"
     },
     {
       "id": "r07_c09",
-      "name": "Mistlands_DvergrTownEntrance1",
-      "prefab": "Mistlands_DvergrTownEntrance1",
+      "name": "piece_cauldron",
+      "prefab": "piece_cauldron",
       "row": 7,
       "column": 9,
       "x": 768,
@@ -984,12 +1052,13 @@
       "height": 96,
       "file": "tiles/r07_c09.png",
       "empty": false,
-      "sha256_rgba": "3010ff77bda4b48c758a2da3faac7ed790d60b1ad1e7fec5116d963557d17a3d"
+      "sha256_rgba": "0147b020ee90da1bc46b3c8b2ccae2e78ccf89fe22305001af3c96d3b1225dc8",
+      "category": "Objects_POI"
     },
     {
       "id": "r07_c10",
-      "name": "MistlandsExcavation",
-      "prefab": "MistlandsExcavation",
+      "name": "piece_chest_wood",
+      "prefab": "piece_chest_wood",
       "row": 7,
       "column": 10,
       "x": 864,
@@ -998,12 +1067,13 @@
       "height": 96,
       "file": "tiles/r07_c10.png",
       "empty": false,
-      "sha256_rgba": "1e234c40b0bd99becc01f19433d19daaca32c8fc58dc8b686e3914e3ee4dc5e0"
+      "sha256_rgba": "9c1fd4e5a09f95e8c9896dde4d9b0d64e0f00f4c649f915c74f9e450ee8c7fd6",
+      "category": "Objects_POI"
     },
     {
       "id": "r08_c01",
-      "name": "MistlandsGuardTower",
-      "prefab": "MistlandsGuardTower",
+      "name": "Player_tombstone",
+      "prefab": "Player_tombstone",
       "row": 8,
       "column": 1,
       "x": 0,
@@ -1012,12 +1082,13 @@
       "height": 96,
       "file": "tiles/r08_c01.png",
       "empty": false,
-      "sha256_rgba": "760b38863a0bf0c0ce862a558a674fa6a8eeb7fccdf4fda3f646de2ad49412d7"
+      "sha256_rgba": "d0ee18d5ef0ccfd9ed6251c565dcf7ed6ba0073c7c3230c6f0bc4d089fccbbbe",
+      "category": "Objects_POI"
     },
     {
       "id": "r08_c02",
-      "name": "MistlandsHarbour",
-      "prefab": "MistlandsHarbour",
+      "name": "rock4_copper",
+      "prefab": "rock4_copper",
       "row": 8,
       "column": 2,
       "x": 96,
@@ -1026,12 +1097,13 @@
       "height": 96,
       "file": "tiles/r08_c02.png",
       "empty": false,
-      "sha256_rgba": "34d97bb57e582ba347cb93adede3a1eab7bb17e0bd25c9bb271ad627e6d7fb6b"
+      "sha256_rgba": "8e4e0d05542c3831f90b40f4dfddf56c7a2901c2d40c8a5e6d0a9894d2a75daa",
+      "category": "Objects_POI"
     },
     {
       "id": "r08_c03",
-      "name": "MistlandsLighthouse",
-      "prefab": "MistlandsLighthouse",
+      "name": "stake_wall",
+      "prefab": "stake_wall",
       "row": 8,
       "column": 3,
       "x": 192,
@@ -1040,12 +1112,13 @@
       "height": 96,
       "file": "tiles/r08_c03.png",
       "empty": false,
-      "sha256_rgba": "c50f8c4941dce46d56b478493054f63ea22fa83e7db6d8612cccc368434387ff"
+      "sha256_rgba": "4125d9719d0a6ddd0744089a81a9313597bdadceab6f1513dcd7071b73d18e06",
+      "category": "Objects_POI"
     },
     {
       "id": "r08_c04",
-      "name": "MorgenHole1",
-      "prefab": "MorgenHole1",
+      "name": "stone_arch",
+      "prefab": "stone_arch",
       "row": 8,
       "column": 4,
       "x": 288,
@@ -1054,12 +1127,13 @@
       "height": 96,
       "file": "tiles/r08_c04.png",
       "empty": false,
-      "sha256_rgba": "ad8cf825d77c66a6715eceec26e9a5c14bcad2dc8890308f9988852160090780"
+      "sha256_rgba": "e86fcc9611cb1d821f0a35df89424d33e95cdb45e960c3a9c0d418321edb81bb",
+      "category": "Objects_POI"
     },
     {
       "id": "r08_c05",
-      "name": "MorkBorg",
-      "prefab": "MorkBorg",
+      "name": "stone_pile",
+      "prefab": "stone_pile",
       "row": 8,
       "column": 5,
       "x": 384,
@@ -1068,12 +1142,13 @@
       "height": 96,
       "file": "tiles/r08_c05.png",
       "empty": false,
-      "sha256_rgba": "cdb18d6d4b46f7dd8407bd9ac439f6554c14904c29cee63cbb68e9849b75d8d6"
+      "sha256_rgba": "879e3f64a9c646019099b1b4c400991bdcaa6e27ac3c8ba9366f8d0bfc0707f4",
+      "category": "Objects_POI"
     },
     {
       "id": "r08_c06",
-      "name": "MountainCave02",
-      "prefab": "MountainCave02",
+      "name": "VikingShip",
+      "prefab": "VikingShip",
       "row": 8,
       "column": 6,
       "x": 480,
@@ -1082,12 +1157,13 @@
       "height": 96,
       "file": "tiles/r08_c06.png",
       "empty": false,
-      "sha256_rgba": "9f5ec9296db0b7aa7ac014cd630dab76025f98ae1c96fbd48d457bbed6fd00fd"
+      "sha256_rgba": "4274cfd74bfd4dda936dd51456f6bf7638cc2fdb95b57b66ac8c1ebafaa31267",
+      "category": "Objects_POI"
     },
     {
       "id": "r08_c07",
-      "name": "Mushroom",
-      "prefab": "Mushroom",
+      "name": "wood_door",
+      "prefab": "wood_door",
       "row": 8,
       "column": 7,
       "x": 576,
@@ -1096,12 +1172,13 @@
       "height": 96,
       "file": "tiles/r08_c07.png",
       "empty": false,
-      "sha256_rgba": "534b6092b6d5c5d384a60ada34516c354f758ab8de63e3b900ade51e3665c0d0"
+      "sha256_rgba": "28e170ba1c5fcb259d4c9b6a17f283a7585d2d7a678eb2e0da3fb47d519b85d0",
+      "category": "Objects_POI"
     },
     {
       "id": "r08_c08",
-      "name": "MushroomJotunPuffs",
-      "prefab": "MushroomJotunPuffs",
+      "name": "ChickenEgg",
+      "prefab": "ChickenEgg",
       "row": 8,
       "column": 8,
       "x": 672,
@@ -1110,12 +1187,13 @@
       "height": 96,
       "file": "tiles/r08_c08.png",
       "empty": false,
-      "sha256_rgba": "d58eabc91b3d0c784028f2d7813547e756e890b2e670e7bec76b8cee9395b217"
+      "sha256_rgba": "e16b58e998a5e42e5cbc256eafd8aa7f3ca55fc0c067a8dfcf287a1a41c84e5d",
+      "category": "Items"
     },
     {
       "id": "r08_c09",
-      "name": "MushroomMagecap",
-      "prefab": "MushroomMagecap",
+      "name": "Crystal",
+      "prefab": "Crystal",
       "row": 8,
       "column": 9,
       "x": 768,
@@ -1124,12 +1202,13 @@
       "height": 96,
       "file": "tiles/r08_c09.png",
       "empty": false,
-      "sha256_rgba": "fc41ae5ebfdf09932c1988bec099e175faaab09f5072ecd57db36654eb01ed6c"
+      "sha256_rgba": "5ce9d10404318a24f8abcbf289cec889d2d751187ff5aad9566d06eb553a8780",
+      "category": "Items"
     },
     {
       "id": "r08_c10",
-      "name": "MushroomSmokePuff",
-      "prefab": "MushroomSmokePuff",
+      "name": "Honey",
+      "prefab": "Honey",
       "row": 8,
       "column": 10,
       "x": 864,
@@ -1138,12 +1217,13 @@
       "height": 96,
       "file": "tiles/r08_c10.png",
       "empty": false,
-      "sha256_rgba": "86cc080de670d592fd84c19500d1f94d4fcac4e0c5a163b4a3d9eeed90988031"
+      "sha256_rgba": "770dbb6c634745f586e7ea61644223bc72d3bdd9d876fa0c5c07fe7a1eed456c",
+      "category": "Items"
     },
     {
       "id": "r09_c01",
-      "name": "MushroomYellow",
-      "prefab": "MushroomYellow",
+      "name": "ShieldWood",
+      "prefab": "ShieldWood",
       "row": 9,
       "column": 1,
       "x": 0,
@@ -1152,12 +1232,13 @@
       "height": 96,
       "file": "tiles/r09_c01.png",
       "empty": false,
-      "sha256_rgba": "f60212f28347056d41187c4d79225fc14a74933b341f81ac9880cd7491af3ce8"
+      "sha256_rgba": "fb63a10485253ee7d4adf415903057b61fc57bcd8b9c6885902e56b16fdaf591",
+      "category": "Items"
     },
     {
       "id": "r09_c02",
-      "name": "Oat",
-      "prefab": "Oat",
+      "name": "Stone",
+      "prefab": "Stone",
       "row": 9,
       "column": 2,
       "x": 96,
@@ -1166,12 +1247,13 @@
       "height": 96,
       "file": "tiles/r09_c02.png",
       "empty": false,
-      "sha256_rgba": "804d281a413efdebac5cba04ba012ceb6e6696bdc7f9d63646cecb19a791d41f"
+      "sha256_rgba": "85fae513e3076f610bf4717cf34986d656a4be101d7b981458259792a332e107",
+      "category": "Items"
     },
     {
       "id": "r09_c03",
-      "name": "Onion",
-      "prefab": "Onion",
+      "name": "Torch",
+      "prefab": "Torch",
       "row": 9,
       "column": 3,
       "x": 192,
@@ -1180,12 +1262,13 @@
       "height": 96,
       "file": "tiles/r09_c03.png",
       "empty": false,
-      "sha256_rgba": "ecf271388b657970bf0b3075e6086de501bf2cf61f9122645436c137c75f9ece"
+      "sha256_rgba": "5a4917d05a7963d4e6ef70a01655ab11414a5a3b7a8c5a0742793ef6b4442c83",
+      "category": "Items"
     },
     {
       "id": "r09_c04",
-      "name": "piece_beehive",
-      "prefab": "piece_beehive",
+      "name": "TrophyDeer",
+      "prefab": "TrophyDeer",
       "row": 9,
       "column": 4,
       "x": 288,
@@ -1194,12 +1277,13 @@
       "height": 96,
       "file": "tiles/r09_c04.png",
       "empty": false,
-      "sha256_rgba": "0c44633fb5ef1bd2c16fd496c384d578ab64e0e43712c8820091c23681cb05fa"
+      "sha256_rgba": "7df1bee819f7e9f5d1b8ad94d28695c5ebba5110e1ecc728659d8b86c7f0fdad",
+      "category": "Items"
     },
     {
       "id": "r09_c05",
-      "name": "piece_cauldron",
-      "prefab": "piece_cauldron",
+      "name": "TrophySkeleton",
+      "prefab": "TrophySkeleton",
       "row": 9,
       "column": 5,
       "x": 384,
@@ -1208,12 +1292,13 @@
       "height": 96,
       "file": "tiles/r09_c05.png",
       "empty": false,
-      "sha256_rgba": "0147b020ee90da1bc46b3c8b2ccae2e78ccf89fe22305001af3c96d3b1225dc8"
+      "sha256_rgba": "c0b5f138bae9195e1cb7737ae48d1cde5a2d35d4a36adba39a0a23725aaca67d",
+      "category": "Items"
     },
     {
       "id": "r09_c06",
-      "name": "piece_chest_wood",
-      "prefab": "piece_chest_wood",
+      "name": "custom_anchor",
+      "prefab": "custom_anchor",
       "row": 9,
       "column": 6,
       "x": 480,
@@ -1222,12 +1307,13 @@
       "height": 96,
       "file": "tiles/r09_c06.png",
       "empty": false,
-      "sha256_rgba": "9c1fd4e5a09f95e8c9896dde4d9b0d64e0f00f4c649f915c74f9e450ee8c7fd6"
+      "sha256_rgba": "9422e5a36d15c8ff0ea831d94aa81d2bc09d636dc7001d4ad707cb29f63f5f8b",
+      "category": "Custom"
     },
     {
       "id": "r09_c07",
-      "name": "PlaceofMystery1",
-      "prefab": "PlaceofMystery1",
+      "name": "custom_checkmark",
+      "prefab": "custom_checkmark",
       "row": 9,
       "column": 7,
       "x": 576,
@@ -1236,12 +1322,13 @@
       "height": 96,
       "file": "tiles/r09_c07.png",
       "empty": false,
-      "sha256_rgba": "e3abf676bc66b80f06aabcb5d53cb028ea85dce1719b9658ff4d3e183a73d848"
+      "sha256_rgba": "30460bc7f40b7ec03d85fc675cdd3542b3c855a98dc0599b544c09be4eff8d63",
+      "category": "Custom"
     },
     {
       "id": "r09_c08",
-      "name": "PlaceofMystery2",
-      "prefab": "PlaceofMystery2",
+      "name": "custom_diamond_rune",
+      "prefab": "custom_diamond_rune",
       "row": 9,
       "column": 8,
       "x": 672,
@@ -1250,12 +1337,13 @@
       "height": 96,
       "file": "tiles/r09_c08.png",
       "empty": false,
-      "sha256_rgba": "d2487b4f2a1bbd1397972047a487c10a637d1438d6065dd096e4f4ba646e9644"
+      "sha256_rgba": "f7105402c5acdd5962217cd7605108746fe7de14d1af2a32b3ecf74281a4ea46",
+      "category": "Custom"
     },
     {
       "id": "r09_c09",
-      "name": "PlaceofMystery3",
-      "prefab": "PlaceofMystery3",
+      "name": "custom_exclamation_mark",
+      "prefab": "custom_exclamation_mark",
       "row": 9,
       "column": 9,
       "x": 768,
@@ -1264,12 +1352,13 @@
       "height": 96,
       "file": "tiles/r09_c09.png",
       "empty": false,
-      "sha256_rgba": "52ac435599fbf1bf5efe6b7838decba8b2dbe6a618416bcc6987716c224f5823"
+      "sha256_rgba": "39f3a4915b5802a57ffca0199510234e657d8327990730c064cf2b5a6465a4e7",
+      "category": "Custom"
     },
     {
       "id": "r09_c10",
-      "name": "Player_tombstone",
-      "prefab": "Player_tombstone",
+      "name": "custom_fire_runestone",
+      "prefab": "custom_fire_runestone",
       "row": 9,
       "column": 10,
       "x": 864,
@@ -1278,12 +1367,13 @@
       "height": 96,
       "file": "tiles/r09_c10.png",
       "empty": false,
-      "sha256_rgba": "d0ee18d5ef0ccfd9ed6251c565dcf7ed6ba0073c7c3230c6f0bc4d089fccbbbe"
+      "sha256_rgba": "d4249708d4fe7a36121546eef2e0b5e87c99c52cc08a87f85fa1dfb8788d850b",
+      "category": "Custom"
     },
     {
       "id": "r10_c01",
-      "name": "Poteitr",
-      "prefab": "Poteitr",
+      "name": "custom_fish",
+      "prefab": "custom_fish",
       "row": 10,
       "column": 1,
       "x": 0,
@@ -1292,12 +1382,13 @@
       "height": 96,
       "file": "tiles/r10_c01.png",
       "empty": false,
-      "sha256_rgba": "e694efd944040a5129be78992be600424489dc37e79796739b180187efacb2f1"
+      "sha256_rgba": "732c4c6c7432f678e2bf7fc0beb0ae69a3953e611c4464f0b5785b161e1d7898",
+      "category": "Custom"
     },
     {
       "id": "r10_c02",
-      "name": "Pukeberries",
-      "prefab": "Pukeberries",
+      "name": "custom_horned_helmet",
+      "prefab": "custom_horned_helmet",
       "row": 10,
       "column": 2,
       "x": 96,
@@ -1306,12 +1397,13 @@
       "height": 96,
       "file": "tiles/r10_c02.png",
       "empty": false,
-      "sha256_rgba": "1f0d9fc81a744a6ccf3d72f316d0496e2d069a47d30c02f179d97bba5d6a58db"
+      "sha256_rgba": "f91c15466ec29aeacdf9a865ecc6221458fb77c32a52c319147367c8e087aedd",
+      "category": "Custom"
     },
     {
       "id": "r10_c03",
-      "name": "Raspberry",
-      "prefab": "Raspberry",
+      "name": "custom_horned_runestone",
+      "prefab": "custom_horned_runestone",
       "row": 10,
       "column": 3,
       "x": 192,
@@ -1320,12 +1412,13 @@
       "height": 96,
       "file": "tiles/r10_c03.png",
       "empty": false,
-      "sha256_rgba": "f163a98f9e174236148ad2ff779f101b06a66610659062aed946ff5d5a3ab867"
+      "sha256_rgba": "e59f09deccf7126fa082e75c69c4438e34e8c9e8198facdf2cb6af486ef84305",
+      "category": "Custom"
     },
     {
       "id": "r10_c04",
-      "name": "rock4_copper",
-      "prefab": "rock4_copper",
+      "name": "custom_loot_sack",
+      "prefab": "custom_loot_sack",
       "row": 10,
       "column": 4,
       "x": 288,
@@ -1334,12 +1427,13 @@
       "height": 96,
       "file": "tiles/r10_c04.png",
       "empty": false,
-      "sha256_rgba": "8e4e0d05542c3831f90b40f4dfddf56c7a2901c2d40c8a5e6d0a9894d2a75daa"
+      "sha256_rgba": "4bf39df4b9cd3825a02878408be01581d0a3eeb1b75aa7e425beba51d04a2381",
+      "category": "Custom"
     },
     {
       "id": "r10_c05",
-      "name": "SacrificialStones",
-      "prefab": "SacrificialStones",
+      "name": "custom_paw_print",
+      "prefab": "custom_paw_print",
       "row": 10,
       "column": 5,
       "x": 384,
@@ -1348,12 +1442,13 @@
       "height": 96,
       "file": "tiles/r10_c05.png",
       "empty": false,
-      "sha256_rgba": "94570d52525b53d090cd33bb91b76da6d242d923a5bdf27264712e6810233d9e"
+      "sha256_rgba": "b1c286512ef76be6347b49968f90c9a9275784b1916a9f4a885f439bfd73e44c",
+      "category": "Custom"
     },
     {
       "id": "r10_c06",
-      "name": "ShieldWood",
-      "prefab": "ShieldWood",
+      "name": "custom_pickaxe",
+      "prefab": "custom_pickaxe",
       "row": 10,
       "column": 6,
       "x": 480,
@@ -1362,12 +1457,13 @@
       "height": 96,
       "file": "tiles/r10_c06.png",
       "empty": false,
-      "sha256_rgba": "fb63a10485253ee7d4adf415903057b61fc57bcd8b9c6885902e56b16fdaf591"
+      "sha256_rgba": "63f09c3be00995e176e0407a3459faec15aa8a9822629fe11f0477ff316c3c12",
+      "category": "Custom"
     },
     {
       "id": "r10_c07",
-      "name": "stake_wall",
-      "prefab": "stake_wall",
+      "name": "custom_red_cross",
+      "prefab": "custom_red_cross",
       "row": 10,
       "column": 7,
       "x": 576,
@@ -1376,12 +1472,13 @@
       "height": 96,
       "file": "tiles/r10_c07.png",
       "empty": false,
-      "sha256_rgba": "4125d9719d0a6ddd0744089a81a9313597bdadceab6f1513dcd7071b73d18e06"
+      "sha256_rgba": "a34743354a25ae7c45bebcfa306bfa7c7c33df126f3a07a1772c098d47a7b8b2",
+      "category": "Custom"
     },
     {
       "id": "r10_c08",
-      "name": "Stone",
-      "prefab": "Stone",
+      "name": "custom_rune_k",
+      "prefab": "custom_rune_k",
       "row": 10,
       "column": 8,
       "x": 672,
@@ -1390,12 +1487,13 @@
       "height": 96,
       "file": "tiles/r10_c08.png",
       "empty": false,
-      "sha256_rgba": "85fae513e3076f610bf4717cf34986d656a4be101d7b981458259792a332e107"
+      "sha256_rgba": "d8ab05e30fe6f749b8eefc5d0c327754e660cf6666c13e661320b48a08d4ad9e",
+      "category": "Custom"
     },
     {
       "id": "r10_c09",
-      "name": "stone_arch",
-      "prefab": "stone_arch",
+      "name": "custom_runestone_zigzag",
+      "prefab": "custom_runestone_zigzag",
       "row": 10,
       "column": 9,
       "x": 768,
@@ -1404,12 +1502,13 @@
       "height": 96,
       "file": "tiles/r10_c09.png",
       "empty": false,
-      "sha256_rgba": "e86fcc9611cb1d821f0a35df89424d33e95cdb45e960c3a9c0d418321edb81bb"
+      "sha256_rgba": "52c8700f2ffb04a94bef35c78b3877e5775952d07b4bb8507b4817dc81761979",
+      "category": "Custom"
     },
     {
       "id": "r10_c10",
-      "name": "stone_pile",
-      "prefab": "stone_pile",
+      "name": "custom_spiral_rune",
+      "prefab": "custom_spiral_rune",
       "row": 10,
       "column": 10,
       "x": 864,
@@ -1418,12 +1517,13 @@
       "height": 96,
       "file": "tiles/r10_c10.png",
       "empty": false,
-      "sha256_rgba": "879e3f64a9c646019099b1b4c400991bdcaa6e27ac3c8ba9366f8d0bfc0707f4"
+      "sha256_rgba": "da5f2bd1f23cb0a4b4414c19bb2c0c105e3eac4ef247b6f1eea8695480d9e671",
+      "category": "Custom"
     },
     {
       "id": "r11_c01",
-      "name": "SunkenCrypt4",
-      "prefab": "SunkenCrypt4",
+      "name": "custom_stone_cross",
+      "prefab": "custom_stone_cross",
       "row": 11,
       "column": 1,
       "x": 0,
@@ -1432,12 +1532,13 @@
       "height": 96,
       "file": "tiles/r11_c01.png",
       "empty": false,
-      "sha256_rgba": "f57c3d59c2e3ab5e08ca09009667c3e832d121bf23db00df6ac80f2d41ed4a0d"
+      "sha256_rgba": "a623bfafd712c96f828fe5d03b09f598d6d5d5b37e0aeefead45152db3f04299",
+      "category": "Custom"
     },
     {
       "id": "r11_c02",
-      "name": "TheHole01",
-      "prefab": "TheHole01",
+      "name": "custom_stone_diamond",
+      "prefab": "custom_stone_diamond",
       "row": 11,
       "column": 2,
       "x": 96,
@@ -1446,12 +1547,13 @@
       "height": 96,
       "file": "tiles/r11_c02.png",
       "empty": false,
-      "sha256_rgba": "a5c295286a4a7590cd4db6c83faec35667bc23f269167ed2541225929966dec1"
+      "sha256_rgba": "9d976f3714b3e750e3a23da685bc93826b8d6951d33470e8b1e88515f920649e",
+      "category": "Custom"
     },
     {
       "id": "r11_c03",
-      "name": "Thistle",
-      "prefab": "Thistle",
+      "name": "custom_stone_pedestal",
+      "prefab": "custom_stone_pedestal",
       "row": 11,
       "column": 3,
       "x": 192,
@@ -1460,12 +1562,13 @@
       "height": 96,
       "file": "tiles/r11_c03.png",
       "empty": false,
-      "sha256_rgba": "d21f699cc055dfd96753f946cc0941dacd3c1a1b0d3c63cb0b586a72d99b19a3"
+      "sha256_rgba": "cdcd5ab842ede0066ec2a550136549cad1f0f6e0b8c28596aa9269fe12a6d6c7",
+      "category": "Custom"
     },
     {
       "id": "r11_c04",
-      "name": "Torch",
-      "prefab": "Torch",
+      "name": "custom_stone_tower",
+      "prefab": "custom_stone_tower",
       "row": 11,
       "column": 4,
       "x": 288,
@@ -1474,12 +1577,13 @@
       "height": 96,
       "file": "tiles/r11_c04.png",
       "empty": false,
-      "sha256_rgba": "5a4917d05a7963d4e6ef70a01655ab11414a5a3b7a8c5a0742793ef6b4442c83"
+      "sha256_rgba": "d124d906de4caa9efb4571611b5407d0a1ad517a93b413e6a9e422c73718c273",
+      "category": "Custom"
     },
     {
       "id": "r11_c05",
-      "name": "TrollCave",
-      "prefab": "TrollCave",
+      "name": "custom_sword",
+      "prefab": "custom_sword",
       "row": 11,
       "column": 5,
       "x": 384,
@@ -1488,12 +1592,13 @@
       "height": 96,
       "file": "tiles/r11_c05.png",
       "empty": false,
-      "sha256_rgba": "0891e13e575d92174d3af6da597493b55997287363429a122037044ed8b2d493"
+      "sha256_rgba": "0b57c316201161c607a9603ee05d842bbb0eedc143930e42376676738b7b6a0f",
+      "category": "Custom"
     },
     {
       "id": "r11_c06",
-      "name": "TrophyDeer",
-      "prefab": "TrophyDeer",
+      "name": "custom_tent",
+      "prefab": "custom_tent",
       "row": 11,
       "column": 6,
       "x": 480,
@@ -1502,12 +1607,13 @@
       "height": 96,
       "file": "tiles/r11_c06.png",
       "empty": false,
-      "sha256_rgba": "7df1bee819f7e9f5d1b8ad94d28695c5ebba5110e1ecc728659d8b86c7f0fdad"
+      "sha256_rgba": "94c933c02b90669151865abd98a2bde23454041b698bff89ed236538579fc8bf",
+      "category": "Custom"
     },
     {
       "id": "r11_c07",
-      "name": "TrophySkeleton",
-      "prefab": "TrophySkeleton",
+      "name": "custom_wagon_wheel",
+      "prefab": "custom_wagon_wheel",
       "row": 11,
       "column": 7,
       "x": 576,
@@ -1516,12 +1622,13 @@
       "height": 96,
       "file": "tiles/r11_c07.png",
       "empty": false,
-      "sha256_rgba": "c0b5f138bae9195e1cb7737ae48d1cde5a2d35d4a36adba39a0a23725aaca67d"
+      "sha256_rgba": "6f68de44d2fa53aabc3f0e329fb33455293bbc1a93219fde2cef6f932470819a",
+      "category": "Custom"
     },
     {
       "id": "r11_c08",
-      "name": "Turnip",
-      "prefab": "Turnip",
+      "name": "custom_white_flowers",
+      "prefab": "custom_white_flowers",
       "row": 11,
       "column": 8,
       "x": 672,
@@ -1530,12 +1637,13 @@
       "height": 96,
       "file": "tiles/r11_c08.png",
       "empty": false,
-      "sha256_rgba": "ff67c358ebf2b1be2f24d5efd6855ef674360a84cbcdc27de460cd98795d53f2"
+      "sha256_rgba": "309a44cc909fa424e7d1be13504b8e3d231416a6de045894e79347b184b8e604",
+      "category": "Custom"
     },
     {
       "id": "r11_c09",
-      "name": "VikingShip",
-      "prefab": "VikingShip",
+      "name": "custom_white_radish",
+      "prefab": "custom_white_radish",
       "row": 11,
       "column": 9,
       "x": 768,
@@ -1544,12 +1652,13 @@
       "height": 96,
       "file": "tiles/r11_c09.png",
       "empty": false,
-      "sha256_rgba": "4274cfd74bfd4dda936dd51456f6bf7638cc2fdb95b57b66ac8c1ebafaa31267"
+      "sha256_rgba": "fb3b0efd2578ed8522bb57479307c7db3b2b5243a03b1ba23a3bfcc78c9022f7",
+      "category": "Custom"
     },
     {
       "id": "r11_c10",
-      "name": "Vineberry",
-      "prefab": "Vineberry",
+      "name": "custom_wooden_house",
+      "prefab": "custom_wooden_house",
       "row": 11,
       "column": 10,
       "x": 864,
@@ -1558,12 +1667,13 @@
       "height": 96,
       "file": "tiles/r11_c10.png",
       "empty": false,
-      "sha256_rgba": "c8d4fc5f6b6333c8862fe8f2d5f829bde0d8ae65622cb1aa981f379323fd7b69"
+      "sha256_rgba": "de32ee2792665851bbd8c64d976aaa5b0f7a19f3b6ca671c0c0cb917bc87fa61",
+      "category": "Custom"
     },
     {
       "id": "r12_c01",
-      "name": "wood_door",
-      "prefab": "wood_door",
+      "name": "custom_world_tree",
+      "prefab": "custom_world_tree",
       "row": 12,
       "column": 1,
       "x": 0,
@@ -1572,7 +1682,8 @@
       "height": 96,
       "file": "tiles/r12_c01.png",
       "empty": false,
-      "sha256_rgba": "28e170ba1c5fcb259d4c9b6a17f283a7585d2d7a678eb2e0da3fb47d519b85d0"
+      "sha256_rgba": "471af12ee73e74f2cea887ca105ac641669b8ec075bb067821fef40e4b15b302",
+      "category": "Custom"
     },
     {
       "id": "r12_c02",
@@ -1586,7 +1697,8 @@
       "height": 96,
       "file": "tiles/r12_c02.png",
       "empty": true,
-      "sha256_rgba": "1c0273095382988333e2f2b5ae487cea460737ed9be65cbad9c5de537f95bf75"
+      "sha256_rgba": "1c0273095382988333e2f2b5ae487cea460737ed9be65cbad9c5de537f95bf75",
+      "category": null
     },
     {
       "id": "r12_c03",
@@ -1600,7 +1712,8 @@
       "height": 96,
       "file": "tiles/r12_c03.png",
       "empty": true,
-      "sha256_rgba": "1c0273095382988333e2f2b5ae487cea460737ed9be65cbad9c5de537f95bf75"
+      "sha256_rgba": "1c0273095382988333e2f2b5ae487cea460737ed9be65cbad9c5de537f95bf75",
+      "category": null
     },
     {
       "id": "r12_c04",
@@ -1614,7 +1727,8 @@
       "height": 96,
       "file": "tiles/r12_c04.png",
       "empty": true,
-      "sha256_rgba": "1c0273095382988333e2f2b5ae487cea460737ed9be65cbad9c5de537f95bf75"
+      "sha256_rgba": "1c0273095382988333e2f2b5ae487cea460737ed9be65cbad9c5de537f95bf75",
+      "category": null
     },
     {
       "id": "r12_c05",
@@ -1628,7 +1742,8 @@
       "height": 96,
       "file": "tiles/r12_c05.png",
       "empty": true,
-      "sha256_rgba": "1c0273095382988333e2f2b5ae487cea460737ed9be65cbad9c5de537f95bf75"
+      "sha256_rgba": "1c0273095382988333e2f2b5ae487cea460737ed9be65cbad9c5de537f95bf75",
+      "category": null
     },
     {
       "id": "r12_c06",
@@ -1642,7 +1757,8 @@
       "height": 96,
       "file": "tiles/r12_c06.png",
       "empty": true,
-      "sha256_rgba": "1c0273095382988333e2f2b5ae487cea460737ed9be65cbad9c5de537f95bf75"
+      "sha256_rgba": "1c0273095382988333e2f2b5ae487cea460737ed9be65cbad9c5de537f95bf75",
+      "category": null
     },
     {
       "id": "r12_c07",
@@ -1656,7 +1772,8 @@
       "height": 96,
       "file": "tiles/r12_c07.png",
       "empty": true,
-      "sha256_rgba": "1c0273095382988333e2f2b5ae487cea460737ed9be65cbad9c5de537f95bf75"
+      "sha256_rgba": "1c0273095382988333e2f2b5ae487cea460737ed9be65cbad9c5de537f95bf75",
+      "category": null
     },
     {
       "id": "r12_c08",
@@ -1670,7 +1787,8 @@
       "height": 96,
       "file": "tiles/r12_c08.png",
       "empty": true,
-      "sha256_rgba": "1c0273095382988333e2f2b5ae487cea460737ed9be65cbad9c5de537f95bf75"
+      "sha256_rgba": "1c0273095382988333e2f2b5ae487cea460737ed9be65cbad9c5de537f95bf75",
+      "category": null
     },
     {
       "id": "r12_c09",
@@ -1684,7 +1802,8 @@
       "height": 96,
       "file": "tiles/r12_c09.png",
       "empty": true,
-      "sha256_rgba": "1c0273095382988333e2f2b5ae487cea460737ed9be65cbad9c5de537f95bf75"
+      "sha256_rgba": "1c0273095382988333e2f2b5ae487cea460737ed9be65cbad9c5de537f95bf75",
+      "category": null
     },
     {
       "id": "r12_c10",
@@ -1698,7 +1817,8 @@
       "height": 96,
       "file": "tiles/r12_c10.png",
       "empty": true,
-      "sha256_rgba": "1c0273095382988333e2f2b5ae487cea460737ed9be65cbad9c5de537f95bf75"
+      "sha256_rgba": "1c0273095382988333e2f2b5ae487cea460737ed9be65cbad9c5de537f95bf75",
+      "category": null
     }
   ]
 }
