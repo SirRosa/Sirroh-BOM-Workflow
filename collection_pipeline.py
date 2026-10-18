@@ -206,6 +206,25 @@ def main() -> None:
     (RESULT / "summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False)+"\n", encoding="utf-8")
     # Sort finished PNGs into stable category folders and render grouped reviews.
     organize_collection(RESULT)
+
+    # Keep IconsForCompass/ synchronized with finalized BOM sprites.
+    # Only processed 96x96 icons are published; never copy unprocessed source art.
+    categorized = RESULT / "icons"
+    compass_root = ROOT / "IconsForCompass"
+    icons = sorted(categorized.rglob("*.png"))
+    if len(icons) != len(selected):
+        raise AssertionError(f"Expected {len(selected)} BOM icons; found {len(icons)}")
+    for icon in icons:
+        rel = icon.relative_to(categorized)
+        if len(rel.parts) != 2:
+            raise AssertionError(f"Missing category in processed path: {rel}")
+        target = compass_root / rel
+        target.parent.mkdir(parents=True, exist_ok=True)
+        if not target.exists() or target.read_bytes() != icon.read_bytes():
+            shutil.copy2(icon, target)
+        if target.read_bytes() != icon.read_bytes():
+            raise AssertionError(f"Compass icon differs from generated BOM: {rel}")
+    print(f"IconsForCompass synced: {len(icons)} PNGs", flush=True)
     print("SUCCESS", json.dumps({k: v for k, v in summary.items() if k != "file_names"}, ensure_ascii=False), flush=True)
 
 
