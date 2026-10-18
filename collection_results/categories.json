@@ -43,9 +43,6 @@
       "count": 12,
       "files": [
         "icons/Fish/Fish1.png",
-        "icons/Fish/Fish10.png",
-        "icons/Fish/Fish11.png",
-        "icons/Fish/Fish12.png",
         "icons/Fish/Fish2.png",
         "icons/Fish/Fish3.png",
         "icons/Fish/Fish4_cave.png",
@@ -53,7 +50,10 @@
         "icons/Fish/Fish6.png",
         "icons/Fish/Fish7.png",
         "icons/Fish/Fish8.png",
-        "icons/Fish/Fish9.png"
+        "icons/Fish/Fish9.png",
+        "icons/Fish/Fish10.png",
+        "icons/Fish/Fish11.png",
+        "icons/Fish/Fish12.png"
       ]
     },
     {

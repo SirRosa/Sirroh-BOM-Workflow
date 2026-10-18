@@ -58,9 +58,6 @@ Oryginalne ikony wejściowe pozostają bez zmian.
 ### Ryby (`Fish`)
 
 - `Fish1.png`
-- `Fish10.png`
-- `Fish11.png`
-- `Fish12.png`
 - `Fish2.png`
 - `Fish3.png`
 - `Fish4_cave.png`
@@ -69,6 +66,9 @@ Oryginalne ikony wejściowe pozostają bez zmian.
 - `Fish7.png`
 - `Fish8.png`
 - `Fish9.png`
+- `Fish10.png`
+- `Fish11.png`
+- `Fish12.png`
 
 ### Rośliny / grzyby / owoce / uprawy (`Plants`)
 

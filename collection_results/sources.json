@@ -270,36 +270,6 @@
     "category": "Fish"
   },
   {
-    "name": "Fish10",
-    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Fish/Fish10.png",
-    "source_size": [
-      96,
-      96
-    ],
-    "source_sha256": "ac5f1da825a9d307830a811ae2646346d549b1f8d71f8ad90a94f4b3648af5ae",
-    "category": "Fish"
-  },
-  {
-    "name": "Fish11",
-    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Fish/Fish11.png",
-    "source_size": [
-      96,
-      96
-    ],
-    "source_sha256": "b78aac95a15048581f264417c12ed06dea0599ae7eaedf8a9b7e1e659e21683f",
-    "category": "Fish"
-  },
-  {
-    "name": "Fish12",
-    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Fish/Fish12.png",
-    "source_size": [
-      96,
-      96
-    ],
-    "source_sha256": "81014e11f92f0ab340d0dbcc8e57afa20e66216e0eeac72f2502893182779f43",
-    "category": "Fish"
-  },
-  {
     "name": "Fish2",
     "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Fish/Fish2.png",
     "source_size": [
@@ -377,6 +347,36 @@
       96
     ],
     "source_sha256": "5c6172288786dd4a1d217b8f7474b90fbdfa50f24a803e57fc4c8c62fa3fd296",
+    "category": "Fish"
+  },
+  {
+    "name": "Fish10",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Fish/Fish10.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "ac5f1da825a9d307830a811ae2646346d549b1f8d71f8ad90a94f4b3648af5ae",
+    "category": "Fish"
+  },
+  {
+    "name": "Fish11",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Fish/Fish11.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "b78aac95a15048581f264417c12ed06dea0599ae7eaedf8a9b7e1e659e21683f",
+    "category": "Fish"
+  },
+  {
+    "name": "Fish12",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Fish/Fish12.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "81014e11f92f0ab340d0dbcc8e57afa20e66216e0eeac72f2502893182779f43",
     "category": "Fish"
   },
   {
