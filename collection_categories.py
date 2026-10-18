@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import math
+import re
 import shutil
 from collections import Counter
 from pathlib import Path
@@ -75,9 +76,15 @@ def classify(name: str) -> str:
     return NAME_CATEGORY.get(name.casefold(), "To_Review")
 
 
+def natural_key(name: str):
+    """Keep numbered names in numerical order: Fish1, Fish2, ..., Fish12."""
+    return tuple((0, int(part)) if part.isdigit() else (1, part.casefold())
+                 for part in re.split(r"(\d+)", name))
+
+
 def order_key(name: str):
     cat = classify(name)
-    return (CATEGORY_ORDER.index(cat), name.casefold(), name)
+    return (CATEGORY_ORDER.index(cat), natural_key(name), name)
 
 
 def _font(size: int, bold: bool = False):
@@ -172,7 +179,7 @@ def organize_collection(result: Path) -> dict:
         category = classify(Path(filename).stem)
         groups[category].append(filename)
     for files in groups.values():
-        files.sort(key=lambda name: (name.casefold(), name))
+        files.sort(key=lambda name: (natural_key(name), name))
 
     # File relocation within the generated output. No source originals are moved.
     for cat, filenames in groups.items():
