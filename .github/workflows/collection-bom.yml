@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - 'collection_pipeline.py'
+      - 'collection_categories.py'
       - '.github/workflows/collection-bom.yml'
 
 permissions:
