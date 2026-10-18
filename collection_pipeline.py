@@ -112,7 +112,7 @@ def prepare_source(selected: list[tuple[str, Path]]) -> None:
         ident = f"r{r+1:02d}_c{c+1:02d}"
         file = f"tiles/{ident}.png"
         sprite.save(SOURCE / file, "PNG", optimize=True)
-        atlas.alpha_composite(sprite, (c*TILE, r*TILE))
+        atlas.paste(sprite, (c*TILE, r*TILE))
         records.append({
             "id": ident, "name": name+".png" if path else ident+".png",
             "prefab": name if path else "",
