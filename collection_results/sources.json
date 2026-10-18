@@ -1,0 +1,1001 @@
+[
+  {
+    "name": "Barley",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r05_c07.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "c0e1fa37ed897723f36800338e54f40c92578bd7eeab0a7f136c1fcd8ff74b29"
+  },
+  {
+    "name": "BearCave",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Dungeons/BearCave.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "d70c64e722505ece997e2461f081c23420f89b9e403f87f568e5f4c996c19345"
+  },
+  {
+    "name": "Beech1",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r06_c03.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "a9fe1e4469c9577eef89956a12aaa865ae5614708a3a8baa29f3761c619a7d16"
+  },
+  {
+    "name": "Beech_Sapling",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r06_c01.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "57f8948cc5a087cf7ee01d4ec1a387d28e5fcbdf465b3cef2ecfa0326f7c5352"
+  },
+  {
+    "name": "Beech_Stub",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r03_c06.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "8e2e0cb20a1912c04202379f5fa59b4e055b78caea47218662fe64b7d615807f"
+  },
+  {
+    "name": "Blueberries",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Blueberries.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "db54d1bfe59e3aa6a7aecea9d33a394fdb3c0a12f81e40d8887e92a9326805d5"
+  },
+  {
+    "name": "Carrot",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Carrot.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "7c100a8807413b7bf5c13a8f000acf8722ade7a05508a03cea171ac7a523760b"
+  },
+  {
+    "name": "CharredFortress",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Dungeons/CharredFortress.png",
+    "source_size": [
+      90,
+      90
+    ],
+    "source_sha256": "384df930c747ae18ef345c4323cf868679e39424ffd7a50453eed64d62def323"
+  },
+  {
+    "name": "ChickenEgg",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r03_c05.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "75c8b19154bb2160a955c8580270a1139c14c2a24f6357472a4d90e99d25e10b"
+  },
+  {
+    "name": "Cloudberry",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r04_c08.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "81e40d7ca19e15ca973a0c7a0e7389d1b5d458046ae2bbe24baac4a8e2538b4b"
+  },
+  {
+    "name": "Crystal",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r03_c03.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "edac04c3a907806be024a918d3bfd41fc7d930f10f40590cdb4364491af3cc3b"
+  },
+  {
+    "name": "custom_anchor",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r02_c04.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "2344807613f395220005fe33acb0d287c91040f163ac88f4946a1cf51df9243e"
+  },
+  {
+    "name": "custom_checkmark",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r03_c08.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "07ff2552885e2258ff438b12e789a20bdadf62016da727f391042ffbcb67fa32"
+  },
+  {
+    "name": "custom_diamond_rune",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r01_c03.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "216ab4e86a848948b77402e5657dcf7132242c73712b83777af218452711152b"
+  },
+  {
+    "name": "custom_exclamation_mark",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r04_c02.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "d28df005f7fd93d95e8c8f7cbb69423e34e7ef3c374dcb994f2281a2fff1b3d7"
+  },
+  {
+    "name": "custom_fire_runestone",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r06_c08.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "c1a0aa69ceb25cbd7b82407783fa4ea061ab0c007d08bebd65e6e47356a4d0df"
+  },
+  {
+    "name": "custom_fish",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r07_c07.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "f0fe6f7d54e7a45d460bfbd13a035b72492d0fe147822f0fbc0c98db9981fb30"
+  },
+  {
+    "name": "custom_horned_helmet",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r02_c08.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "663edd97ed48d240485ecec407352281481138d62a832930ec7a60d9a0ad1f48"
+  },
+  {
+    "name": "custom_horned_runestone",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r07_c01.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "f7ca7cbc48788eda4264b919470699c432a9062ba30742465cfc567dc6c09c21"
+  },
+  {
+    "name": "custom_loot_sack",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r03_c07.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "0632185dc7b255498b1260ff749b283d6dceb9fe9b1dedec811f49d7ba8230ca"
+  },
+  {
+    "name": "custom_paw_print",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r07_c08.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "32b8fef71d4025ef476989679a7cd18144517ad56ee5c8c6ad6b452f6130216f"
+  },
+  {
+    "name": "custom_pickaxe",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r06_c04.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "eb71037e70adf3e450b507d80578697268541658da7c4a3bb3c3e81ef14b0793"
+  },
+  {
+    "name": "custom_red_cross",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r04_c01.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "dd941721ea307761a82a3420733307a2689c51647f386ad2e252940b1d965519"
+  },
+  {
+    "name": "custom_rune_k",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r08_c07.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "b3fc48ddb5e3d28e8f142771c3530f9b39ec19ae663bf2beb13b04e4d0b11215"
+  },
+  {
+    "name": "custom_runestone_zigzag",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r01_c01.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "fce2df4d4aaae9ca6730de5aa86beb32e28c7d706cb62815bba9b1d3874487f8"
+  },
+  {
+    "name": "custom_spiral_rune",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r02_c05.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "cff8232aeca331b2fbc2dd5a745d3c3683e85309ab537b34985a7f1c61581e0b"
+  },
+  {
+    "name": "custom_stone_cross",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r02_c07.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "b5d0a505b36697912bc60771a46a32244f8cb5089d7b7c2e35be42ecc80d2e32"
+  },
+  {
+    "name": "custom_stone_diamond",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r01_c02.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "0ed872afdf974e2510b17fef9ccfba1bb1c2a2831827f866b142fffee07c1312"
+  },
+  {
+    "name": "custom_stone_pedestal",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r03_c04.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "9100bdb47d692ac0d4c034e77fec0aa568555ca2d196296230df740a7609ddc5"
+  },
+  {
+    "name": "custom_stone_tower",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r01_c08.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "dd6611f53b60b5cbb29bfd618a4d05951672d88d0056d04eaf4f381695125c73"
+  },
+  {
+    "name": "custom_sword",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r06_c05.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "4edb9d5b572ac61e4cc2bfe9ada9ebcfc3db3245f4740e851579361ffd4fd2cc"
+  },
+  {
+    "name": "custom_tent",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r01_c06.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "8b43942010cb97ab8d7cf70fca79e67dc592f51e20216060f343f1c4fde223e7"
+  },
+  {
+    "name": "custom_wagon_wheel",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r02_c03.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "3d1b4650f99d666df361cbedccce8fb229cac3fcb7aee1404ed9b5689ae6ded2"
+  },
+  {
+    "name": "custom_white_flowers",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r05_c08.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "a5f10878110180e7da01bd16ea78763a7e4f4316c01e169148efd84f3e2df128"
+  },
+  {
+    "name": "custom_white_radish",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r05_c03.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "9881d687f5d5cb12369d0f1c2386c4ab4ad5490231b43e6adb1cc095b8e5323d"
+  },
+  {
+    "name": "custom_wooden_house",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r02_c01.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "9f5ad59740d3fe413d0fc1b2fea466649b8588c04ec612c50dd2566df3666576"
+  },
+  {
+    "name": "custom_world_tree",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r08_c06.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "ec19ceec5f19bc57b08b24d69eaf7a63c2dcc1983b734d9a8a15a1c72321f392"
+  },
+  {
+    "name": "Dandelion",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Dandelion.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "1c62cb457d31ce7476182136c6a261af66ebdce3fd696594ca224bd4c9ac0545"
+  },
+  {
+    "name": "DG_Cave",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r09_c03.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "2def107c217623563e7e66eea06600ce144cf062625b201c2a9059cec7db3855"
+  },
+  {
+    "name": "DG_ForestCrypt",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r09_c01.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "50b7d0ce5f78901c1c3bc5eac605b6822b7718c86b262ea0d359dfc1aa4d70bc"
+  },
+  {
+    "name": "DraugrVillage",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Dungeons/DraugrVillage.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "c9238d855328fba402249534abbe27c2ec2f6ee6a5c50052c1c9bfa921dfe02a"
+  },
+  {
+    "name": "dvergrprops_crate_long",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Dungeons/dvergrprops_crate_long.png",
+    "source_size": [
+      90,
+      90
+    ],
+    "source_sha256": "cc0460c97642550f98de0dca035adde2f787e8e4af95ab5b942238739adc2bf0"
+  },
+  {
+    "name": "Fiddleheadfern",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Fiddleheadfern.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "a9fec31953decc29a29b8b8ac1760e54a57f692b0365cb7acd5f85dc4171a8a8"
+  },
+  {
+    "name": "fire_pit",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r04_c03.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "2b24bb7fddb1f54481e9393764659532d7e844a3c4f02d5143385897e3ac1699"
+  },
+  {
+    "name": "FirTree",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r06_c02.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "2b901fc4b29cda8f3ff136382b815cb01f62d7a35c6e2c5ba7c68f87f4a25a97"
+  },
+  {
+    "name": "Fish1",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Fish/Fish1.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "17e1f722fd59a504bccea25400d47d3359185cb83afe246923e56e45db65b315"
+  },
+  {
+    "name": "Fish10",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Fish/Fish10.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "ac5f1da825a9d307830a811ae2646346d549b1f8d71f8ad90a94f4b3648af5ae"
+  },
+  {
+    "name": "Fish11",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Fish/Fish11.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "b78aac95a15048581f264417c12ed06dea0599ae7eaedf8a9b7e1e659e21683f"
+  },
+  {
+    "name": "Fish12",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Fish/Fish12.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "81014e11f92f0ab340d0dbcc8e57afa20e66216e0eeac72f2502893182779f43"
+  },
+  {
+    "name": "Fish2",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Fish/Fish2.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "b0b0b9dbc7ea2fe4f92a342463ac6b80ee9e3b274d44f3e6c999388dddf929dd"
+  },
+  {
+    "name": "Fish3",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Fish/Fish3.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "97d66c963d7d91b4040edacc36a794f5c61d093ee183cc23690a9e0f1ed1d647"
+  },
+  {
+    "name": "Fish4_cave",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Fish/Fish4_cave.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "8971389657533401009876e6a4b7380bf7b2311dff2e3afdef845ade7d7a4f02"
+  },
+  {
+    "name": "Fish5",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Fish/Fish5.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "e77aadef0ff5b2a2e523a3278887eebe09d6dc6773820685579fd0c3d74b006c"
+  },
+  {
+    "name": "Fish6",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Fish/Fish6.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "f4e81ec19546df19d3b8aa92b6f6687d61bf30d119b1a998970bacacfcd020f2"
+  },
+  {
+    "name": "Fish7",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Fish/Fish7.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "6fe174fb3581a533cb860f3f3d8387177b543fc1dd1cb4e2bcde45eb8a0d1048"
+  },
+  {
+    "name": "Fish8",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Fish/Fish8.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "02d6f8427bc0ffb63fe9c3ffe30c2f32c1f230c24dd55d622d1bf79858d284e2"
+  },
+  {
+    "name": "Fish9",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Fish/Fish9.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "5c6172288786dd4a1d217b8f7474b90fbdfa50f24a803e57fc4c8c62fa3fd296"
+  },
+  {
+    "name": "Flax",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Flax.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "3c5a2760e9d4d782270a188565c38347b3bf33271fed07417fad938abb08b6d4"
+  },
+  {
+    "name": "forge_ext4",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r08_c08.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "073d39c82078611d6bd79150f964ff45e227e752024e2c2eccf5510cb23942e0"
+  },
+  {
+    "name": "ForgeOfPotential",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Dungeons/ForgeOfPotential.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "1e8896f70f78073c0f0c4188f36125eeb5e55a62c72c4bd04adfcc7a563ba6f1"
+  },
+  {
+    "name": "FulingVillage",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Dungeons/FulingVillage.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "719956e3bb889b38d266354a28bcf2efe829230dbb17a4645250f9719e0917c5"
+  },
+  {
+    "name": "Hildir_cave",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r09_c05.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "818ce9855a4ace32d4592d819c791ee71f897faef49e4054f4583fb11955ff76"
+  },
+  {
+    "name": "Hildir_crypt",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Dungeons/Hildir_crypt.png",
+    "source_size": [
+      90,
+      90
+    ],
+    "source_sha256": "d612864c004b0cab906437f589bed5af397f75fa3e39b54d5f1ae4a610f72ce1"
+  },
+  {
+    "name": "Hildir_plainsfortress",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Dungeons/Hildir_plainsfortress.png",
+    "source_size": [
+      90,
+      90
+    ],
+    "source_sha256": "5a40fcbeba7605274074d22c07a9b726841cfbb7153a1b82ea69a2b3936f9838"
+  },
+  {
+    "name": "Honey",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r04_c05.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "ee10f06aec87b760b1d51d761030fc1f311c762529605f89072f4d6be8c37baa"
+  },
+  {
+    "name": "Kale",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Kale.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "d22687a0f0bc13d2c07e1cb717d5d678cb28cfd9df223964ffd2762d8836398c"
+  },
+  {
+    "name": "Lingonberry",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Lingonberry.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "f2df03fb5efe5a05bd2430b99173856ee4794224b1dabe437a3b910a625398cb"
+  },
+  {
+    "name": "Mistlands_DvergrBossEntrance1",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Dungeons/Mistlands_DvergrBossEntrance1.png",
+    "source_size": [
+      90,
+      90
+    ],
+    "source_sha256": "473383e30707472cda2b138cec64d8e5f5e32251ccae3148d037e8ee748af070"
+  },
+  {
+    "name": "Mistlands_DvergrTownEntrance1",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r09_c06.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "b617a95c4a810ed6f56d27eaa81485cf14b1741796970a8755688fb0e4812972"
+  },
+  {
+    "name": "MistlandsExcavation",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Dungeons/MistlandsExcavation.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "1b6a312bcef9f99cc0e4ee99aefe2ac73fbe7c1bfa05b105e414af44a8be7119"
+  },
+  {
+    "name": "MistlandsGuardTower",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Dungeons/MistlandsGuardTower.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "0609e1f1eca036586a3878aa01a8721d93f814df76ae1f1241d0b282d22101d3"
+  },
+  {
+    "name": "MistlandsHarbour",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Dungeons/MistlandsHarbour.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "92294e46ebd49e17c7095310a4f7a9cb340074aa3ac994eed0b7c30a989e2317"
+  },
+  {
+    "name": "MistlandsLighthouse",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Dungeons/MistlandsLighthouse.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "48da55a315eb2cc9ed602e2ce44769374e68b5b2ac82980178a0459ee1386cf3"
+  },
+  {
+    "name": "MorgenHole1",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r09_c07.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "c6ff18e1f3de4d755dad7aec28f36b9303c7e601d554a87a0ce730e5b144340d"
+  },
+  {
+    "name": "MorkBorg",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Dungeons/MorkBorg.png",
+    "source_size": [
+      90,
+      90
+    ],
+    "source_sha256": "11010e74caed95205fd63c26318d8bf025819b1898062c68a1dd2aaf40283804"
+  },
+  {
+    "name": "MountainCave02",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r09_c04.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "1b604f5ac79377f965105a6c760d0fecd1733141222821c0f8db864f58692e19"
+  },
+  {
+    "name": "Mushroom",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Mushroom.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "0f6377eea346e4581f8e1a937eac8b197c4f21b04ffc2dd35bfb3ebd78da77f9"
+  },
+  {
+    "name": "MushroomJotunPuffs",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/MushroomJotunPuffs.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "ead62d202ff601d1158e7c9bde990e0d267964b8dd06d7d99af56741d2592221"
+  },
+  {
+    "name": "MushroomMagecap",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/MushroomMagecap.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "87adf4136bbcd03612f631b36eb72313bf4b73bccef6b2429e5db284f8e2eb40"
+  },
+  {
+    "name": "MushroomSmokePuff",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/MushroomSmokePuff.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "2ac429f143d20e88a2fad9833d792764f99d05d4456952aee762475d596106ab"
+  },
+  {
+    "name": "MushroomYellow",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/MushroomYellow.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "42b68ea63bae1a988ded89c970e8cb16f5ccbe30a38d7a887588cb730fabb572"
+  },
+  {
+    "name": "Oat",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Oat.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "b0eacd95cae07caf61abefb1c0f44c60e119aa1a78504126dfc83527b375b4bf"
+  },
+  {
+    "name": "Onion",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r05_c06.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "755cca84c5d39cb78f60f5c9b98059136c173ddeb8ea7c0355d7fb3a2ac0f31c"
+  },
+  {
+    "name": "piece_beehive",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r07_c06.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "abd0506c0fed280792021cee272dd58c31fddbe4508740b76c83920c987ea637"
+  },
+  {
+    "name": "piece_cauldron",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r07_c05.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "bf7a751a8fcfa339af97af72e6aa49303c3d7111cd89a9d3ba76c1b39cad62af"
+  },
+  {
+    "name": "piece_chest_wood",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r02_c02.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "1a201672ab74849053739ddac482d16dcb815942bb56584254152153821d7bd8"
+  },
+  {
+    "name": "PlaceofMystery1",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Dungeons/PlaceofMystery1.png",
+    "source_size": [
+      90,
+      90
+    ],
+    "source_sha256": "2570ed9efcdf24d833b6e05dec2cf1bc939a44a39ad61380603ec2e714b25b10"
+  },
+  {
+    "name": "PlaceofMystery2",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Dungeons/PlaceofMystery2.png",
+    "source_size": [
+      90,
+      90
+    ],
+    "source_sha256": "5eb95efca1b54782600c366e1ab8534ed10132c8556cbe7de7b517c1986bd062"
+  },
+  {
+    "name": "PlaceofMystery3",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Dungeons/PlaceofMystery3.png",
+    "source_size": [
+      90,
+      90
+    ],
+    "source_sha256": "dffea1f7f7c92ed28ea8cbeb57b4590b0bce29d7a09eeeb70ab207381d491f9a"
+  },
+  {
+    "name": "Player_tombstone",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r07_c03.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "f8412994851e79b744404ca7033cfe946df16c1e363624d04d125690c1601863"
+  },
+  {
+    "name": "Poteitr",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Poteitr.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "eb664b9c88bfa5e01ff38fa7954b92337e9323d7c5b7378bdfd06a8c36c19aa4"
+  },
+  {
+    "name": "Pukeberries",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Pukeberries.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "dddd500f115ea43f3fca43d5fd60ea52b5e916150e258836d20d1b847c3488a0"
+  },
+  {
+    "name": "Raspberry",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Raspberry.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "693f69a00ce03ef601b26135347a3a5d9f8acd93eda91bca00217cfd48965ff8"
+  },
+  {
+    "name": "rock4_copper",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r03_c02.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "2e8d5f79f65ebda46007f2a7b896c4f6c4a446042b5d2ad7c0df0a8d6e5fc23b"
+  },
+  {
+    "name": "SacrificialStones",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Dungeons/SacrificialStones.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "55999f1b1843b10912088dfd09b7dc2ab0bd5fe46dc078cb79ccfe4326b35b69"
+  },
+  {
+    "name": "ShieldWood",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r06_c06.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "912da2204a542379d621d32e6d8af468747e505ecf0cdac1a5a2ea4bbe755c63"
+  },
+  {
+    "name": "stake_wall",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r01_c05.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "ed2f75efd56fdf8b8ebcc9f518721baae419374b2b040ba20151a98fd209b957"
+  },
+  {
+    "name": "Stone",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r03_c01.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "ce0e63d0f9ff1bbae880f618ade4ddf2420c40b9c6bab8866c71c99d9e118761"
+  },
+  {
+    "name": "stone_arch",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r01_c07.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "282dafe9c75dec3f5ad255c36c3e00ade85cade54ffc1aba46ac1d45f1a58101"
+  },
+  {
+    "name": "stone_pile",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r07_c04.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "17dfedd557db79739373df5f96e596ac8bdb69f9e1ef8b1bbc02c58665bc8863"
+  },
+  {
+    "name": "SunkenCrypt4",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r09_c02.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "d1ec7ef630ad028e0c58ff23d31770dcbee98f9a3de1df76d99304bd17b0619b"
+  },
+  {
+    "name": "TheHole01",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Dungeons/TheHole01.png",
+    "source_size": [
+      90,
+      90
+    ],
+    "source_sha256": "64504d1a6c7931c2531d1c8b9398e857f6c56f24d49ea74dcb231e5378ac8ce6"
+  },
+  {
+    "name": "Thistle",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Thistle.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "2971624215202de93747d3333b9c7044aac3b76869a2c001b7ce2d7e9bf8d281"
+  },
+  {
+    "name": "Torch",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r04_c04.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "09ee51e001e5f5315f905afe9404d9dc5da376bca67420e9d72d7748141e082a"
+  },
+  {
+    "name": "TrollCave",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Dungeons/TrollCave.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "d02111157332008c9f6110c016eaf9d9d544d83a565047e3c424e0afcd9df808"
+  },
+  {
+    "name": "TrophyDeer",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r07_c02.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "e7fc81d4143922f35f498d7cb47e51defec07f72c1b4164333c4b85c0ecdd0c2"
+  },
+  {
+    "name": "TrophySkeleton",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r02_c06.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "8438befcbc94b299525f9aaea78e798bb83190ad3e41167ae0e612c29a44ef9f"
+  },
+  {
+    "name": "Turnip",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r05_c05.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "cd6b38b20e7f6c684c78cce6fa7d1dcab2b1259fb7d53cb7812494fdc03e7047"
+  },
+  {
+    "name": "VikingShip",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r06_c07.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "c0069bc088208f8b0e548d8ad28d041758b62af1cb8c3310801397b2645dad35"
+  },
+  {
+    "name": "Vineberry",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/Vineberry.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "6bcef204e46edb7cc72bd147fe072ecd02017589703e1c79990049b6d0ba9f08"
+  },
+  {
+    "name": "wood_door",
+    "path": "atlas_work/Valheim_Compass_Atlas_BOM/tiles/r01_c04.png",
+    "source_size": [
+      96,
+      96
+    ],
+    "source_sha256": "8cd1e609be47f85b6741dcfd5d72f983855fff2ff339edd10f98c3e5e26cc181"
+  }
+]
