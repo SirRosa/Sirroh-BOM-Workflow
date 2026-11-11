@@ -1,35 +1,17 @@
-# IbBit v6 — uniwersalna paleta grim (3 tony na kolor)
+# IbBit v7 — uniwersalna paleta bagiennego grimdark
 
-IbBit nie ma profili dla kamienia, drewna, ścian, mostów ani żadnych innych obiektów.
-Wszystkie obrazy są przetwarzane tą samą ścieżką:
+Wersja 7 zachowuje **algorytm v6**, włącznie z 12 rodzinami, trzema tonami na kolor, neutral-first, proporcjonalnym resize do 256×256 przed obróbką, zachowaniem alfa i scalaniem sąsiadujących plam mniejszych niż 16 pikseli. **Nie ma profili materiałów**.
 
-1. Skalowanie z zachowaniem proporcji i przezroczystości do **256×256 px**, **przed** analizą.
-2. Wykrywanie rodzin barw tylko dla dostatecznie nasyconych źródłowych kolorów. Niemal szare piksele pozostają `neutral`; barwy drewniane często należą do `brown`; reszta jest dostępna dla prawdziwych akcentów.
-3. Wspólna, **stała paleta 12 rodzin × 3 tony** (`dark`, `mid`, `light`). Wszystkie 36 RGB są zdefiniowane w `PALETTE` w `src/ibbit.py`, nie na podstawie plików wejściowych.
-4. Klasyfikacja jasności przez dwa progi kwantylowe dla każdej obecnej rodziny (1/3 i 2/3). Ciemne obrazy nadal używają trzech tonów, o ile ich wejściowa jasność ma rzeczywistą zmienność. Nie ma sztywnych progów, które wymuszają `dark` na całej ścianie.
-5. Ograniczenie szumu bilateralnego (z zachowaniem krawędzi), a następnie łączenie spójnych obszarów jednego koloru o powierzchni **mniejszej niż 16 pikseli**. Wybór koloru zastępczego zależy od największej liczby kontaktów z 8 sąsiadami. Kolory są wyłącznie z palety; alfa jest zachowana.
+## Zmiana
 
-**Kolor zastępujący czerń:** `neutral dark` = RGB `(34, 37, 34)` / `#222522` — zgodny z propozycją użytkownika. Walidator pilnuje, aby każdy inny odcień każdej rodziny był od niego jaśniejszy.
+Wspólna, stała paleta 36 barw została przyciemniona i odbarwiona: kamień ma popielato-bagienny charakter, drewno otrzymało wilgotny, ziemisty brąz, pozostałe barwy akcentowe są ograniczone i zgaszone. Wybrana przez użytkownika „czerń” `#222522` pozostaje najciemniejszym kolorem całej palety. Wszystkie rodziny posiadają dokładnie 3 rosnące jasnością tony.
 
-**Istotne ograniczenie:** jeśli obiekt zawiera tylko jednolitą plamę źródłową, skrypt nie wymyśla detali tylko po to, aby wykorzystać wszystkie trzy tony. Pojedyncze wyizolowane plamy mniejsze niż 16 px, które nie stykają się z żadnym innym widocznym kolorem (otoczone transparentnymi pikselami), pozostają bez zmian, ponieważ skrypt nie niszczy kształtu ani nie dokleja do nich obcych kolorów.
+Dla kontrolnej kolekcji 30 assetów średnia luminancja widocznych pikseli zmniejszyła się z 84,64 (v6) do 68,90 (v7), czyli o 18,59%. Kanał alfa był identyczny w 30/30 plików. Uwaga: ponieważ przy remisach czyszczenia małych plam algorytm rozstrzyga podobieństwem jasności barw palety, podmiana palety zmieniła przypisania w 0,136% widocznych pikseli. Algorytm czyszczenia nie był zmieniany.
 
-### Uruchomienie
+## Użycie
 
 ```bash
-pip install -r requirements.txt
-python src/ibbit.py --input-dir katalog_wejsciowy --output-dir katalog_wynikowy
+python src/ibbit.py --input-dir input --output-dir output
 ```
 
-Ustawienia: `--size 256` (domyślnie), `--min-area 16` (domyślnie), `--no-smoothing` (debug).
-
-### Testy
-
-```bash
-python -m unittest discover -s tests -p test_ibbit.py -v
-# Dodatkowy test wszystkich 30 obrazów lokalnych:
-IBBIT_TEST_ASSET_DIR=/sciezka/do/30/png python -m unittest discover -s tests -p test_ibbit.py -v
-```
-
-W v5 problemem były sztywne nadpisania tonów `dark` po podziale kwantylowym, czego skutkiem była utrata odcienia `mid` w ścianach. V6 usuwa tę ścieżkę. Nowy silnik pozostaje deterministyczny i niedestrukcyjny — nie modyfikuje plików źródłowych.
-
-W v6 dodatkowo istnieje **uniwersalne, wspólne dla wszystkich rodzin ograniczenie jasności źródła**: progi `dark/mid` i `mid/light` nie mogą spaść poniżej odpowiednio 12 i 21 jednostek CIE L*. Zapobiega to rozjaśnianiu prawie czarnych fragmentów (np. szpar między deskami) tylko dlatego, że były one relatywnie najjaśniejszą jedną trzecią bardzo ciemnego materiału. Nie jest to profil drewna ani kamienia.
+Wymagania: `Pillow`, `numpy`, `opencv-python-headless`. Wszystkie 36 barw znajdują się w słowniku `PALETTE` w `src/ibbit.py` i są wspólne dla każdego przetwarzanego obrazu.
