@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""IbBit v6 — universal 3-tone grim palette for 2D assets.
+"""IbBit v7 — universal 3-tone grim palette for 2D assets.
 
 There are NO material/object-specific profiles. Every asset follows the same
 palette, family classification, brightness mapping and artifact cleanup.
@@ -24,22 +24,22 @@ FAMILIES = (
 NEUTRAL_ID = FAMILIES.index("neutral")
 BROWN_ID = FAMILIES.index("brown")
 
-# One fixed palette, shared across ALL images. Each family has 3 ordered tones.
+# One fixed muddy/swamp-dark palette, shared across ALL images. Each family has 3 ordered tones.
 # The darkest neutral is the user's chosen rotten-gray-black RGB (34, 37, 34).
 # Nothing in the other families may be darker in perceived brightness.
 PALETTE = {
-    "red":     ((75, 34, 34), (114, 67, 61), (159, 108, 99)),
-    "orange":  ((69, 45, 28), (113, 78, 48), (166, 125, 80)),
-    "yellow":  ((63, 62, 37), (118, 110, 56), (168, 158, 95)),
-    "olive":   ((54, 62, 38), (91, 103, 61), (135, 142, 91)),
-    "green":   ((47, 63, 46), (77, 98, 70), (118, 137, 105)),
-    "teal":    ((42, 63, 58), (70, 99, 91), (111, 137, 125)),
-    "cyan":    ((46, 60, 64), (78, 102, 106), (116, 140, 143)),
-    "blue":    ((47, 57, 68), (81, 96, 108), (122, 132, 145)),
-    "violet":  ((58, 50, 64), (96, 84, 106), (140, 126, 146)),
-    "magenta": ((71, 42, 53), (111, 77, 88), (156, 115, 127)),
-    "brown":   ((58, 41, 26), (96, 74, 49), (148, 118, 82)),
-    "neutral": ((34, 37, 34), (91, 99, 90), (155, 166, 153)),
+    "red":     ((56, 38, 36), (88, 59, 56), (122, 84, 78)),
+    "orange":  ((60, 46, 35), (90, 69, 50), (126, 96, 70)),
+    "yellow":  ((57, 56, 39), (86, 85, 59), (120, 117, 80)),
+    "olive":   ((46, 52, 36), (74, 81, 56), (107, 113, 81)),
+    "green":   ((42, 51, 42), (68, 80, 63), (101, 111, 86)),
+    "teal":    ((42, 53, 49), (69, 82, 74), (101, 114, 101)),
+    "cyan":    ((44, 53, 53), (70, 83, 82), (102, 114, 110)),
+    "blue":    ((44, 52, 56), (70, 80, 85), (103, 111, 116)),
+    "violet":  ((52, 47, 54), (78, 72, 81), (110, 103, 110)),
+    "magenta": ((57, 42, 49), (85, 62, 71), (117, 88, 95)),
+    "brown":   ((52, 41, 31), (80, 65, 48), (115, 94, 70)),
+    "neutral": ((34, 37, 34), (68, 75, 67), (118, 122, 110)),
 }
 
 
@@ -296,7 +296,7 @@ def process_image(img: Image.Image, *, size: int = SIZE, smoothing: bool = True,
             family_report[fam]["final_tone_pixels"] = [int(((color_index == idx * 3 + k) & visible).sum()) for k in range(3)]
 
     return Image.fromarray(output, "RGBA"), {
-        "version": "IbBit v6",
+        "version": "IbBit v7",
         "size": [size, size],
         "visible_pixels": int(visible.sum()),
         "alpha_preserved": bool(np.array_equal(output[..., 3], original[..., 3])),
@@ -323,8 +323,8 @@ def run_batch(input_dir: Path, output_dir: Path, *, size: int = SIZE,
             processed, report = process_image(image, size=size, min_area=min_area, smoothing=smoothing)
         processed.save(target, optimize=True)
         records[str(relative)] = report
-        print("IbBit v6:", relative, flush=True)
-    full_report = {"version": "IbBit v6", "size": [size, size],
+        print("IbBit v7:", relative, flush=True)
+    full_report = {"version": "IbBit v7", "size": [size, size],
                    "processed": len(records), "palette": PALETTE,
                    "families": FAMILIES, "files": records}
     (output_dir / "ibbit_report.json").write_text(json.dumps(full_report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -332,7 +332,7 @@ def run_batch(input_dir: Path, output_dir: Path, *, size: int = SIZE,
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="IbBit v6: shared 3-tone grim palette, 256px first, small-island cleanup")
+    ap = argparse.ArgumentParser(description="IbBit v7: shared 3-tone grim palette, 256px first, small-island cleanup")
     ap.add_argument("--input-dir", type=Path, required=True)
     ap.add_argument("--output-dir", type=Path, required=True)
     ap.add_argument("--size", type=int, default=SIZE)
