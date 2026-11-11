@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
-"""IbBit v1 — three-tone-per-color-family stylization for transparent game sprites.
+"""IbBit v6 — universal 3-tone grim palette for 2D assets.
 
-Non-generative, deterministic, 256x256-first processor. Requires Pillow, numpy, cv2.
+There are NO material/object-specific profiles. Every asset follows the same
+palette, family classification, brightness mapping and artifact cleanup.
+
+Dependencies: numpy, opencv-python-headless, Pillow.
 """
 from __future__ import annotations
 
@@ -14,12 +17,57 @@ import numpy as np
 from PIL import Image
 
 SIZE = 256
-FAMILY_NAMES = ("red", "orange", "yellow", "olive", "green", "teal", "cyan",
-                "blue", "violet", "magenta", "brown", "neutral")
+FAMILIES = (
+    "red", "orange", "yellow", "olive", "green", "teal", "cyan",
+    "blue", "violet", "magenta", "brown", "neutral"
+)
+NEUTRAL_ID = FAMILIES.index("neutral")
+BROWN_ID = FAMILIES.index("brown")
+
+# One fixed palette, shared across ALL images. Each family has 3 ordered tones.
+# The darkest neutral is the user's chosen rotten-gray-black RGB (34, 37, 34).
+# Nothing in the other families may be darker in perceived brightness.
+PALETTE = {
+    "red":     ((75, 34, 34), (114, 67, 61), (159, 108, 99)),
+    "orange":  ((69, 45, 28), (113, 78, 48), (166, 125, 80)),
+    "yellow":  ((63, 62, 37), (118, 110, 56), (168, 158, 95)),
+    "olive":   ((54, 62, 38), (91, 103, 61), (135, 142, 91)),
+    "green":   ((47, 63, 46), (77, 98, 70), (118, 137, 105)),
+    "teal":    ((42, 63, 58), (70, 99, 91), (111, 137, 125)),
+    "cyan":    ((46, 60, 64), (78, 102, 106), (116, 140, 143)),
+    "blue":    ((47, 57, 68), (81, 96, 108), (122, 132, 145)),
+    "violet":  ((58, 50, 64), (96, 84, 106), (140, 126, 146)),
+    "magenta": ((71, 42, 53), (111, 77, 88), (156, 115, 127)),
+    "brown":   ((58, 41, 26), (96, 74, 49), (148, 118, 82)),
+    "neutral": ((34, 37, 34), (91, 99, 90), (155, 166, 153)),
+}
+
+
+def perceived_brightness(rgb: np.ndarray) -> np.ndarray:
+    arr = np.asarray(rgb, dtype=np.float32)
+    return 0.2126 * arr[..., 0] + 0.7152 * arr[..., 1] + 0.0722 * arr[..., 2]
+
+
+def validate_palette(palette: dict = PALETTE) -> None:
+    if set(palette) != set(FAMILIES):
+        raise ValueError("Palette must contain all defined color families")
+    black = perceived_brightness(palette["neutral"][0])
+    for family, colors in palette.items():
+        if len(colors) != 3:
+            raise ValueError(f"{family}: exactly 3 tones required")
+        luminances = perceived_brightness(colors)
+        if not (luminances[0] < luminances[1] < luminances[2]):
+            raise ValueError(f"{family}: tone brightness must be strictly increasing")
+        if family != "neutral" and np.any(luminances <= black):
+            raise ValueError(f"{family}: no tone can be as dark as neutral dark")
+
+
+validate_palette()
+PALETTE_ARRAY = np.asarray([PALETTE[f] for f in FAMILIES], dtype=np.uint8)
 
 
 def fit_256(img: Image.Image, size: int = SIZE) -> Image.Image:
-    """Resize BEFORE processing. Preserve complete sprite and premultiplied-alpha edges."""
+    """Resize FIRST, with preserved aspect ratio and premultiplied-alpha edges."""
     src = img.convert("RGBA")
     if src.size == (size, size):
         return src.copy()
@@ -28,16 +76,13 @@ def fit_256(img: Image.Image, size: int = SIZE) -> Image.Image:
     a = np.asarray(src, dtype=np.float32)
     alpha = a[:, :, 3:4] / 255.0
     premul = a[:, :, :3] * alpha
-    rgb = cv2.resize(premul, wh, interpolation=cv2.INTER_AREA if ratio < 1 else cv2.INTER_CUBIC)
-    alp = cv2.resize(a[:, :, 3], wh, interpolation=cv2.INTER_AREA if ratio < 1 else cv2.INTER_CUBIC)
-    if rgb.ndim == 2:
-        rgb = rgb[:, :, None]
+    interp = cv2.INTER_AREA if ratio < 1 else cv2.INTER_CUBIC
+    rgb = cv2.resize(premul, wh, interpolation=interp)
+    alp = cv2.resize(a[:, :, 3], wh, interpolation=interp)
     if alp.ndim == 2:
         alp = alp[:, :, None]
-    else:
-        alp = alp.reshape((*alp.shape[:2], 1))
     o = np.zeros((wh[1], wh[0], 4), dtype=np.uint8)
-    o[:, :, :3] = np.clip(np.rint(rgb / np.maximum(alp / 255.0, 1e-5)), 0, 255).astype(np.uint8)
+    o[:, :, :3] = np.clip(np.rint(rgb / np.maximum(alp / 255, 1e-5)), 0, 255).astype(np.uint8)
     o[:, :, 3] = np.clip(np.rint(alp[:, :, 0]), 0, 255).astype(np.uint8)
     o[o[:, :, 3] == 0, :3] = 0
     canvas = Image.new("RGBA", (size, size), (0, 0, 0, 0))
@@ -45,162 +90,262 @@ def fit_256(img: Image.Image, size: int = SIZE) -> Image.Image:
     return canvas
 
 
-def family_labels(rgb: np.ndarray) -> np.ndarray:
-    """Separate browns from oranges, while keeping distinct color categories."""
+def family_labels(rgb: np.ndarray, visible: np.ndarray) -> np.ndarray:
+    """Conservative, universal HSV classification: gray is neutral, wood-like browns brown.
+
+    Only distinctly chromatic pixels enter reserved accent families.
+    Nothing about an image's filename or type is involved.
+    """
     hsv = cv2.cvtColor(rgb.astype(np.float32) / 255.0, cv2.COLOR_RGB2HSV)
-    h, s, v = hsv[:, :, 0], hsv[:, :, 1], hsv[:, :, 2]
-    luma = 0.2126 * rgb[:, :, 0] + 0.7152 * rgb[:, :, 1] + 0.0722 * rgb[:, :, 2]
-    # Each interval is half-open; no overlap or arbitrary global K-means clusters.
-    labels = np.select(
+    h, s, v = hsv[..., 0], hsv[..., 1], hsv[..., 2]
+    luma = perceived_brightness(rgb)
+    labels = np.full(visible.shape, NEUTRAL_ID, dtype=np.uint8)
+
+    clear_color = visible & (s >= 0.30) & (v >= 0.12)
+    brown = clear_color & (h >= 12) & (h < 60) & (v < 0.72) & (luma < 170)
+    labels[brown] = BROWN_ID
+    remaining = clear_color & ~brown
+    hue_family = np.select(
         [h < 14, h < 34, h < 65, h < 90, h < 165, h < 200,
          h < 230, h < 265, h < 300, h < 345],
-        list(range(10)), default=0).astype(np.uint8)
-    brown = (h >= 14) & (h < 65) & (s >= 0.17) & (v < 0.64) & (luma < 160)
-    labels[brown] = 10
-    labels[(s < 0.17) | (v < 0.085)] = 11
+        list(range(10)), default=0,
+    ).astype(np.uint8)
+    labels[remaining] = hue_family[remaining]
+
+    # Prevent colorful pixel noise from becoming a distinct material: a chromatic
+    # family must be both sufficiently present and clearly saturated on average.
+    total = int(visible.sum())
+    counts = np.bincount(labels[visible], minlength=len(FAMILIES))
+    keep_brown = counts[BROWN_ID] >= max(36, round(0.01 * total))
+    keep = {NEUTRAL_ID}
+    if keep_brown:
+        keep.add(BROWN_ID)
+    for fam in range(10):
+        mask = visible & (labels == fam)
+        count = int(counts[fam])
+        if count >= max(24, round(0.0035 * total)) and float(s[mask].mean()) >= 0.42:
+            keep.add(fam)
+    for fam in range(10):
+        if fam in keep:
+            continue
+        mask = visible & (labels == fam)
+        if fam in (0, 1, 2) and keep_brown:
+            labels[mask] = BROWN_ID
+        else:
+            labels[mask] = NEUTRAL_ID
+    if not keep_brown:
+        labels[visible & (labels == BROWN_ID)] = NEUTRAL_ID
+
+    # Absorb globally insignificant colored specks into the dominant family.
+    counts = np.bincount(labels[visible], minlength=len(FAMILIES))
+    dominant = int(np.argmax(counts))
+    dominance = counts[dominant] / max(total, 1)
+    if dominant in (NEUTRAL_ID, BROWN_ID) and dominance >= 0.73:
+        for fam in np.flatnonzero(counts):
+            if fam == dominant:
+                continue
+            if fam not in (NEUTRAL_ID, BROWN_ID) and counts[fam] <= max(48, int(0.01 * total)):
+                labels[visible & (labels == fam)] = dominant
     return labels
 
 
-def _lab_palette(lab_pixels: np.ndarray, family: int, min_gap: float) -> np.ndarray:
-    """Exactly three tonal slots (dark, middle, light) for each present family."""
-    L = lab_pixels[:, 0]
-    q = np.quantile(L, (0.14, 0.5, 0.86)).astype(np.float32)
-    middle = float(q[1])
-    # Large, visible tone steps: avoid hundreds of near-duplicate shades.
-    dark = min(float(q[0]), middle - min_gap)
-    light = max(float(q[2]), middle + min_gap)
-    levels = np.clip(np.array([dark, middle, light], dtype=np.float32), 2.0, 96.0)
-    if family == 11:
-        ab = np.array([0, 0], dtype=np.float32)
-    else:
-        ab = np.median(lab_pixels[:, 1:], axis=0).astype(np.float32)
-    triplet = np.column_stack((levels, np.repeat(ab[None, :], 3, axis=0)))
-    out = cv2.cvtColor(triplet.reshape(1, 3, 3), cv2.COLOR_LAB2RGB).reshape(3, 3)
-    return np.clip(np.rint(out * 255.0), 0, 255).astype(np.uint8)
+def luminance_to_tones(lightness: np.ndarray, visible_family: np.ndarray) -> tuple[np.ndarray, tuple[float, float]]:
+    """Three ranked tones: shadows / mids / highlights, no absolute dark override.
 
-
-def _cleanup_small_islands(families: np.ndarray, tones: np.ndarray, visible: np.ndarray,
-                           max_area: int = 8) -> np.ndarray:
-    """Remove isolated 1–8 px dither islands only within one color family.
-
-    Bigger structures, material edges and long dark cracks remain intact.
+    Adaptive thresholds ensure contrast is retained even when source pixels are
+    globally dark (as in the supplied stone walls). There is no forced-dark rule
+    that can erase the mid-tone. Truly flat input is kept flat.
     """
-    out = tones.copy()
-    h, w = tones.shape
-    for family in np.unique(families[visible]):
-        fam_mask = visible & (families == family)
-        for tone in range(3):
-            mask = (fam_mask & (out == tone)).astype(np.uint8)
-            n, cc, stats, _ = cv2.connectedComponentsWithStats(mask, 8)
+    levels = np.zeros(lightness.shape, dtype=np.uint8)
+    vals = lightness[visible_family]
+    if vals.size == 0:
+        return levels, (0.0, 0.0)
+    q1, q2 = np.quantile(vals, (1 / 3, 2 / 3))
+    if q2 - q1 < 1.0:
+        middle = float(np.median(vals))
+        q1, q2 = middle - 0.5, middle + 0.5
+    # Universal brightness floor: if a family occurs only in almost-black pixels,
+    # its relative upper tercile must NOT become a bright highlight.  These are
+    # absolute L* floors applied to ALL families, not material/object profiles.
+    q1 = max(float(q1), 12.0)
+    q2 = max(float(q2), 21.0, q1 + 3.0)
+    levels[visible_family] = np.searchsorted([q1, q2], vals, side="right").astype(np.uint8)
+    return levels, (float(q1), float(q2))
+
+
+def _component_counts(indexed: np.ndarray, visible: np.ndarray, below: int = 16) -> dict:
+    count = 0
+    pixels = 0
+    for color_id in np.unique(indexed[visible]):
+        mask = ((indexed == color_id) & visible).astype(np.uint8)
+        n, _, stats, _ = cv2.connectedComponentsWithStats(mask, connectivity=8)
+        areas = stats[1:, cv2.CC_STAT_AREA]
+        count += int(np.count_nonzero(areas < below))
+        pixels += int(areas[areas < below].sum())
+    return {"components": count, "pixels": pixels}
+
+
+def cleanup_small_color_blobs(indexed: np.ndarray, visible: np.ndarray, min_area: int = 16,
+                              passes: int = 6) -> tuple[np.ndarray, dict]:
+    """Replace all possible 8-connected single-color blobs <min_area pixels.
+
+    Choose the touching color with the greatest EIGHT-neighbor boundary contact.
+    Never turn transparent pixels opaque; tie-break deterministically. Each pass
+    re-labels against the updated result, so cleanup is repeatable and stable.
+    """
+    out = indexed.copy().astype(np.int32)
+    h, w = out.shape
+    before = _component_counts(out, visible, min_area)
+    changed_pixels = 0
+    for _ in range(passes):
+        changed = False
+        # Stable scanning order; don't let mutation leak across a component mask.
+        for color_id in np.unique(out[visible]).tolist():
+            color_mask = (visible & (out == color_id)).astype(np.uint8)
+            n, labels, stats, _ = cv2.connectedComponentsWithStats(color_mask, connectivity=8)
             for idx in range(1, n):
-                if int(stats[idx, cv2.CC_STAT_AREA]) > max_area:
+                area = int(stats[idx, cv2.CC_STAT_AREA])
+                if area >= min_area:
                     continue
-                x, y, ww, hh, _ = stats[idx]
-                x0, y0 = max(0, int(x)-1), max(0, int(y)-1)
-                x1, y1 = min(w, int(x+ww)+1), min(h, int(y+hh)+1)
-                component = cc[y0:y1, x0:x1] == idx
-                surrounding = fam_mask[y0:y1, x0:x1] & ~component
-                choices = out[y0:y1, x0:x1][surrounding]
-                choices = choices[choices != tone]
-                if choices.size < 4:
-                    continue
-                binc = np.bincount(choices, minlength=3)
-                candidate = int(np.argmax(binc))
-                if binc[candidate] / choices.size < 0.65:
-                    continue
-                local = out[y0:y1, x0:x1]
-                local[component] = candidate
-    return out
+                x, y, ww, hh, _ = (int(z) for z in stats[idx])
+                component = labels[y:y + hh, x:x + ww] == idx
+                ys, xs = np.where(component)
+                ys, xs = ys + y, xs + x
+                contacts: dict[int, int] = {}
+                for dy, dx in ((0, -1), (0, 1), (-1, 0), (1, 0),
+                               (-1, -1), (-1, 1), (1, -1), (1, 1)):
+                    ny, nx = ys + dy, xs + dx
+                    good = (ny >= 0) & (ny < h) & (nx >= 0) & (nx < w)
+                    ny, nx = ny[good], nx[good]
+                    nonself = visible[ny, nx] & (labels[ny, nx] != idx)
+                    ny, nx = ny[nonself], nx[nonself]
+                    if not len(ny):
+                        continue
+                    colors, freqs = np.unique(out[ny, nx], return_counts=True)
+                    for new_color, freq in zip(colors.tolist(), freqs.tolist()):
+                        if new_color != color_id:
+                            contacts[new_color] = contacts.get(new_color, 0) + freq
+                if not contacts:
+                    continue  # detached whole object / no other opaque neighbors
+                # Favor maximal edge contact; then similar perceptual brightness,
+                # then stable numeric ID. Do not add random new colors.
+                old_luma = float(perceived_brightness(PALETTE_ARRAY[color_id // 3, color_id % 3]))
+                target = min(contacts, key=lambda v: (
+                    -contacts[v],
+                    abs(float(perceived_brightness(PALETTE_ARRAY[v // 3, v % 3])) - old_luma),
+                    v,
+                ))
+                # Avoid using stale per-color CC labels to overwrite pixels already
+                # changed by another component in the same pass.
+                still_same = out[ys, xs] == color_id
+                if np.any(still_same):
+                    out[ys[still_same], xs[still_same]] = target
+                    changed_pixels += int(still_same.sum())
+                    changed = True
+        if not changed:
+            break
+    after = _component_counts(out, visible, min_area)
+    return out, {"min_area": min_area, "removed_pixels": changed_pixels,
+                 "components_before": before["components"],
+                 "components_after": after["components"]}
 
 
-def process_image(img: Image.Image, *, size: int = SIZE, min_gap: float = 17.0,
-                  smoothing: bool = True) -> tuple[Image.Image, dict]:
+def process_image(img: Image.Image, *, size: int = SIZE, smoothing: bool = True,
+                  min_area: int = 16) -> tuple[Image.Image, dict]:
     original = np.asarray(fit_256(img, size), dtype=np.uint8)
-    alpha = original[:, :, 3]
+    alpha = original[..., 3]
     visible = alpha >= 8
     output = np.zeros_like(original)
-    output[:, :, 3] = alpha  # Exact alpha preservation, including antialiasing.
+    output[..., 3] = alpha
     if not np.any(visible):
-        return Image.fromarray(output, "RGBA"), {"families": {}, "size": [size, size]}
+        return Image.fromarray(output, "RGBA"), {"size": [size, size], "families": {}, "alpha_preserved": True}
 
-    rgb = original[:, :, :3].copy()
-    # Fill only invisible RGB for safe edge-aware filtering (never change alpha).
-    missing = (alpha < 8).astype(np.uint8)
-    if np.any(missing):
-        rgb = cv2.inpaint(rgb, missing, 2, cv2.INPAINT_TELEA)
+    rgb = original[..., :3].copy()
+    unseen = (alpha < 8).astype(np.uint8)
+    if np.any(unseen):
+        rgb = cv2.inpaint(rgb, unseen, 2, cv2.INPAINT_TELEA)
+    groups = family_labels(original[..., :3], visible)
     if smoothing:
-        rgb = cv2.bilateralFilter(rgb, 7, 37, 4)
-    groups = family_labels(rgb)
-    lab = cv2.cvtColor(rgb.astype(np.float32)/255.0, cv2.COLOR_RGB2LAB)
-    smooth_l = lab[:, :, 0]
+        rgb = cv2.bilateralFilter(rgb, 7, 30, 4)
+    lab = cv2.cvtColor(rgb.astype(np.float32) / 255.0, cv2.COLOR_RGB2LAB)
+    lightness = lab[..., 0]
     if smoothing:
-        smooth_l = cv2.bilateralFilter(smooth_l, 5, 9.0, 3)
-    tones = np.zeros(groups.shape, np.uint8)
-    palettes = {}
+        lightness = cv2.bilateralFilter(lightness, 5, 8, 3)
+
+    tones = np.zeros(visible.shape, dtype=np.uint8)
     family_report = {}
     for family in np.unique(groups[visible]):
         mask = visible & (groups == family)
-        pixels = lab[mask]
-        tri = _lab_palette(pixels, int(family), min_gap)
-        palettes[int(family)] = tri
-        tri_lab = cv2.cvtColor(tri.astype(np.float32).reshape(1, 3, 3) / 255.0,
-                               cv2.COLOR_RGB2LAB).reshape(3, 3)
-        thresholds = (float((tri_lab[0, 0] + tri_lab[1, 0]) / 2),
-                      float((tri_lab[1, 0] + tri_lab[2, 0]) / 2))
-        tones[mask] = np.searchsorted(thresholds, smooth_l[mask]).astype(np.uint8)
-        family_report[FAMILY_NAMES[int(family)]] = {
-            "pixels": int(mask.sum()),
-            "tones_rgb": {"dark": tri[0].tolist(), "neutral": tri[1].tolist(),
-                          "light": tri[2].tolist()},
+        band, thresholds = luminance_to_tones(lightness, mask)
+        tones[mask] = band[mask]
+        family_report[FAMILIES[int(family)]] = {
+            "input_pixels": int(mask.sum()),
+            "quantile_thresholds": list(thresholds),
+            "raw_tone_pixels": [int((band[mask] == k).sum()) for k in range(3)],
         }
+
+    color_index = groups.astype(np.int32) * 3 + tones.astype(np.int32)
+    cleanup = {"min_area": min_area, "removed_pixels": 0}
     if smoothing:
-        tones = _cleanup_small_islands(groups, tones, visible)
-    for family, triplet in palettes.items():
-        mask = visible & (groups == family)
-        output[:, :, :3][mask] = triplet[tones[mask]]
+        color_index, cleanup = cleanup_small_color_blobs(color_index, visible, min_area=min_area)
+    out_rgb = PALETTE_ARRAY[color_index // 3, color_index % 3]
+    output[..., :3][visible] = out_rgb[visible]
     output[~visible, :3] = 0
+    for idx, fam in enumerate(FAMILIES):
+        if fam in family_report:
+            family_report[fam]["final_tone_pixels"] = [int(((color_index == idx * 3 + k) & visible).sum()) for k in range(3)]
+
     return Image.fromarray(output, "RGBA"), {
-        "size": [size, size], "visible_pixels": int(visible.sum()),
-        "alpha_identical_after_resize": bool(np.array_equal(output[:,:,3], original[:,:,3])),
+        "version": "IbBit v6",
+        "size": [size, size],
+        "visible_pixels": int(visible.sum()),
+        "alpha_preserved": bool(np.array_equal(output[..., 3], original[..., 3])),
+        "universal_palette": True,
         "families": family_report,
+        "cleanup": cleanup,
     }
 
 
 def run_batch(input_dir: Path, output_dir: Path, *, size: int = SIZE,
-              min_gap: float = 17.0, smoothing: bool = True) -> dict:
-    sources = sorted(input_dir.rglob('*.png'))
+              min_area: int = 16, smoothing: bool = True) -> dict:
+    input_dir, output_dir = input_dir.resolve(), output_dir.resolve()
+    if output_dir == input_dir or input_dir in output_dir.parents:
+        raise ValueError("Output must be outside the input directory")
+    sources = sorted(input_dir.rglob("*.png"))
     if not sources:
-        raise ValueError(f'No PNG files found in {input_dir}')
-    if output_dir.resolve() == input_dir.resolve() or input_dir.resolve() in output_dir.resolve().parents:
-        raise ValueError('Output directory must be separate from the source directory')
+        raise ValueError(f"No PNG files found in {input_dir}")
     records = {}
-    for src in sources:
-        relative = src.relative_to(input_dir)
-        dest = output_dir / relative
-        dest.parent.mkdir(parents=True, exist_ok=True)
-        with Image.open(src) as im:
-            processed, report = process_image(im, size=size, min_gap=min_gap, smoothing=smoothing)
-        processed.save(dest, optimize=True)
+    for source in sources:
+        relative = source.relative_to(input_dir)
+        target = output_dir / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        with Image.open(source) as image:
+            processed, report = process_image(image, size=size, min_area=min_area, smoothing=smoothing)
+        processed.save(target, optimize=True)
         records[str(relative)] = report
-        print(f'IbBit: {relative}', flush=True)
-    report = {"version": "IbBit v1", "count": len(records), "size": [size, size], "files": records}
-    (output_dir / 'ibbit_report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
-    return report
+        print("IbBit v6:", relative, flush=True)
+    full_report = {"version": "IbBit v6", "size": [size, size],
+                   "processed": len(records), "palette": PALETTE,
+                   "families": FAMILIES, "files": records}
+    (output_dir / "ibbit_report.json").write_text(json.dumps(full_report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    return full_report
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description='IbBit v1 — 3 tones per color family, size-first, edge-aware cleanup')
-    parser.add_argument('--input-dir', type=Path, required=True)
-    parser.add_argument('--output-dir', type=Path, required=True)
-    parser.add_argument('--size', type=int, default=SIZE)
-    parser.add_argument('--tone-gap', type=float, default=17.0, help='Minimum LAB lightness gap between shades')
-    parser.add_argument('--no-smoothing', action='store_true', help='Disable bilateral filter and island cleanup')
-    args = parser.parse_args()
-    if not 32 <= args.size <= 2048:
-        parser.error('size must be between 32 and 2048')
-    run_batch(args.input_dir, args.output_dir, size=args.size, min_gap=args.tone_gap,
-              smoothing=not args.no_smoothing)
+    ap = argparse.ArgumentParser(description="IbBit v6: shared 3-tone grim palette, 256px first, small-island cleanup")
+    ap.add_argument("--input-dir", type=Path, required=True)
+    ap.add_argument("--output-dir", type=Path, required=True)
+    ap.add_argument("--size", type=int, default=SIZE)
+    ap.add_argument("--min-area", type=int, default=16)
+    ap.add_argument("--no-smoothing", action="store_true")
+    args = ap.parse_args()
+    if not (32 <= args.size <= 2048):
+        ap.error("--size must be in 32..2048")
+    if not (2 <= args.min_area <= 128):
+        ap.error("--min-area must be in 2..128")
+    run_batch(args.input_dir, args.output_dir, size=args.size,
+              min_area=args.min_area, smoothing=not args.no_smoothing)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
