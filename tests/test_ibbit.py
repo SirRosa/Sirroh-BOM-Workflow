@@ -14,7 +14,7 @@ from ibbit import (PALETTE, FAMILIES, NEUTRAL_ID, BROWN_ID,
                       validate_palette)
 
 
-class IbBitV6Tests(unittest.TestCase):
+class IbBitV7Tests(unittest.TestCase):
     def test_palette_strictly_ordered_and_black_is_global_darkest(self):
         validate_palette()
         black = perceived_brightness(PALETTE['neutral'][0])
@@ -122,6 +122,31 @@ class IbBitV6Tests(unittest.TestCase):
             with Image.open(out/'nested'/'test.png') as result:
                 self.assertEqual(result.size,(256,256))
             self.assertTrue((out/'ibbit_report.json').exists())
+
+
+    def test_v7_palette_darker_and_less_saturated_than_v6(self):
+        import cv2
+        old = {
+            'red': ((75,34,34),(114,67,61),(159,108,99)),
+            'orange': ((69,45,28),(113,78,48),(166,125,80)),
+            'yellow': ((63,62,37),(118,110,56),(168,158,95)),
+            'olive': ((54,62,38),(91,103,61),(135,142,91)),
+            'green': ((47,63,46),(77,98,70),(118,137,105)),
+            'teal': ((42,63,58),(70,99,91),(111,137,125)),
+            'cyan': ((46,60,64),(78,102,106),(116,140,143)),
+            'blue': ((47,57,68),(81,96,108),(122,132,145)),
+            'violet': ((58,50,64),(96,84,106),(140,126,146)),
+            'magenta': ((71,42,53),(111,77,88),(156,115,127)),
+            'brown': ((58,41,26),(96,74,49),(148,118,82)),
+            'neutral': ((34,37,34),(91,99,90),(155,166,153)),
+        }
+        old_rgb = np.asarray([old[k] for k in FAMILIES], np.uint8)
+        new_rgb = np.asarray([PALETTE[k] for k in FAMILIES], np.uint8)
+        self.assertTrue(np.all(perceived_brightness(new_rgb) <= perceived_brightness(old_rgb) + 0.1))
+        self.assertGreater(float(np.mean(perceived_brightness(old_rgb) - perceived_brightness(new_rgb))), 10.0)
+        old_sat = cv2.cvtColor(old_rgb.reshape(-1,1,3).astype(np.float32)/255.0, cv2.COLOR_RGB2HSV)[...,1].mean()
+        new_sat = cv2.cvtColor(new_rgb.reshape(-1,1,3).astype(np.float32)/255.0, cv2.COLOR_RGB2HSV)[...,1].mean()
+        self.assertLess(float(new_sat), float(old_sat))
 
     def test_full_collection_30_has_neutral_all_three_and_no_small_islands(self):
         import os
